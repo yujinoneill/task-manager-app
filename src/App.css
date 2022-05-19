@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+
+.App {
+  background-color: #e7ecef;
+  padding: 20px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+/* Header */
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+  color: #274c77;
+}
+
+.Header .head-search {
+  display: flex;
+  align-items: center;
+
+  width: 300px;
+}
+
+.Header .head-search input {
+  border: none;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 18px;
+
+  margin-left: 10px;
+}
+
+.Header .head-search input:focus {
+  outline: none;
+}
+
+/* Dropdown */
+.Dropdown {
+  position: relative;
+}
+
+.Dropdown button {
+  background-color: transparent;
+  border: none;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 18px;
+  font-family: "Ubuntu", sans-serif;
+
+  cursor: pointer;
+}
+
+.Dropdown button span {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.Dropdown img {
+  width: 30px;
+}
+
+.Dropdown nav {
+  background-color: white;
+  visibility: hidden;
+
+  position: absolute;
+  top: 40px;
+  right: 0;
+
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+  min-width: 190px;
+}
+
+.Dropdown nav ul {
+  margin: 0;
+  padding: 20px;
+}
+
+.Dropdown nav li {
+  list-style-type: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+
+.Dropdown nav li span {
+  margin-left: 10px;
+}
+
+.Dropdown .active {
+  visibility: visible;
+}
