@@ -1,9 +1,80 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 
-.App {
+body {
   background-color: #e7ecef;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.App {
   padding: 20px;
   font-family: "Ubuntu", sans-serif;
+  margin-left: 240px;
+}
+
+/* SideBar */
+.SideBar {
+  width: 240px;
+  height: 100%;
+  background-color: white;
+  padding: 10px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+  overflow-x: hidden;
+  box-sizing: border-box;
+
+  font-family: "Ubuntu", sans-serif;
+  transition: 0.5s;
+}
+
+.inactive {
+  width: 0;
+  padding: 0;
+}
+
+.SideBar .sidebar-btn {
+  background-color: transparent;
+  border: none;
+
+  position: absolute;
+  top: 28px;
+  right: 20px;
+
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.SideBar h4 {
+  font-size: 24px;
+  margin: 10px;
+  color: #6096ba;
+}
+
+.SideBar ul {
+  padding: 0;
+  margin: 20px;
+}
+
+.SideBar li {
+  list-style-type: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 18px;
+  color: #274c77;
+}
+
+.SideBar span {
+  margin-left: 10px;
 }
 
 /* Header */

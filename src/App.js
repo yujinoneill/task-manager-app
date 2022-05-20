@@ -11,10 +11,12 @@ import MyAccount from "./pages/MyAccount";
 
 //css
 import "./App.css";
+import SideBar from "./components/SideBar";
 
 function App() {
   return (
     <BrowserRouter>
+      <SideBar />
       <div className="App">
         <Header />
         <Routes>
