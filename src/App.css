@@ -6,172 +6,54 @@ body {
   margin: 0;
 }
 
-.App {
-  padding: 20px;
-  font-family: "Ubuntu", sans-serif;
-  margin-left: 240px;
-}
+/* Dropdown */
 
-/* SideBar */
-.SideBar {
-  width: 240px;
-  height: 100%;
+/* Home */
+/* Welcome-box */
+.welcome-box {
   background-color: white;
-  padding: 10px;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
-  overflow-x: hidden;
   box-sizing: border-box;
 
   font-family: "Ubuntu", sans-serif;
-  transition: 0.5s;
+
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: space-between;
 }
 
-.inactive {
-  width: 0;
-  padding: 0;
+.welcome-box .welcome-text {
+  margin-right: 20px;
 }
 
-.SideBar .sidebar-btn {
-  background-color: transparent;
-  border: none;
-
-  position: absolute;
-  top: 28px;
-  right: 20px;
-
-  cursor: pointer;
-  visibility: hidden;
-}
-
-.SideBar h4 {
-  font-size: 24px;
-  margin: 10px;
+.welcome-box .welcome-text h3 {
+  margin: 0;
   color: #6096ba;
 }
 
-.SideBar ul {
-  padding: 0;
-  margin: 20px;
+.welcome-box .welcome-img {
+  height: 140px;
+  margin: auto;
 }
 
-.SideBar li {
-  list-style-type: none;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-
-  font-size: 18px;
-  color: #274c77;
+.welcome-box .welcome-img img {
+  height: 100%;
 }
 
-.SideBar span {
-  margin-left: 10px;
-}
-
-/* Header */
-.Header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 10px;
+/* Plan-box */
+.main-box {
   background-color: white;
-  border-radius: 5px;
-
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
 
-  color: #274c77;
-}
-
-.Header .head-search {
-  display: flex;
-  align-items: center;
-
-  width: 300px;
-}
-
-.Header .head-search input {
-  border: none;
-  font-family: "Ubuntu", sans-serif;
-  font-size: 18px;
-
-  margin-left: 10px;
-}
-
-.Header .head-search input:focus {
-  outline: none;
-}
-
-/* Dropdown */
-.Dropdown {
-  position: relative;
-}
-
-.Dropdown button {
-  background-color: transparent;
-  border: none;
-
-  display: flex;
-  align-items: center;
-
-  font-size: 18px;
   font-family: "Ubuntu", sans-serif;
 
-  cursor: pointer;
-}
-
-.Dropdown button span {
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.Dropdown img {
-  width: 30px;
-}
-
-.Dropdown nav {
-  background-color: white;
-  visibility: hidden;
-
-  position: absolute;
-  top: 40px;
-  right: 0;
-
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
-
-  min-width: 190px;
-}
-
-.Dropdown nav ul {
-  margin: 0;
   padding: 20px;
-}
-
-.Dropdown nav li {
-  list-style-type: none;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
 
   display: flex;
-  align-items: center;
-}
-
-.Dropdown nav li span {
-  margin-left: 10px;
-}
-
-.Dropdown .active {
-  visibility: visible;
 }
