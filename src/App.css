@@ -6,54 +6,6 @@ body {
   margin: 0;
 }
 
-/* Dropdown */
-
-/* Home */
-/* Welcome-box */
-.welcome-box {
-  background-color: white;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
-  box-sizing: border-box;
-
-  font-family: "Ubuntu", sans-serif;
-
-  padding: 20px;
-  margin-top: 20px;
-  border-radius: 5px;
-
-  display: flex;
-  justify-content: space-between;
-}
-
-.welcome-box .welcome-text {
-  margin-right: 20px;
-}
-
-.welcome-box .welcome-text h3 {
-  margin: 0;
-  color: #6096ba;
-}
-
-.welcome-box .welcome-img {
-  height: 140px;
+.pie-chart {
   margin: auto;
-}
-
-.welcome-box .welcome-img img {
-  height: 100%;
-}
-
-/* Plan-box */
-.main-box {
-  background-color: white;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
-  box-sizing: border-box;
-
-  font-family: "Ubuntu", sans-serif;
-
-  padding: 20px;
-  margin-top: 20px;
-  border-radius: 5px;
-
-  display: flex;
 }
