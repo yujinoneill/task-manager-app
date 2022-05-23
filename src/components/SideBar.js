@@ -10,6 +10,8 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
+import { List } from "./Dropdown";
+
 // styled-components
 const StyledSideBar = styled.div`
   width: 240px;
@@ -64,26 +66,9 @@ const Button = styled.button`
   }
 `;
 
-const List = styled.ul`
-  padding: 0;
-  margin: 20px;
-
-  li {
-    list-style-type: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-
-    font-size: 18px;
-    color: #274c77;
-
-    span {
-      margin-left: 10px;
-    }
-  }
+const StyledList = styled(List)`
+  color: #274c77;
+  font-size: 18px;
 `;
 
 const SideBar = (props) => {
@@ -100,7 +85,7 @@ const SideBar = (props) => {
         <Button onClick={sidebarToggler}>
           <FaTimes />
         </Button>
-        <List>
+        <StyledList>
           <li onClick={() => navigate("/")}>
             <FaHome />
             <span>Home</span>
@@ -117,7 +102,7 @@ const SideBar = (props) => {
             <FaUserCircle />
             <span>My Account</span>
           </li>
-        </List>
+        </StyledList>
       </StyledSideBar>
     </div>
   );

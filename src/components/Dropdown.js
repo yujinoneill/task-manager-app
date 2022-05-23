@@ -52,7 +52,7 @@ const Nav = styled.nav`
     `}
 `;
 
-const List = styled.ul`
+export const List = styled.ul`
   margin: 0;
   padding: 20px;
 
@@ -71,7 +71,7 @@ const List = styled.ul`
   }
 `;
 
-const Dropdown = (props) => {
+const Dropdown = () => {
   const [isActive, setIsActive] = useState(false);
   const activeHandler = () => setIsActive(!isActive);
 
