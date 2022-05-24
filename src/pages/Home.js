@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 import BasicBox from "../components/BasicBox";
-import Chart from "../components/chart/Chart";
 import CheckForm from "../components/CheckForm";
-
+import Chart from "../components/chart/Chart";
 const Container = styled.div`
   display: flex;
 
