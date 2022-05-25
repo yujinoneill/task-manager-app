@@ -22,6 +22,8 @@ const HeadSearch = styled.div`
   align-items: center;
 
   input {
+    width: 100%;
+
     border: none;
     font-family: "Ubuntu", sans-serif;
     font-size: 18px;
