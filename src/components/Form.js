@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import Button from "./Button";
+
 const StyledForm = styled.form`
   padding: 5px;
 `;
@@ -107,6 +109,13 @@ const Form = () => {
           </label>
         </div>
       </StyledDiv>
+      <Button
+        type="submit"
+        name={"Save Change"}
+        mainColor={"#6096BA"}
+        textColor={"white"}
+      />
+      <Button type="reset" name={"Cancel"} />
     </StyledForm>
   );
 };
