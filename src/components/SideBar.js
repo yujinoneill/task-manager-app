@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 import {
@@ -17,7 +17,7 @@ const StyledSideBar = styled.div`
   width: 240px;
   height: 100%;
   background-color: white;
-  padding: 10px;
+  padding: 20px;
 
   position: fixed;
   top: 0;
@@ -67,13 +67,28 @@ const Button = styled.button`
 `;
 
 const StyledList = styled(List)`
-  color: #274c77;
+  padding: 10px 20px;
   font-size: 18px;
+
+  li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    a {
+      text-decoration: none;
+      color: #274c77;
+
+      display: flex;
+      align-items: center;
+
+      &:focus {
+        color: #6096ba;
+      }
+    }
+  }
 `;
 
 const SideBar = (props) => {
-  const navigate = useNavigate();
-
   const [isVisible, setIsVisible] = useState(true);
 
   const sidebarToggler = () => setIsVisible(!isVisible);
@@ -86,21 +101,29 @@ const SideBar = (props) => {
           <FaTimes />
         </Button>
         <StyledList>
-          <li onClick={() => navigate("/")}>
-            <FaHome />
-            <span>Home</span>
+          <li>
+            <Link to="/">
+              <FaHome />
+              <span>Home</span>
+            </Link>
           </li>
-          <li onClick={() => navigate("/data")}>
-            <FaCloudDownloadAlt />
-            <span>Data Storage</span>
+          <li>
+            <Link to="/data">
+              <FaCloudDownloadAlt />
+              <span>Data Storage</span>
+            </Link>
           </li>
-          <li onClick={() => navigate("/diary")}>
-            <FaBook />
-            <span>Diary</span>
+          <li>
+            <Link to="/diary">
+              <FaBook />
+              <span>Diary</span>
+            </Link>
           </li>
-          <li onClick={() => navigate("/myaccount")}>
-            <FaUserCircle />
-            <span>My Account</span>
+          <li>
+            <Link to="/myaccount">
+              <FaUserCircle />
+              <span>My Account</span>
+            </Link>
           </li>
         </StyledList>
       </StyledSideBar>
