@@ -55,13 +55,13 @@ const Form = () => {
         <div>
           <label>
             First Name
-            <input type="text" value="Yujin" />
+            <input type="text" value="Yujin" readOnly />
           </label>
         </div>
         <div>
           <label>
             Last Name
-            <input type="text" value="Oneill" />
+            <input type="text" value="Oneill" readOnly />
           </label>
         </div>
       </StyledDiv>
@@ -69,13 +69,13 @@ const Form = () => {
         <div>
           <label>
             E-mail
-            <input type="email" value="yujinoneill@gmail.com" />
+            <input type="email" value="yujinoneill@gmail.com" readOnly />
           </label>
         </div>
         <div>
           <label>
             Password
-            <input type="password" value="password" />
+            <input type="password" value="password" readOnly />
           </label>
         </div>
       </StyledDiv>
@@ -83,19 +83,19 @@ const Form = () => {
         <div>
           <label>
             City
-            <input type="text" value="Seoul" />
+            <input type="text" value="Seoul" readOnly />
           </label>
         </div>
         <div>
           <label>
             Contry
-            <input type="text" value="South Korea" />
+            <input type="text" value="South Korea" readOnly />
           </label>
         </div>
         <div>
           <label>
             Postal Code
-            <input type="text" value="123 - 456" />
+            <input type="text" value="123 - 456" readOnly />
           </label>
         </div>
       </StyledDiv>
@@ -105,6 +105,7 @@ const Form = () => {
             About Me
             <textarea
               value={"Hello, I'm Oneill! I am studying Front-end Development."}
+              readOnly
             />
           </label>
         </div>
