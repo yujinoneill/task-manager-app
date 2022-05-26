@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { FaSearch, FaBars } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import Dropdown from ".//Dropdown";
 
 const StyledHeader = styled.header`
@@ -36,29 +36,12 @@ const HeadSearch = styled.div`
   }
 `;
 
-const ToggleButton = styled.button`
-  background-color: transparent;
-  border: none;
-
-  cursor: pointer;
-  margin-right: 10px;
-
-  display: none;
-
-  @media screen and (max-width: 768px) {
-    display: block;
-  }
-`;
-
 const Header = () => {
   return (
     <StyledHeader>
       <HeadSearch>
-        <ToggleButton>
-          <FaBars />
-        </ToggleButton>
         <FaSearch />
-        <input type="search" placeholder="Search" />
+        <input tyype="search" placeholder="Search" />
       </HeadSearch>
       <Dropdown />
     </StyledHeader>

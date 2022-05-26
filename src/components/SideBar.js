@@ -7,17 +7,19 @@ import {
   FaCloudDownloadAlt,
   FaBook,
   FaUserCircle,
-  FaTimes,
+  FaBars,
 } from "react-icons/fa";
 
 import { List } from "./Dropdown";
 
 // styled-components
 const StyledSideBar = styled.div`
-  width: 240px;
+  width: 70px;
   height: 100%;
   background-color: white;
-  padding: 20px;
+  padding: 10px 20px 0 5px;
+
+  white-space: nowrap;
 
   position: fixed;
   top: 0;
@@ -25,28 +27,24 @@ const StyledSideBar = styled.div`
   z-index: 1;
 
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
-  overflow-x: hidden;
   box-sizing: border-box;
 
   font-family: "Ubuntu", sans-serif;
   transition: 0.5s;
 
   ${(props) =>
-    props.active === "inactive" &&
+    props.active === "active" &&
     css`
-      width: 0;
-      padding: 0;
+      width: 230px;
     `}
 
   h4 {
-    font-size: 24px;
-    margin: 10px;
+    font-size: 22px;
+    margin: 0;
+    padding-left: 20px;
     color: #6096ba;
-  }
 
-  @media screen and (max-width: 768px) {
-    width: 0;
-    padding: 0;
+    display: inline-block;
   }
 `;
 
@@ -54,21 +52,24 @@ const Button = styled.button`
   background-color: transparent;
   border: none;
 
-  position: absolute;
-  top: 28px;
-  right: 20px;
+  padding-left: 20px;
+  font-size: 18px;
 
   cursor: pointer;
-  display: none;
+`;
 
-  @media screen and (max-width: 768px) {
-    display: block;
-  }
+const StyledHeader = styled.header`
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  overflow-x: hidden;
 `;
 
 const StyledList = styled(List)`
   padding: 10px 20px;
   font-size: 18px;
+
+  overflow-x: hidden;
 
   li {
     padding-top: 10px;
@@ -88,18 +89,20 @@ const StyledList = styled(List)`
   }
 `;
 
-const SideBar = (props) => {
-  const [isVisible, setIsVisible] = useState(true);
+const SideBar = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
   const sidebarToggler = () => setIsVisible(!isVisible);
 
   return (
     <div>
       <StyledSideBar active={`${isVisible ? "active" : "inactive"}`}>
-        <h4>Task Manager</h4>
-        <Button onClick={sidebarToggler}>
-          <FaTimes />
-        </Button>
+        <StyledHeader>
+          <Button onClick={sidebarToggler}>
+            <FaBars />
+          </Button>
+          <h4>Task Manager</h4>
+        </StyledHeader>
         <StyledList>
           <li>
             <Link to="/">
