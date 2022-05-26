@@ -18,11 +18,7 @@ import SideBar from "./components/SideBar";
 const StyledApp = styled.div`
   padding: 20px;
   font-family: "Ubuntu", sans-serif;
-  margin-left: 240px;
-
-  @media screen and (max-width: 768px) {
-    margin-left: 0;
-  }
+  margin-left: 70px;
 `;
 
 function App() {
