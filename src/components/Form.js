@@ -2,11 +2,15 @@ import styled from "styled-components";
 
 import Button from "./Button";
 
-const StyledForm = styled.form`
+export const StyledForm = styled.form`
   padding: 5px;
+
+  button {
+    margin-right: 10px;
+  }
 `;
 
-const StyledDiv = styled.div`
+export const StyledDiv = styled.div`
   display: grid;
   grid-template-columns: repeat(${(props) => props.number}, 1fr);
   grid-template-rows: 1fr;
@@ -110,12 +114,7 @@ const Form = () => {
           </label>
         </div>
       </StyledDiv>
-      <Button
-        type="submit"
-        name={"Save Change"}
-        mainColor={"#6096BA"}
-        textColor={"white"}
-      />
+      <Button type="submit" name={"Save Change"} color={"#6096ba"} />
       <Button type="reset" name={"Cancel"} />
     </StyledForm>
   );
