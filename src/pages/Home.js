@@ -3,10 +3,14 @@ import styled from "styled-components";
 import BasicBox from "../components/BasicBox";
 import CheckForm from "../components/CheckForm";
 import Chart from "../components/chart/Chart";
+import Button from "../components/Button";
+
+import { StyledHeader } from "../components/Filter";
 
 const WelcomeContent = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
 
   p {
     margin-right: 20px;
@@ -15,6 +19,15 @@ const WelcomeContent = styled.div`
   img {
     height: 140px;
     margin: auto;
+  }
+
+  @media screen and (max-width: 576px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+
+    p {
+      margin-right: 0;
+    }
   }
 `;
 
@@ -46,15 +59,46 @@ const MonthlyPlan = styled.div`
   align-items: center;
   margin-right: auto;
   margin-left: auto;
+
+  select {
+    cursor: pointer;
+
+    outline: none;
+    border: none;
+    background-color: #e9ecef;
+    border-radius: 5px;
+
+    padding: 10px 15px;
+
+    font-family: "Ubuntu", sans-serif;
+  }
+
+    @media screen and (max-width: 768px) {
+      margin-top: 10px;
+    }
+  }
 `;
 
 const WeeklyPlan = styled.div`
   padding-left: 5%;
   border-left: 1px solid #e7ecef;
 
+  select {
+    cursor: pointer;
+  }
+
   @media screen and (max-width: 768px) {
     border-left: none;
     border-top: 1px solid #e7ecef;
+    padding-right: 5%;
+  }
+`;
+
+const WeeklyHeader = styled(StyledHeader)`
+  grid-template-columns: repeat(2, 1fr);
+
+  @media screen and (max-width: 768px) {
+    margin-top: 20px;
   }
 `;
 
@@ -131,13 +175,16 @@ const Home = () => {
               <Chart />
             </MonthlyPlan>
             <WeeklyPlan>
-              <select>
-                <option value="Week 1">Week 1</option>
-                <option value="Week 2">Week 2</option>
-                <option value="Week 3">Week 3</option>
-                <option value="Week 4">Week 4</option>
-                <option value="Week 5">Week 5</option>
-              </select>
+              <WeeklyHeader>
+                <select>
+                  <option value="Week 1">Week 1</option>
+                  <option value="Week 2">Week 2</option>
+                  <option value="Week 3">Week 3</option>
+                  <option value="Week 4">Week 4</option>
+                  <option value="Week 5">Week 5</option>
+                </select>
+                <Button name={"Add a New Plan"} color={"#6096ba"} />
+              </WeeklyHeader>
               <div>
                 <CheckForm label={"Read 「The Stranger」"} />
                 <CheckForm label={"Go to cinema"} />
