@@ -10,7 +10,7 @@ const Background = styled.div`
   background-color: #6096ba;
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   display: grid;
   grid-template-columns: 0.65fr 0.35fr;
   grid-template-rows: 1fr;
@@ -103,7 +103,7 @@ const MyAccount = () => {
   return (
     <Container>
       <div className="order-1">
-        <BasicBox boxTitle={"Edit Profile"} boxContent={<Form />} />
+        <BasicBox boxTitle="Edit Profile" boxContent={<Form />} />
       </div>
       <div className="order-2">
         <BasicBox
