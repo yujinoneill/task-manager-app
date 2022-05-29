@@ -1,6 +1,9 @@
 import styled from "styled-components";
-import BasicBox from "../components/BasicBox";
-import DiaryBox from "../components/DiaryBox";
+
+import BasicBox from "../../components/BasicBox";
+import DiaryBox from "../../components/DiaryBox";
+import Filter from "../../components/Filter";
+import { StyledDiv } from "../../components/wishlist/WishBox";
 
 // Styled-components
 const Grid = styled.div`
@@ -12,63 +15,59 @@ const Grid = styled.div`
   @media screen and (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
-`;
 
-// Images
-const images = [
-  "clement-helardot-95YRwf6CNw8-unsplash",
-  "danial-igdery-FCHlYvR5gJI-unsplash",
-  "ferenc-almasi-eYpcLDXHVb0-unsplash",
-  "fotis-fotopoulos-LJ9KY8pIH3E-unsplash",
-  "juanjo-jaramillo-mZnx9429i94-unsplash",
-];
+  @media screen and (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+`;
 
 const Diary = () => {
   return (
-    <div>
-      <BasicBox
-        boxTitle={"Diary Posts"}
-        boxContent={
+    <BasicBox
+      boxTitle={"Diary Posts"}
+      boxContent={
+        <StyledDiv>
+          <Filter
+            btnName={"Add a New Post"}
+            category1={"Study"}
+            category2={"Daily"}
+            path="/new-post"
+          />
           <Grid>
             <DiaryBox
-              images={images}
               diaryId={0}
               title={"HTML is not easy"}
               content={":("}
               date={new Date().toISOString().slice(0, 10)}
             />
             <DiaryBox
-              images={images}
               diaryId={1}
               title={"CSS is so annoying"}
               content={":|"}
               date={new Date().toISOString().slice(0, 10)}
             />
             <DiaryBox
-              images={images}
               diaryId={2}
               title={"I love JavaScript"}
               content={":)"}
               date={new Date().toISOString().slice(0, 10)}
             />
             <DiaryBox
-              images={images}
               diaryId={3}
               title={"What is React.js?"}
               content={":D"}
               date={new Date().toISOString().slice(0, 10)}
             />
             <DiaryBox
-              images={images}
               diaryId={4}
               title={"Node.js is interesting"}
               content={"x)"}
               date={new Date().toISOString().slice(0, 10)}
             />
           </Grid>
-        }
-      />
-    </div>
+        </StyledDiv>
+      }
+    />
   );
 };
 
