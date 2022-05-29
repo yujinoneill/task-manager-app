@@ -16,6 +16,8 @@ const StyledBox = styled.div`
 
   font-family: "Ubuntu", sans-serif;
 
+  cursor: pointer;
+
   img {
     width: 100%;
     box-sizing: border-box;
@@ -48,22 +50,29 @@ const DiaryBody = styled.div`
   }
 `;
 
-const DiaryBox = ({ images, diaryId, title, content, date }) => {
+// Images
+const images = [
+  "clement-helardot-95YRwf6CNw8-unsplash",
+  "danial-igdery-FCHlYvR5gJI-unsplash",
+  "ferenc-almasi-eYpcLDXHVb0-unsplash",
+  "fotis-fotopoulos-LJ9KY8pIH3E-unsplash",
+  "juanjo-jaramillo-mZnx9429i94-unsplash",
+];
+
+const DiaryBox = ({ diaryId, title, content, date }) => {
   return (
-    <div>
-      <StyledBox>
-        <img
-          src={process.env.PUBLIC_URL + `assets/${images[diaryId]}.jpg`}
-          alt="post-thumbnail"
-        />
-        <DiaryBody>
-          <h5>{title}</h5>
-          <p className="diary-content">{content}</p>
-          <hr />
-          <p className="post-date">{date}</p>
-        </DiaryBody>
-      </StyledBox>
-    </div>
+    <StyledBox>
+      <img
+        src={process.env.PUBLIC_URL + `assets/${images[diaryId]}.jpg`}
+        alt="post-thumbnail"
+      />
+      <DiaryBody>
+        <h5>{title}</h5>
+        <p className="diary-content">{content}</p>
+        <hr />
+        <p className="post-date">{date}</p>
+      </DiaryBody>
+    </StyledBox>
   );
 };
 
