@@ -4,8 +4,8 @@ import styled, { css } from "styled-components";
 
 import {
   FaHome,
-  FaCloudDownloadAlt,
   FaBook,
+  FaShoppingCart,
   FaUserCircle,
   FaBars,
 } from "react-icons/fa";
@@ -14,10 +14,10 @@ import { List } from "./Dropdown";
 
 // styled-components
 const StyledSideBar = styled.div`
-  width: 70px;
+  width: 50px;
   height: 100%;
   background-color: white;
-  padding: 10px 20px 0 5px;
+  padding: 10px 10px 0 5px;
 
   white-space: nowrap;
 
@@ -35,13 +35,13 @@ const StyledSideBar = styled.div`
   ${(props) =>
     props.active === "active" &&
     css`
-      width: 230px;
+      width: 190px;
     `}
 
   h4 {
-    font-size: 22px;
+    font-size: 20px;
     margin: 0;
-    padding-left: 20px;
+    padding-left: 10px;
     color: #6096ba;
 
     display: inline-block;
@@ -52,7 +52,8 @@ const Button = styled.button`
   background-color: transparent;
   border: none;
 
-  padding-left: 20px;
+  padding-left: 10px;
+
   font-size: 18px;
 
   cursor: pointer;
@@ -66,7 +67,7 @@ const StyledHeader = styled.header`
 `;
 
 const StyledList = styled(List)`
-  padding: 10px 20px;
+  padding: 10px 10px;
   font-size: 18px;
 
   overflow-x: hidden;
@@ -74,18 +75,6 @@ const StyledList = styled(List)`
   li {
     padding-top: 10px;
     padding-bottom: 10px;
-
-    a {
-      text-decoration: none;
-      color: #274c77;
-
-      display: flex;
-      align-items: center;
-
-      &:focus {
-        color: #6096ba;
-      }
-    }
   }
 `;
 
@@ -95,42 +84,40 @@ const SideBar = () => {
   const sidebarToggler = () => setIsVisible(!isVisible);
 
   return (
-    <div>
-      <StyledSideBar active={`${isVisible ? "active" : "inactive"}`}>
-        <StyledHeader>
-          <Button onClick={sidebarToggler}>
-            <FaBars />
-          </Button>
-          <h4>Task Manager</h4>
-        </StyledHeader>
-        <StyledList>
-          <li>
-            <Link to="/">
-              <FaHome />
-              <span>Home</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/data">
-              <FaCloudDownloadAlt />
-              <span>Data Storage</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/diary">
-              <FaBook />
-              <span>Diary</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/myaccount">
-              <FaUserCircle />
-              <span>My Account</span>
-            </Link>
-          </li>
-        </StyledList>
-      </StyledSideBar>
-    </div>
+    <StyledSideBar active={`${isVisible ? "active" : "inactive"}`}>
+      <StyledHeader>
+        <Button onClick={sidebarToggler}>
+          <FaBars />
+        </Button>
+        <h4>Task Manager</h4>
+      </StyledHeader>
+      <StyledList>
+        <li>
+          <Link to="/">
+            <FaHome />
+            <span>Home</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/diary">
+            <FaBook />
+            <span>Diary</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/wishlist">
+            <FaShoppingCart />
+            <span>Wish List</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/myaccount">
+            <FaUserCircle />
+            <span>My Account</span>
+          </Link>
+        </li>
+      </StyledList>
+    </StyledSideBar>
   );
 };
 
