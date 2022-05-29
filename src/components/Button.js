@@ -3,11 +3,10 @@ import styled from "styled-components";
 const StyledButton = styled.button`
   cursor: pointer;
   display: inline-block;
-  margin-right: 10px;
 
-  background-color: ${(props) => props.mainColor || "transparent"};
-  border: 1px solid ${(props) => props.mainColor || "#6c757d"};
-  color: ${(props) => props.textColor || "#6c757d"};
+  background-color: ${(props) => props.color || "transparent"};
+  border: 1px solid ${(props) => props.color || "#6c757d"};
+  color: ${(props) => (props.color === "#6096ba" ? "white" : "#6c757d")};
 
   padding: 10px 15px;
   border-radius: 5px;
@@ -21,17 +20,14 @@ const StyledButton = styled.button`
   transition: 0.25s;
 
   &:hover {
-    background-color: ${(props) => props.textColor || "#6c757d"};
-    color: ${(props) => props.mainColor || "white"};
+    background-color: ${(props) =>
+      props.color === "#6096ba" ? "transparent" : "#6c757d"};
+    color: ${(props) => props.color || "white"};
   }
 `;
 
-const Button = ({ name, mainColor, textColor }) => {
-  return (
-    <StyledButton mainColor={mainColor} textColor={textColor}>
-      {name}
-    </StyledButton>
-  );
+const Button = ({ name, color }) => {
+  return <StyledButton color={color}>{name}</StyledButton>;
 };
 
 export default Button;
