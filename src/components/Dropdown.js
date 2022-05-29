@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { FaCaretDown, FaUserCircle, FaBell, FaPowerOff } from "react-icons/fa";
 import styled, { css } from "styled-components";
@@ -68,14 +68,25 @@ export const List = styled.ul`
     span {
       margin-left: 10px;
     }
+
+    a {
+      text-decoration: none;
+      color: #274c77;
+
+      display: flex;
+      align-items: center;
+
+      &:focus,
+      &:hover {
+        color: #6096ba;
+      }
+    }
   }
 `;
 
 const Dropdown = () => {
   const [isActive, setIsActive] = useState(false);
   const activeHandler = () => setIsActive(!isActive);
-
-  const navigate = useNavigate();
 
   return (
     <StyledDropdown>
@@ -87,17 +98,23 @@ const Dropdown = () => {
       <Nav active={isActive ? "active" : "inactive"}>
         <List>
           <li>
-            <FaUserCircle />
-            <span onClick={() => navigate("/myaccount")}>My Account</span>
+            <Link to="/myaccount">
+              <FaUserCircle />
+              <span>My Account</span>
+            </Link>
           </li>
           <li>
-            <FaBell />
-            <span>Notifications</span>
+            <Link to="/">
+              <FaBell />
+              <span>Notifications</span>
+            </Link>
           </li>
           <hr />
           <li>
-            <FaPowerOff />
-            <span>Logout</span>
+            <Link to="/">
+              <FaPowerOff />
+              <span>Logout</span>
+            </Link>
           </li>
         </List>
       </Nav>

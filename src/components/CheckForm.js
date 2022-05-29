@@ -4,6 +4,8 @@ const Check = styled.div`
   label {
     display: flex;
     align-items: center;
+
+    cursor: pointer;
   }
 
   input {
