@@ -21,17 +21,27 @@ const StyledSection = styled.section`
 
   div {
     margin-top: ${(props) => props.marginTop || "10px"};
-    margin-bottom: 10px;
+    margin-bottom: ${(props) => props.marginBottom || "10px"};
   }
 `;
 
-const BasicBox = ({ boxTitle, boxContent, padding, marginTop }) => {
+const BasicBox = ({
+  boxTitle,
+  boxContent,
+  padding,
+  marginTop,
+  marginBottom,
+}) => {
   return (
-    <StyledSection padding={padding} marginTop={marginTop}>
+    <StyledSection
+      padding={padding}
+      marginTop={marginTop}
+      marginBottom={marginBottom}
+    >
       <header>
         <h3>{boxTitle}</h3>
       </header>
-      <div>{boxContent}</div>
+      {boxContent}
     </StyledSection>
   );
 };
