@@ -59,12 +59,14 @@ const images = [
   "juanjo-jaramillo-mZnx9429i94-unsplash",
 ];
 
-const DiaryBox = ({ diaryId, title, content, date }) => {
+const DiaryBox = ({ title, content, date }) => {
+  const randomIdx = Math.floor(Math.random() * 5);
+
   return (
     <StyledBox>
       <img
-        src={process.env.PUBLIC_URL + `assets/${images[diaryId]}.jpg`}
-        alt="post-thumbnail"
+        src={process.env.PUBLIC_URL + `assets/${images[randomIdx]}.jpg`}
+        alt="diary-thumbnail"
       />
       <DiaryBody>
         <h5>{title}</h5>
