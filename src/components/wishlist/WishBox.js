@@ -10,12 +10,7 @@ export const StyledDiv = styled.div`
 const WishBox = (props) => {
   return (
     <StyledDiv>
-      <Filter
-        btnName={"Add a New Wish"}
-        category1={"Wish"}
-        category2={"Purchased"}
-        path="/new-wish"
-      />
+      <Filter btnName={"Add a New Wish"} path="/new-wish" />
       <div className="list">
         <WishItem
           icon={"wish"}
