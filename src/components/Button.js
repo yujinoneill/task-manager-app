@@ -26,8 +26,12 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ name, color }) => {
-  return <StyledButton color={color}>{name}</StyledButton>;
+const Button = ({ name, color, onClick }) => {
+  return (
+    <StyledButton color={color} onClick={onClick}>
+      {name}
+    </StyledButton>
+  );
 };
 
 export default Button;
