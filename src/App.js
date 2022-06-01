@@ -9,8 +9,8 @@ import Header from "./components/Header";
 // pages
 import Home from "./pages/Home";
 import Diary from "./pages/diary/Diary";
-import NewPost from "./pages/diary/NewPost";
-import EditPost from "./pages/diary/EditPost";
+import NewDiary from "./pages/diary/NewDiary";
+import EditDiary from "./pages/diary/EditDiary";
 import MyAccount from "./pages/MyAccount";
 import WishList from "./pages/wishlist/WishList";
 import NewWish from "./pages/wishlist/NewWish";
@@ -34,8 +34,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/diary" element={<Diary />} />
-          <Route path="/new-post" element={<NewPost />} />
-          <Route path="/edit-post" element={<EditPost />} />
+              <Route path="/new-diary" element={<NewDiary />} />
+              <Route path="/edit-diary" element={<EditDiary />} />
           <Route path="/wishlist" element={<WishList />} />
           <Route path="/new-wish" element={<NewWish />} />
           <Route path="/edit-wish" element={<EditWish />} />
