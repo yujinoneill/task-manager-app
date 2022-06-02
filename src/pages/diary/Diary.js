@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 import BasicBox from "../../components/BasicBox";
-import DiaryBox from "../../components/DiaryBox";
-import Filter from "../../components/Filter";
+import FilteredList from "../../components/FilteredList";
 import { StyledDiv } from "../../components/wishlist/WishBox";
 
 // Styled-components
@@ -25,7 +24,7 @@ const Diary = () => {
   return (
     <BasicBox
       boxTitle={"Diary Posts"}
-      boxContent={
+      boxContent={<FilteredList type="diary" list={diaryList} />}
         <StyledDiv>
           <Filter
             btnName={"Add a New Post"}

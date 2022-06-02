@@ -5,8 +5,9 @@ import CheckForm from "../components/CheckForm";
 import Chart from "../components/chart/Chart";
 import Button from "../components/Button";
 
-import { StyledHeader } from "../components/Filter";
+import { StyledHeader } from "../components/FilteredList";
 
+//Styled-components
 const WelcomeContent = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -73,9 +74,8 @@ const MonthlyPlan = styled.div`
     font-family: "Ubuntu", sans-serif;
   }
 
-    @media screen and (max-width: 768px) {
-      margin-top: 10px;
-    }
+  @media screen and (max-width: 768px) {
+    margin-top: 10px;
   }
 `;
 
