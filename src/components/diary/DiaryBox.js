@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { getStringDate } from "../../util/date";
 
 const StyledBox = styled.div`
   position: relative;
@@ -72,7 +73,7 @@ const DiaryBox = ({ title, content, date }) => {
         <h5>{title}</h5>
         <p className="diary-content">{content}</p>
         <hr />
-        <p className="post-date">{date}</p>
+        <p className="post-date">{getStringDate(new Date(date))}</p>
       </DiaryBody>
     </StyledBox>
   );
