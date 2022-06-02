@@ -1,3 +1,11 @@
+import BasicBox from "../../components/BasicBox";
+import { Container } from "../../pages/MyAccount";
+import Button from "../../components/Button";
+import { useContext, useRef, useState } from "react";
+
+import { DiaryDispatchContext } from "../../App";
+import { getStringDate } from "../../util/date";
+
 import styled from "styled-components";
 import {
   FaBold,
@@ -14,15 +22,13 @@ import {
   FaIndent,
   FaOutdent,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-import BasicBox from "../../components/BasicBox";
-import { Container } from "../MyAccount";
-import Button from "../../components/Button";
-
+// Styled-components
 const Form = styled.form`
   margin-top: 10px;
 
-  .post-title {
+  .diary-title {
     margin-top: 25px;
     margin-bottom: 10px;
   }
@@ -55,7 +61,7 @@ const Form = styled.form`
   }
 `;
 
-const PostContent = styled.div`
+const DiaryContent = styled.div`
   border: 1px solid #ced4da;
   border-radius: 5px;
 `;
@@ -143,20 +149,52 @@ const Toolbar = styled.div`
   }
 `;
 
-const NewPost = () => {
+const DiaryEditor = ({ boxTitle }) => {
+  const [date, setDate] = useState(getStringDate(new Date()));
+  const [category, setCategory] = useState("Study");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
+  const titleRef = useRef();
+  const contentRef = useRef();
+  const navigate = useNavigate();
+
+  const { onCreate } = useContext(DiaryDispatchContext);
+
+  const submitHandler = () => {
+    if (title.length < 1) {
+      titleRef.current.focus();
+      return;
+    }
+
+    if (content.length < 1) {
+      contentRef.current.focus();
+      return;
+    }
+
+    onCreate(title, content, category);
+    navigate("/diary", { replace: true });
+  };
+
   return (
     <Container>
       <div>
         <BasicBox
           marginTop="0"
           marginBottom="0"
-          boxTitle="New Post"
+          boxTitle={boxTitle}
           boxContent={
             <Form>
-              <div className="post-title">
-                <input type="text" placeholder="Post Title" />
+              <div className="diary-title">
+                <input
+                  ref={titleRef}
+                  type="text"
+                  placeholder="Diary Title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
               </div>
-              <PostContent>
+              <DiaryContent>
                 <Toolbar>
                   <select>
                     <option>Normal</option>
@@ -216,8 +254,13 @@ const NewPost = () => {
                     </button>
                   </div>
                 </Toolbar>
-                <textarea placeholder="Write your day!" />
-              </PostContent>
+                <textarea
+                  ref={contentRef}
+                  placeholder="Write your day!"
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                />
+              </DiaryContent>
             </Form>
           }
         />
@@ -229,18 +272,29 @@ const NewPost = () => {
             <Grid>
               <div>
                 <h4>Posting Date</h4>
-                <input type="date" />
+                <input
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />
               </div>
               <div>
                 <h4>Category</h4>
-                <select>
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
                   <option>Study</option>
                   <option>Daily</option>
                 </select>
               </div>
               <div>
-                <Button name="Publish" color="#6096ba" />
-                <Button name="Cancel" />
+                <Button
+                  name="Publish"
+                  color="#6096ba"
+                  onClick={submitHandler}
+                />
+                <Button name="Cancel" onClick={() => navigate(-1)} />
               </div>
             </Grid>
           }
@@ -250,4 +304,4 @@ const NewPost = () => {
   );
 };
 
-export default NewPost;
+export default DiaryEditor;
