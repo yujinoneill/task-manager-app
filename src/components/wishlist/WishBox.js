@@ -15,12 +15,12 @@ const WishBox = (props) => {
         price={"$35"}
         itemDesc={"My style"}
       />
-      <WishItem
+      {/* <WishItem
         icon={"purchased"}
         itemName={"IT Network Book"}
         price={"$12"}
         itemDesc={"Study Network"}
-      />
+      /> */}
     </StyledDiv>
   );
 };

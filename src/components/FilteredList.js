@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { StyledDiv } from "./wishlist/WishBox";
+import WishBox, { StyledDiv } from "./wishlist/WishBox";
 import Button from "./Button";
 import DiaryBox from "./diary/DiaryBox";
 
@@ -152,7 +152,7 @@ const FilteredList = ({ type, list }) => {
           type === "diary" ? (
             <DiaryBox key={item.id} {...item} />
           ) : (
-            <div key={item.date}></div>
+            <WishBox key={item.date} />
           )
         )}
       </Grid>
