@@ -62,7 +62,7 @@ const wishOptionList = [
 ];
 
 //Components
-const ControllFilter = ({ value, onChange, optionList }) => {
+const ControlFilter = ({ value, onChange, optionList }) => {
   return (
     <select value={value} onChange={(e) => onChange(e.target.value)}>
       {optionList.map((item, index) => (
@@ -80,7 +80,7 @@ const FilteredList = ({ type, list }) => {
   const [wishType, setWishType] = useState("All");
 
   const processedList = () => {
-    const compare = (a, b) => {
+    const datefilter = (a, b) => {
       if (sortType === "Latest") {
         return parseInt(b.date) - parseInt(a.date);
       } else {
@@ -88,27 +88,49 @@ const FilteredList = ({ type, list }) => {
       }
     };
 
+    const categoryFilter = (item) => {
+      if (categoryType === "Study") {
+        return item.category === "Study";
+      } else {
+        return item.category === "Daily";
+      }
+    };
+
+    // const wishFilter = (item) => {
+    //   if (wishType === "Study") {
+    //     return item.wish === "Study";
+    //   } else {
+    //     return item.wish === "Daily";
+    //   }
+    // };
+
     const copyList = JSON.parse(JSON.stringify(list));
-    const sortedList = copyList.sort(compare);
+
+    const categoryFilteredList =
+      categoryType === "All"
+        ? copyList
+        : copyList.filter((item) => categoryFilter(item));
+
+    const sortedList = categoryFilteredList.sort(datefilter);
     return sortedList;
   };
 
   return (
     <StyledDiv>
       <StyledHeader>
-        <ControllFilter
+        <ControlFilter
           value={sortType}
           onChange={setSortType}
           optionList={sortOptionList}
         />
         {type === "diary" ? (
-          <ControllFilter
+          <ControlFilter
             value={categoryType}
             onChange={setCategoryType}
             optionList={categoryOptionList}
           />
         ) : (
-          <ControllFilter
+          <ControlFilter
             value={wishType}
             onChange={setWishType}
             optionList={wishOptionList}
