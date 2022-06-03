@@ -12,6 +12,8 @@ export const StyledHeader = styled.header`
   grid-template-columns: 0.3fr 0.3fr auto;
   grid-gap: 20px;
 
+  margin-bottom: 20px;
+
   select {
     outline: none;
     border: none;
@@ -33,6 +35,8 @@ const Grid = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   grid-gap: 10px;
+
+  margin: 10px 0;
 
   @media screen and (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);

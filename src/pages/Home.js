@@ -37,6 +37,8 @@ const Container = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
 
+  margin: 10px 0;
+
   box-sizing: border-box;
 
   @media screen and (max-width: 768px) {
@@ -58,6 +60,8 @@ const MonthlyPlan = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
   margin-right: auto;
   margin-left: auto;
 
@@ -75,7 +79,7 @@ const MonthlyPlan = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 `;
 
@@ -97,6 +101,8 @@ const WeeklyPlan = styled.div`
 const WeeklyHeader = styled(StyledHeader)`
   grid-template-columns: repeat(2, 1fr);
 
+  margin: 10px 0;
+
   @media screen and (max-width: 768px) {
     margin-top: 20px;
   }
@@ -105,6 +111,8 @@ const WeeklyHeader = styled(StyledHeader)`
 const ProgressBox = styled.div`
   display: flex;
   flex-direction: column;
+
+  margin: 20px 0;
 
   .progress-text {
     display: flex;
@@ -115,6 +123,8 @@ const ProgressBox = styled.div`
 const Progress = styled.progress`
   appearance: none;
   width: 100%;
+
+  margin: 10px 0;
 
   &::-webkit-progress-bar {
     background-color: #e9ecef;

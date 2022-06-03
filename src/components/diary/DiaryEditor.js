@@ -74,7 +74,6 @@ const Grid = styled.div`
   grid-row-gap: 10px;
 
   h4 {
-    margin: 0;
     margin-bottom: 20px;
   }
 
@@ -95,7 +94,7 @@ const Grid = styled.div`
   }
 
   button {
-    margin-right: 10px;
+    margin: 10px 10px 10px 0;
   }
 
   @media screen and (max-width: 576px) {

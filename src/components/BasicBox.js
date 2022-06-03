@@ -19,10 +19,10 @@ const StyledSection = styled.section`
     color: #6096ba;
   }
 
-  div {
+  /* div {
     margin-top: ${(props) => props.marginTop || "10px"};
     margin-bottom: ${(props) => props.marginBottom || "10px"};
-  }
+  } */
 `;
 
 const BasicBox = ({

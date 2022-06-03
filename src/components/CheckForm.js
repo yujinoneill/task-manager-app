@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const Check = styled.div`
+  margin: 10px 0;
+
   label {
     display: flex;
     align-items: center;

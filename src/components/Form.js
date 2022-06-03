@@ -16,9 +16,7 @@ export const StyledDiv = styled.div`
   grid-template-rows: 1fr;
   grid-gap: 20px;
 
-  div {
-    margin: 0;
-  }
+  margin: 10px 0;
 
   input,
   textarea {
