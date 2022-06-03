@@ -43,7 +43,7 @@ const diaryReducer = (state, action) => {
     }
     case "EDIT": {
       newState = state.map((item) =>
-        item.id === action.data.id ? [...action.data] : item
+        item.id === action.data.id ? action.data : item
       );
       break;
     }
@@ -60,10 +60,27 @@ const diaryReducer = (state, action) => {
   return newState;
 };
 
-function App() {
-  const [data, dispatch] = useReducer(diaryReducer, []);
+const dummyData = [
+  {
+    id: 0,
+    date: 1654174491888,
+    title: "임시1",
+    content: "Study",
+    category: "Study",
+  },
+  {
+    id: 1,
+    date: 1654174491890,
+    title: "임시2",
+    content: "Daily",
+    category: "Daily",
+  },
+];
 
-  const dataId = useRef(0);
+function App() {
+  const [data, dispatch] = useReducer(diaryReducer, dummyData); //다 만들고 빈 배열로 바꾸자!
+
+  const dataId = useRef(2); //다 만들고 0으로 리셋할 것
 
   //Create
   const onCreate = (title, content, category) => {
@@ -113,7 +130,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/diary" element={<Diary />} />
               <Route path="/new-diary" element={<NewDiary />} />
-              <Route path="/edit-diary" element={<EditDiary />} />
+              <Route path="/edit-diary/:id" element={<EditDiary />} />
               <Route path="/wishlist" element={<WishList />} />
               <Route path="/new-wish" element={<NewWish />} />
               <Route path="/edit-wish" element={<EditWish />} />
