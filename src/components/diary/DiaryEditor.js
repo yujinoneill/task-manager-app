@@ -149,7 +149,7 @@ const Toolbar = styled.div`
   }
 `;
 
-const DiaryEditor = ({ boxTitle }) => {
+const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
   const [date, setDate] = useState(getStringDate(new Date()));
   const [category, setCategory] = useState("Study");
   const [title, setTitle] = useState("");
@@ -160,6 +160,14 @@ const DiaryEditor = ({ boxTitle }) => {
   const navigate = useNavigate();
 
   const { onCreate } = useContext(DiaryDispatchContext);
+  useEffect(() => {
+    if (isEdit) {
+      setDate(getStringDate(new Date(parseInt(originData.date))));
+      setCategory(originData.category);
+      setTitle(originData.title);
+      setContent(originData.content);
+    }
+  }, [isEdit, originData]);
 
   const submitHandler = () => {
     if (title.length < 1) {
@@ -172,6 +180,16 @@ const DiaryEditor = ({ boxTitle }) => {
       return;
     }
 
+    if (
+      window.confirm(
+        isEdit
+          ? "Do you want to edit your diary?"
+          : "Do you want to publish new diary?"
+      )
+    ) {
+      if (isEdit) {
+        onEdit(originData.id, date, title, content, category);
+      } else {
     onCreate(title, content, category);
     navigate("/diary", { replace: true });
   };
@@ -290,7 +308,7 @@ const DiaryEditor = ({ boxTitle }) => {
               </div>
               <div>
                 <Button
-                  name="Publish"
+                  name={isEdit ? "Edit" : "Publish"}
                   color="#6096ba"
                   onClick={submitHandler}
                 />
