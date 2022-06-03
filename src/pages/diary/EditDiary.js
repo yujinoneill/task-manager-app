@@ -23,7 +23,7 @@ const EditDiary = () => {
         navigate("/diary", { replace: true });
       }
     }
-  }, [id, diaryList]);
+  }, [id, diaryList, navigate]);
 
   return (
     originData && (
