@@ -1,5 +1,7 @@
+import Modal from "../../components/Modal";
+
 const NewWish = () => {
-  return <div></div>;
+  return <Modal />;
 };
 
 export default NewWish;

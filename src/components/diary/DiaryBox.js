@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { getStringDate } from "../../util/date";
+import Modal from "../Modal";
 
 const StyledBox = styled.div`
   position: relative;
@@ -61,11 +62,12 @@ const images = [
 ];
 
 const DiaryBox = ({ title, content, date }) => {
-  const randomIdx = Math.floor(Math.random() * 5);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const modalHandler = () => setIsModalVisible(!isModalVisible);
   return (
     <StyledBox>
-      <img
+      <StyledBox onClick={modalHandler}>
         src={process.env.PUBLIC_URL + `assets/${images[randomIdx]}.jpg`}
         alt="diary-thumbnail"
       />
@@ -76,6 +78,12 @@ const DiaryBox = ({ title, content, date }) => {
         <p className="post-date">{getStringDate(new Date(date))}</p>
       </DiaryBody>
     </StyledBox>
+      {isModalVisible && (
+        <Modal
+          modalHandler={modalHandler}
+          children={<DiaryDetail {...targetDiary} />}
+        /> //props로 함수 내려줘서 자식 컴포넌트에서도 같은 함수 사용하기
+      )}
   );
 };
 
