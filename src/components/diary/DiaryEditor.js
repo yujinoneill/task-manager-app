@@ -1,7 +1,9 @@
+import { useContext, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import BasicBox from "../../components/BasicBox";
 import { Container } from "../../pages/MyAccount";
 import Button from "../../components/Button";
-import { useContext, useRef, useState } from "react";
 
 import { DiaryDispatchContext } from "../../App";
 import { getStringDate } from "../../util/date";
@@ -22,7 +24,6 @@ import {
   FaIndent,
   FaOutdent,
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
 // Styled-components
 const Form = styled.form`
@@ -159,7 +160,8 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
   const contentRef = useRef();
   const navigate = useNavigate();
 
-  const { onCreate } = useContext(DiaryDispatchContext);
+  const { onCreate, onEdit } = useContext(DiaryDispatchContext);
+
   useEffect(() => {
     if (isEdit) {
       setDate(getStringDate(new Date(parseInt(originData.date))));
@@ -190,8 +192,18 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
       if (isEdit) {
         onEdit(originData.id, date, title, content, category);
       } else {
-    onCreate(title, content, category);
+        onCreate(title, content, category);
+      }
+    }
+
     navigate("/diary", { replace: true });
+  };
+
+  const cancelHandler = () => {
+    if (window.confirm("Are you sure you want to cancel it?")) {
+      navigate(-1);
+    }
+    return;
   };
 
   return (
@@ -312,7 +324,7 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
                   color="#6096ba"
                   onClick={submitHandler}
                 />
-                <Button name="Cancel" onClick={() => navigate(-1)} />
+                <Button name="Cancel" onClick={cancelHandler} />
               </div>
             </Grid>
           }
