@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { DiaryDispatchContext } from "../../App";
+
 import { getStringDate } from "../../util/date";
 import Button from "../Button";
 
@@ -17,6 +20,8 @@ const StyledHeader = styled.header`
 const Content = styled.div`
   padding: 20px;
 
+  word-break: keep-all;
+
   @media screen and (max-width: 768px) {
     padding: 15px;
   }
@@ -31,9 +36,21 @@ const StyledButton = styled.div`
 
   display: flex;
   justify-content: flex-end;
+
+  button {
+    margin-left: 10px;
+  }
 `;
 
 const DiaryDetail = ({ category, content, date, title, id }) => {
+  const { onRemove } = useContext(DiaryDispatchContext);
+
+  const removeHandler = () => {
+    if (window.confirm("Are you sure you want to delete it?")) {
+      onRemove(id);
+    }
+  };
+
   return (
     <div>
       <StyledHeader>
@@ -48,6 +65,7 @@ const DiaryDetail = ({ category, content, date, title, id }) => {
         <Link to={`/edit-diary/${id}`}>
           <Button name="Edit" color="#6096ba" />
         </Link>
+        <Button name="Delete" onClick={removeHandler} />
       </StyledButton>
     </div>
   );
