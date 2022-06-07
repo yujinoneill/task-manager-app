@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { useReducer, useRef } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 
 import "./App.css";
 
@@ -56,31 +56,29 @@ const diaryReducer = (state, action) => {
     }
   }
 
-  // localStorage.setItem("diary", JSON.stringify(newState));
+  localStorage.setItem("diary", JSON.stringify(newState));
   return newState;
 };
 
-const dummyData = [
-  {
-    id: 0,
-    date: 1654174491888,
-    title: "임시1",
-    content: "Study",
-    category: "Study",
-  },
-  {
-    id: 1,
-    date: 1654174491890,
-    title: "임시2",
-    content: "Daily",
-    category: "Daily",
-  },
-];
-
 function App() {
-  const [data, dispatch] = useReducer(diaryReducer, dummyData); //다 만들고 빈 배열로 바꾸자!
+  const [data, dispatch] = useReducer(diaryReducer, []);
+  const dataId = useRef(0);
 
-  const dataId = useRef(2); //다 만들고 0으로 리셋할 것
+  useEffect(() => {
+    const localData = localStorage.getItem("diary");
+    // const localData = localStorage.length ? localStorage.getItem("diary") : {};
+
+    //if(localData.length > 2)
+    if (localData && localData.length > 2) {
+      const localDiaryList = JSON.parse(localData); //localData 직렬화
+      const diaryListLastData = localDiaryList.sort(
+        (a, b) => parseInt(b.id) - parseInt(a.id)
+      ); // 내림차순으로 정렬
+      dataId.current = parseInt(diaryListLastData[0].id) + 1; //단순히 diaryList의 길이를 기준으로 current값을 변경하면 삭제된 다이어리가 있을 때 id가 겹칠 수 있음
+
+      dispatch({ type: "INIT", data: localDiaryList });
+    }
+  }, []);
 
   //Create
   const onCreate = (title, content, category) => {
