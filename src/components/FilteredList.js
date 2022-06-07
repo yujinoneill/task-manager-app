@@ -38,11 +38,11 @@ const Grid = styled.div`
 
   margin: 10px 0;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 992px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -92,6 +92,7 @@ const FilteredList = ({ type, list }) => {
       }
     };
 
+    //TypeFilter 따위로 하나로 합쳐서 categoryType을 받을 때랑 wishType을 받을 때로 나눠서 만들기
     const categoryFilter = (item) => {
       if (categoryType === "Study") {
         return item.category === "Study";
@@ -101,10 +102,10 @@ const FilteredList = ({ type, list }) => {
     };
 
     // const wishFilter = (item) => {
-    //   if (wishType === "Study") {
-    //     return item.wish === "Study";
+    //   if (wishType === "Wish") {
+    //     return item.wish === "Wish";
     //   } else {
-    //     return item.wish === "Daily";
+    //     return item.wish === "Purchased";
     //   }
     // };
 
@@ -148,12 +149,14 @@ const FilteredList = ({ type, list }) => {
         </Link>
       </StyledHeader>
       <Grid>
-        {processedList().map((item) =>
-          type === "diary" ? (
+        {processedList().map(
+          (item) => (
+            // type === "diary" ? (
             <DiaryBox key={item.id} {...item} />
-          ) : (
-            <WishBox key={item.date} />
           )
+          // ) : (
+          // <WishBox key={item.date} />
+          // )
         )}
       </Grid>
     </StyledDiv>
