@@ -14,6 +14,7 @@ const StyledBox = styled.div`
   margin: 10px 0;
 
   word-wrap: break-word;
+  word-break: keep-all;
 
   background-color: white;
   background-clip: border-box;
@@ -88,7 +89,16 @@ const DiaryBox = ({ id, title, content, date, category }) => {
     (item) => parseInt(item.id) === parseInt(id)
   );
 
-  const modalHandler = () => setIsModalVisible(!isModalVisible);
+  const modalHandler = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+
+  const contentSlicer = (content) => {
+    if (content.length > 12) {
+      return content.slice(0, 12) + "...";
+    }
+    return content;
+  };
 
   return (
     <div>
@@ -100,7 +110,7 @@ const DiaryBox = ({ id, title, content, date, category }) => {
         <DiaryBody>
           <CategoryBadge category={category}>{category}</CategoryBadge>
           <h5>{title}</h5>
-          <p className="diary-content">{content}</p>
+          <p className="diary-content">{contentSlicer(content)}</p>
           <hr />
           <p className="post-date">{getStringDate(new Date(date))}</p>
         </DiaryBody>
