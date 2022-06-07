@@ -189,7 +189,7 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
       )
     ) {
       if (isEdit) {
-        onEdit(originData.id, date, title, content, category);
+        onEdit(originData.id, originData.date, title, content, category);
       } else {
         onCreate(title, content, category);
       }
