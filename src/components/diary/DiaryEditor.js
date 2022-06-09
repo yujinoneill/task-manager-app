@@ -52,6 +52,11 @@ const Form = styled.form`
 const DiaryContent = styled.div`
   border: 1px solid #ced4da;
   border-radius: 5px;
+
+  img {
+    max-width: 500px;
+    padding: 20px;
+  }
 `;
 
 const Grid = styled.div`
@@ -92,15 +97,14 @@ const Grid = styled.div`
 const Toolbar = styled.div`
   border-bottom: 1px solid #ced4da;
 
-  display: flex;
+  input {
     border: none;
     margin: 0;
 
-      &:focus {
-        border-color: #86b7fe;
-        outline: 0;
-        box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
-      }
+    &:focus {
+      border-color: #86b7fe;
+      outline: 0;
+      box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
     }
   }
 `;
@@ -110,13 +114,25 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
   const [category, setCategory] = useState("Study");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [imgPreview, setImgPreview] = useState();
 
   const titleRef = useRef();
   const contentRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { onCreate, onEdit } = useContext(DiaryDispatchContext);
+  const dataId = useRef(0);
+
+  useEffect(() => {
+    const localData = localStorage.getItem("data");
+
+    if (localData) {
+      const localDiaryList = JSON.parse(localData).diary; //localData 직렬화
+      if (localDiaryList && localDiaryList.length > 0) {
+        dataId.current = parseInt(localDiaryList[0].id) + 1; //단순히 localDiaryList의 길이를 기준으로 current값을 변경하면 삭제된 다이어리가 있을 때 id가 겹칠 수 있음
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (isEdit) {
@@ -124,6 +140,7 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
       setCategory(originData.category);
       setTitle(originData.title);
       setContent(originData.content);
+      setImgPreview(originData.imgPreview);
     }
   }, [isEdit, originData]);
 
@@ -153,6 +170,9 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
             title,
             content,
             category,
+            imgPreview,
+          })
+        );
       } else {
         dispatch(
           diaryActions.diaryCreate({
@@ -161,6 +181,9 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
             title,
             content,
             category,
+            imgPreview,
+          })
+        );
       }
     }
 
@@ -172,6 +195,16 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
       navigate(-1);
     }
     return;
+  };
+
+  const readFile = (e) => {
+    if (e.target.files.length) {
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (e) => {
+        setImgPreview(e.target.result);
+      };
+    }
   };
 
   return (
@@ -194,12 +227,13 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
               </div>
               <DiaryContent>
                 <Toolbar>
-                  <select>
-                    <option>Normal</option>
-                    <option>Heading1</option>
-                    <option>Heading2</option>
-                    <option>Heading3</option>
+                  <input
+                    type="file"
+                    accept={[".jpg", ".png"]}
+                    onChange={readFile}
+                  />
                 </Toolbar>
+                {imgPreview ? <img src={imgPreview} alt="preview" /> : null}
                 <textarea
                   ref={contentRef}
                   placeholder="Write your day!"
