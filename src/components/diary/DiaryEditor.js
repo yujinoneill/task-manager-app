@@ -11,21 +11,6 @@ import { getStringDate } from "../../util/date";
 import { diaryActions } from "../../store/diary";
 
 import styled from "styled-components";
-import {
-  FaBold,
-  FaItalic,
-  FaUnderline,
-  FaStrikethrough,
-  FaQuoteLeft,
-  FaCode,
-  FaListOl,
-  FaListUl,
-  FaAlignLeft,
-  FaAlignCenter,
-  FaAlignRight,
-  FaIndent,
-  FaOutdent,
-} from "react-icons/fa";
 
 // Styled-components
 const Form = styled.form`
@@ -108,39 +93,8 @@ const Toolbar = styled.div`
   border-bottom: 1px solid #ced4da;
 
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-
-  select {
     border: none;
-    outline: none;
-    padding: 10px;
-    border-radius: 5px;
-
-    &:focus {
-      border-color: #86b7fe;
-      outline: 0;
-      box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
-    }
-  }
-
-  div {
-    display: inline-block;
     margin: 0;
-
-    button {
-      box-sizing: border-box;
-      cursor: pointer;
-
-      padding: 10px;
-      line-height: 1.5;
-      text-align: center;
-
-      background-color: transparent;
-      border: none;
-
-      border-radius: 5px;
 
       &:focus {
         border-color: #86b7fe;
@@ -245,58 +199,6 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
                     <option>Heading1</option>
                     <option>Heading2</option>
                     <option>Heading3</option>
-                    <option>Heading4</option>
-                    <option>Heading5</option>
-                  </select>
-                  <div>
-                    <button type="button">
-                      <FaBold />
-                    </button>
-                    <button type="button">
-                      <FaItalic />
-                    </button>
-                    <button type="button">
-                      <FaUnderline />
-                    </button>
-                    <button type="button">
-                      <FaStrikethrough />
-                    </button>
-                  </div>
-                  <div>
-                    <button type="button">
-                      <FaQuoteLeft />
-                    </button>
-                    <button type="button">
-                      <FaCode />
-                    </button>
-                  </div>
-                  <div>
-                    <button type="button">
-                      <FaListOl />
-                    </button>
-                    <button type="button">
-                      <FaListUl />
-                    </button>
-                  </div>
-                  <div>
-                    <button type="button">
-                      <FaAlignLeft />
-                    </button>
-                    <button type="button">
-                      <FaAlignCenter />
-                    </button>
-                    <button type="button">
-                      <FaAlignRight />
-                    </button>
-                  </div>
-                  <div>
-                    <button type="button">
-                      <FaIndent />
-                    </button>
-                    <button type="button">
-                      <FaOutdent />
-                    </button>
-                  </div>
                 </Toolbar>
                 <textarea
                   ref={contentRef}
