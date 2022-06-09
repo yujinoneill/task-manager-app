@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { DiaryDispatchContext } from "../../App";
 
 import { getStringDate } from "../../util/date";
 import Button from "../Button";
+import { diaryActions } from "../../store/diary";
 
 //Styled-component
 const StyledHeader = styled.header`
@@ -43,11 +43,11 @@ const StyledButton = styled.div`
 `;
 
 const DiaryDetail = ({ category, content, date, title, id }) => {
-  const { onRemove } = useContext(DiaryDispatchContext);
+  const dispatch = useDispatch();
 
   const removeHandler = () => {
     if (window.confirm("Are you sure you want to delete it?")) {
-      onRemove(id);
+      dispatch(diaryActions.diaryRemove(id));
     }
   };
 

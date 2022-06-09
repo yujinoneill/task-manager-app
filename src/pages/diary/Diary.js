@@ -1,12 +1,10 @@
-import { useContext } from "react";
-
-import { DiaryStateContext } from "../../App";
+import { useSelector } from "react-redux";
 
 import BasicBox from "../../components/BasicBox";
 import FilteredList from "../../components/FilteredList";
 
 const Diary = () => {
-  const diaryList = useContext(DiaryStateContext);
+  const diaryList = useSelector((state) => state.diary);
 
   return (
     <BasicBox

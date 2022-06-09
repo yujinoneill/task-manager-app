@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { useEffect, useReducer, useRef } from "react";
+import { useDispatch } from "react-redux";
 
 import "./App.css";
+import { diaryActions } from "./store/diary";
 
 // components
 import Header from "./components/Header";
@@ -27,7 +28,6 @@ const StyledApp = styled.div`
 `;
 
 //Function & Data
-export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
 const diaryReducer = (state, action) => {
@@ -61,7 +61,7 @@ const diaryReducer = (state, action) => {
 };
 
 function App() {
-  const [data, dispatch] = useReducer(diaryReducer, []);
+  const dispatch = useDispatch();
   const dataId = useRef(0);
 
   useEffect(() => {
@@ -118,26 +118,22 @@ function App() {
   };
 
   return (
-    <DiaryStateContext.Provider value={data}>
-      <DiaryDispatchContext.Provider value={{ onCreate, onEdit, onRemove }}>
-        <BrowserRouter>
-          <SideBar />
-          <StyledApp>
-            <Header />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/diary" element={<Diary />} />
-              <Route path="/new-diary" element={<NewDiary />} />
-              <Route path="/edit-diary/:id" element={<EditDiary />} />
-              <Route path="/wishlist" element={<WishList />} />
-              <Route path="/new-wish" element={<NewWish />} />
-              <Route path="/edit-wish" element={<EditWish />} />
-              <Route path="/myaccount" element={<MyAccount />} />
-            </Routes>
-          </StyledApp>
-        </BrowserRouter>
-      </DiaryDispatchContext.Provider>
-    </DiaryStateContext.Provider>
+    <BrowserRouter>
+      <SideBar />
+      <StyledApp>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/diary" element={<Diary />} />
+          <Route path="/new-diary" element={<NewDiary />} />
+          <Route path="/edit-diary/:id" element={<EditDiary />} />
+          <Route path="/wishlist" element={<WishList />} />
+          <Route path="/new-wish" element={<NewWish />} />
+          <Route path="/edit-wish" element={<EditWish />} />
+          <Route path="/myaccount" element={<MyAccount />} />
+        </Routes>
+      </StyledApp>
+    </BrowserRouter>
   );
 }
 

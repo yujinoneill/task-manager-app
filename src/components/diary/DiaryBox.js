@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { DiaryStateContext } from "../../App";
 
 import { getStringDate } from "../../util/date";
 import Modal from "../Modal";
@@ -83,7 +83,7 @@ const images = [
 const DiaryBox = ({ id, title, content, date, category }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const diaryList = useContext(DiaryStateContext);
+  const diaryList = useSelector((state) => state.diary);
 
   const targetDiary = diaryList.find(
     (item) => parseInt(item.id) === parseInt(id)

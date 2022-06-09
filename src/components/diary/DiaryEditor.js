@@ -1,12 +1,14 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import BasicBox from "../../components/BasicBox";
 import { Container } from "../../pages/MyAccount";
 import Button from "../../components/Button";
 
-import { DiaryDispatchContext } from "../../App";
 import { getStringDate } from "../../util/date";
+
+import { diaryActions } from "../../store/diary";
 
 import styled from "styled-components";
 import {
@@ -158,6 +160,7 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
   const titleRef = useRef();
   const contentRef = useRef();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { onCreate, onEdit } = useContext(DiaryDispatchContext);
 
@@ -189,9 +192,21 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
       )
     ) {
       if (isEdit) {
-        onEdit(originData.id, originData.date, title, content, category);
+        dispatch(
+          diaryActions.diaryEdit({
+            id: originData.id,
+            date: new Date(originData.date).getTime(),
+            title,
+            content,
+            category,
       } else {
-        onCreate(title, content, category);
+        dispatch(
+          diaryActions.diaryCreate({
+            id: dataId.current,
+            date: new Date().getTime(),
+            title,
+            content,
+            category,
       }
     }
 

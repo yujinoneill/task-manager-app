@@ -1,12 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { DiaryStateContext } from "../../App";
+
 import DiaryEditor from "../../components/diary/DiaryEditor";
 
 const EditDiary = () => {
   const [originData, setOriginData] = useState();
   const { id } = useParams();
-  const diaryList = useContext(DiaryStateContext);
+  const diaryList = useSelector((state) => state.diary);
 
   const navigate = useNavigate();
 
