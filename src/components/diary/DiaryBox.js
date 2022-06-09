@@ -71,16 +71,7 @@ const CategoryBadge = styled.span`
   color: white;
 `;
 
-// Images
-const images = [
-  "clement-helardot-95YRwf6CNw8-unsplash",
-  "danial-igdery-FCHlYvR5gJI-unsplash",
-  "ferenc-almasi-eYpcLDXHVb0-unsplash",
-  "fotis-fotopoulos-LJ9KY8pIH3E-unsplash",
-  "juanjo-jaramillo-mZnx9429i94-unsplash",
-];
-
-const DiaryBox = ({ id, title, content, date, category }) => {
+const DiaryBox = ({ id, title, content, date, category, imgPreview }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const diaryList = useSelector((state) => state.diary);
@@ -103,10 +94,7 @@ const DiaryBox = ({ id, title, content, date, category }) => {
   return (
     <div>
       <StyledBox onClick={modalHandler}>
-        <img
-          src={process.env.PUBLIC_URL + `assets/${images[id]}.jpg`}
-          alt="diary-thumbnail"
-        />
+        <img src={imgPreview} alt="diary-thumbnail" />
         <DiaryBody>
           <CategoryBadge category={category}>{category}</CategoryBadge>
           <h5>{title}</h5>
