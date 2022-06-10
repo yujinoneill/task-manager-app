@@ -18,8 +18,7 @@ import NewDiary from "./pages/diary/NewDiary";
 import EditDiary from "./pages/diary/EditDiary";
 import MyAccount from "./pages/MyAccount";
 import WishList from "./pages/wishlist/WishList";
-import NewWish from "./pages/wishlist/NewWish";
-import EditWish from "./pages/wishlist/EditWish";
+import { wishActions } from "./store/wishList";
 
 // styled-components
 const StyledApp = styled.div`
@@ -42,6 +41,9 @@ function App() {
     if (localData) {
       const localDiaryList = JSON.parse(localData).diary; //localData 직렬화
       dispatch(diaryActions.diaryInit(localDiaryList));
+
+      const localWishList = JSON.parse(localData).wish;
+      dispatch(wishActions.wishInit(localWishList));
     }
   }, []);
 
@@ -56,8 +58,6 @@ function App() {
           <Route path="/new-diary" element={<NewDiary />} />
           <Route path="/edit-diary/:id" element={<EditDiary />} />
           <Route path="/wishlist" element={<WishList />} />
-          <Route path="/new-wish" element={<NewWish />} />
-          <Route path="/edit-wish" element={<EditWish />} />
           <Route path="/myaccount" element={<MyAccount />} />
         </Routes>
       </StyledApp>
