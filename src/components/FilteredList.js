@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import WishBox, { StyledDiv } from "./wishlist/WishBox";
+import WishBox from "./wishlist/WishBox";
 import Button from "./Button";
 import DiaryBox from "./diary/DiaryBox";
+import Modal from "./Modal";
+import WishEditor from "./wishlist/WishEditor";
 
 //Styled-components
 export const StyledHeader = styled.header`
@@ -36,6 +38,8 @@ const Grid = styled.div`
   grid-template-rows: auto;
   grid-gap: 10px;
 
+  box-sizing: border-box;
+
   margin: 10px 0;
 
   @media screen and (max-width: 992px) {
@@ -43,8 +47,16 @@ const Grid = styled.div`
   }
 
   @media screen and (max-width: 768px) {
+    grid-template-columns: ${(props) => props.type === "diary" && "1fr"};
+  }
+
+  @media screen and (max-width: 425px) {
     grid-template-columns: 1fr;
   }
+`;
+
+const StyledDiv = styled.div`
+  padding-top: 20px;
 `;
 
 //Data
@@ -83,6 +95,13 @@ const FilteredList = ({ type, list }) => {
   const [categoryType, setCategoryType] = useState("All");
   const [wishType, setWishType] = useState("All");
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const modalHandler = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+
+  //data sorting function
   const processedList = () => {
     const datefilter = (a, b) => {
       if (sortType === "Latest") {
@@ -92,31 +111,39 @@ const FilteredList = ({ type, list }) => {
       }
     };
 
-    //TypeFilter 따위로 하나로 합쳐서 categoryType을 받을 때랑 wishType을 받을 때로 나눠서 만들기
-    const categoryFilter = (item) => {
-      if (categoryType === "Study") {
-        return item.category === "Study";
+    const typeFilter = (item) => {
+      if (type === "diary") {
+        if (categoryType === "Study") {
+          return item.category === "Study";
+        } else {
+          return item.category === "Daily";
+        }
       } else {
-        return item.category === "Daily";
+        if (wishType === "Wish") {
+          return item.icon === "Wish";
+        } else {
+          return item.icon === "Purchased";
+        }
       }
     };
-
-    // const wishFilter = (item) => {
-    //   if (wishType === "Wish") {
-    //     return item.wish === "Wish";
-    //   } else {
-    //     return item.wish === "Purchased";
-    //   }
-    // };
 
     const copyList = JSON.parse(JSON.stringify(list));
 
     const categoryFilteredList =
       categoryType === "All"
         ? copyList
-        : copyList.filter((item) => categoryFilter(item));
+        : copyList.filter((item) => typeFilter(item));
 
-    const sortedList = categoryFilteredList.sort(datefilter);
+    const wishFilteredList =
+      wishType === "All"
+        ? copyList
+        : copyList.filter((item) => typeFilter(item));
+
+    const sortedList =
+      type === "diary"
+        ? categoryFilteredList.sort(datefilter)
+        : wishFilteredList.sort(datefilter);
+
     return sortedList;
   };
 
@@ -141,24 +168,27 @@ const FilteredList = ({ type, list }) => {
             optionList={wishOptionList}
           />
         )}
-        <Link to={type === "diary" ? "/new-diary" : "/new-wish"}>
+        <Link to={type === "diary" && "/new-diary"}>
           <Button
             name={type === "diary" ? "Post a New Diary" : "Add a New Wish"}
             color={"#6096ba"}
+            onClick={type === "wish" ? modalHandler : null}
           />
         </Link>
       </StyledHeader>
-      <Grid>
-        {processedList().map(
-          (item) => (
-            // type === "diary" ? (
-            <DiaryBox key={item.id} {...item} />
-          )
-          // ) : (
-          // <WishBox key={item.date} />
-          // )
-        )}
+      <Grid type={type}>
+        {type === "diary"
+          ? processedList().map((item) => <DiaryBox key={item.id} {...item} />)
+          : processedList().map((item) => (
+              <WishBox key={item.id} {...item} modalHandler={modalHandler} />
+            ))}
       </Grid>
+      {isModalVisible && (
+        <Modal
+          modalHandler={modalHandler}
+          children={<WishEditor modalHandler={modalHandler} />}
+        />
+      )}
     </StyledDiv>
   );
 };
