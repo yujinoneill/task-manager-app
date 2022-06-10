@@ -4,15 +4,13 @@ import BasicBox from "../../components/BasicBox";
 import FilteredList from "../../components/FilteredList";
 
 const WishList = () => {
-  const diaryList = useSelector((state) => state);
+  const wishList = useSelector((state) => state.wish);
 
   return (
-    <div>
-      <BasicBox
-        boxTitle={"Wish List"}
-        boxContent={<FilteredList type="wish" list={diaryList} />}
-      />
-    </div>
+    <BasicBox
+      boxTitle={"Wish List"}
+      boxContent={<FilteredList type="wish" list={wishList} />}
+    />
   );
 };
 
