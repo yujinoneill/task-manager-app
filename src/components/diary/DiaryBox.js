@@ -6,7 +6,7 @@ import { getStringDate } from "../../util/date";
 import Modal from "../Modal";
 import DiaryDetail from "./DiaryDetail";
 
-const StyledBox = styled.div`
+export const StyledBox = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@ const StyledBox = styled.div`
   }
 `;
 
-const DiaryBody = styled.div`
+export const DiaryBody = styled.div`
   font-size: 14px;
   padding: 15px;
 
@@ -48,7 +48,7 @@ const DiaryBody = styled.div`
     margin-bottom: 10px;
   }
 
-  .diary-content {
+  .content {
     margin-top: 0;
     margin-bottom: 10px;
   }
@@ -98,7 +98,7 @@ const DiaryBox = ({ id, title, content, date, category, imgPreview }) => {
         <DiaryBody>
           <CategoryBadge category={category}>{category}</CategoryBadge>
           <h5>{title}</h5>
-          <p className="diary-content">{contentSlicer(content)}</p>
+          <p className="content">{contentSlicer(content)}</p>
           <hr />
           <p className="post-date">{getStringDate(new Date(date))}</p>
         </DiaryBody>

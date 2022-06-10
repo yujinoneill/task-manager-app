@@ -17,7 +17,7 @@ const StyledHeader = styled.header`
   }
 `;
 
-const Content = styled.div`
+export const Content = styled.div`
   padding: 20px;
 
   word-break: keep-all;
@@ -31,7 +31,7 @@ const Content = styled.div`
   }
 `;
 
-const StyledButton = styled.div`
+export const StyledButton = styled.div`
   margin-top: 10px;
 
   display: flex;
