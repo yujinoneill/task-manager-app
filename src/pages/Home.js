@@ -5,7 +5,7 @@ import CheckForm from "../components/CheckForm";
 import Chart from "../components/chart/Chart";
 import Button from "../components/Button";
 
-import { StyledHeader } from "../components/FilteredList";
+import { todoActions } from "../store/todoList";
 
 //Styled-components
 const WelcomeContent = styled.div`
@@ -138,6 +138,31 @@ const Progress = styled.progress`
 `;
 
 const Home = () => {
+  const [todo, setTodo] = useState("");
+
+  const todoList = useSelector((state) => state.todo);
+  const dispatch = useDispatch();
+
+  const submitHandler = () => {
+    dispatch(
+      todoActions.todoCreate({
+        id: Math.random(),
+        checked: false,
+        todo,
+      })
+    );
+    setTodo("");
+  };
+
+  useEffect(() => {
+    const localData = localStorage.getItem("data");
+
+    if (localData) {
+      const localTodoList = JSON.parse(localData).todo;
+      dispatch(todoActions.todoInit(localTodoList));
+    }
+  }, []);
+
   return (
     <div>
       <BasicBox
@@ -160,10 +185,16 @@ const Home = () => {
         boxContent={
           <Container>
             <AnnualPlan>
+              <input
+                type="text"
+                value={todo}
+                onChange={(e) => setTodo(e.target.value)}
+              />
+              <Button name="Add a Todo" onClick={submitHandler} />
               <div className="check-box">
-                <CheckForm label={"Lose weight"} />
-                <CheckForm label={"Make exercise a habbit"} />
-                <CheckForm label={"Travel to other city"} />
+                {todoList.map((item) => (
+                  <CheckForm key={item.id} {...item} />
+                ))}
                 <CheckForm label={"Get a job"} />
               </div>
               <ProgressBox>
@@ -173,7 +204,7 @@ const Home = () => {
                 </div>
                 <Progress value="70" max="100" />
               </ProgressBox>
-            </AnnualPlan>
+            </TodoList>
             <MonthlyPlan>
               <select>
                 <option value="may">May</option>
