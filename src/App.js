@@ -28,25 +28,7 @@ const StyledApp = styled.div`
 `;
 
 //Function & Data
-export const DiaryDispatchContext = React.createContext();
-
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const localData = localStorage.getItem("data");
-
-    // && localData.length > 21
-
-    if (localData) {
-      const localDiaryList = JSON.parse(localData).diary; //localData 직렬화
-      dispatch(diaryActions.diaryInit(localDiaryList));
-
-      const localWishList = JSON.parse(localData).wish;
-      dispatch(wishActions.wishInit(localWishList));
-    }
-  }, []);
-
   return (
     <BrowserRouter>
       <SideBar />
