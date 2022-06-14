@@ -34,77 +34,62 @@ const WelcomeContent = styled.div`
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: auto 0.6fr;
   grid-template-rows: 1fr;
+  grid-gap: 10px;
 
   margin: 10px 0;
 
-  box-sizing: border-box;
-
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 992px) {
     grid-template-columns: 1fr;
   }
 `;
 
-const AnnualPlan = styled.div`
+const TodoList = styled.div`
   padding-right: 5%;
   border-right: 1px solid #e7ecef;
 
-  @media screen and (max-width: 768px) {
+  .check-box {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 992px) {
     border-right: none;
     border-bottom: 1px solid #e7ecef;
+
+    padding-right: 0;
   }
 `;
 
-const MonthlyPlan = styled.div`
+const Add = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: auto;
-  margin-left: auto;
 
-  select {
-    cursor: pointer;
-
-    outline: none;
+  input {
     border: none;
-    background-color: #e9ecef;
-    border-radius: 5px;
+    border-bottom: 1px solid #6c757d;
 
-    padding: 10px 15px;
+    padding: 10px 5px;
 
-    font-family: "Ubuntu", sans-serif;
-  }
+    margin-right: 10px;
 
-  @media screen and (max-width: 768px) {
-    margin-top: 20px;
-  }
-`;
-
-const WeeklyPlan = styled.div`
-  padding-left: 5%;
-  border-left: 1px solid #e7ecef;
-
-  select {
-    cursor: pointer;
-  }
-
-  @media screen and (max-width: 768px) {
-    border-left: none;
-    border-top: 1px solid #e7ecef;
-    padding-right: 5%;
+    &:focus,
+    &:active {
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #6c757d;
+    }
   }
 `;
 
-const WeeklyHeader = styled(StyledHeader)`
+const Widget = styled.div`
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  place-items: center;
 
-  margin: 10px 0;
-
-  @media screen and (max-width: 768px) {
-    margin-top: 20px;
+  @media screen and (max-width: 576px) {
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -112,7 +97,7 @@ const ProgressBox = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin: 20px 0;
+  padding: 20px 10px;
 
   .progress-text {
     display: flex;
@@ -120,20 +105,23 @@ const ProgressBox = styled.div`
   }
 `;
 
-const Progress = styled.progress`
-  appearance: none;
+const Progress = styled.div`
   width: 100%;
+  height: 20px;
 
   margin: 10px 0;
+  border-radius: 10px;
 
-  &::-webkit-progress-bar {
-    background-color: #e9ecef;
-    border-radius: 10px;
-  }
+  background-color: #e9ecef;
 
-  &::-webkit-progress-value {
+  .progress-bar {
+    width: ${(props) => props.width};
+    height: 100%;
+
     background-color: #6096ba;
     border-radius: 10px;
+
+    transition: width 1s;
   }
 `;
 
