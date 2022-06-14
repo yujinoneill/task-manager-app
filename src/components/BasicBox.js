@@ -19,10 +19,9 @@ const StyledSection = styled.section`
     color: #6096ba;
   }
 
-  /* div {
-    margin-top: ${(props) => props.marginTop || "10px"};
-    margin-bottom: ${(props) => props.marginBottom || "10px"};
-  } */
+  div {
+    box-sizing: border-box;
+  }
 `;
 
 const BasicBox = ({

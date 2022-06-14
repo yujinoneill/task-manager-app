@@ -6,6 +6,8 @@ import styled from "styled-components";
 
 import "./App.css";
 import { diaryActions } from "./store/diary";
+import { wishActions } from "./store/wishList";
+import { todoActions } from "./store/todoList";
 
 // components
 import Header from "./components/Header";
@@ -18,7 +20,6 @@ import NewDiary from "./pages/diary/NewDiary";
 import EditDiary from "./pages/diary/EditDiary";
 import MyAccount from "./pages/MyAccount";
 import WishList from "./pages/wishlist/WishList";
-import { wishActions } from "./store/wishList";
 
 // styled-components
 const StyledApp = styled.div`
