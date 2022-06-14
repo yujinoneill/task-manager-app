@@ -36,21 +36,21 @@ const Hand = styled.div`
 
 const SecondHand = styled(Hand)`
   width: 3px;
-  height: 85px;
+  height: 90px;
 
   background-color: #8b8c89;
 `;
 
 const MinHand = styled(Hand)`
   width: 6px;
-  height: 75px;
+  height: 80px;
 
   background-color: #6096ba;
 `;
 
 const HourHand = styled(Hand)`
   width: 6px;
-  height: 65px;
+  height: 60px;
 
   background-color: #a3cef1;
 `;
@@ -64,6 +64,44 @@ const Center = styled.div`
 
   position: absolute;
   z-index: 99;
+`;
+
+const Mark = styled.div`
+  div {
+    position: absolute;
+    border-radius: 5px;
+
+    background-color: #eee;
+    box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.3), -0.4px -0.4px 1px #eee;
+  }
+
+  .three {
+    width: 15px;
+    height: 3px;
+
+    right: 3%;
+  }
+
+  .six {
+    width: 3px;
+    height: 15px;
+
+    bottom: 3%;
+  }
+
+  .nine {
+    width: 15px;
+    height: 3px;
+
+    left: 3%;
+  }
+
+  .twelve {
+    width: 3px;
+    height: 15px;
+
+    top: 3%;
+  }
 `;
 
 const Clock = () => {
@@ -94,14 +132,18 @@ const Clock = () => {
   });
 
   return (
-    // <ClockWidget>
     <ClockWidget>
+      <Mark>
+        <div className="three"></div>
+        <div className="six"></div>
+        <div className="nine"></div>
+        <div className="twelve"></div>
+      </Mark>
       <SecondHand style={{ transform: `rotate(${secondDeg}deg)` }} />
       <MinHand style={{ transform: `rotate(${minDeg}deg)` }} />
       <HourHand style={{ transform: `rotate(${hourDeg}deg)` }} />
       <Center />
     </ClockWidget>
-    // </ClockWidget>
   );
 };
 
