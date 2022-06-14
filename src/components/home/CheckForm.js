@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { todoActions } from "../../store/todoList";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Check = styled.div`
   margin: 10px 0;
