@@ -1,8 +1,12 @@
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import styled from "styled-components";
 
 import BasicBox from "../components/BasicBox";
-import CheckForm from "../components/CheckForm";
-import Chart from "../components/chart/Chart";
+import CheckForm from "../components/home/CheckForm";
+import Clock from "../components/home/Clock";
+import Weather from "../components/home/Weather";
 import Button from "../components/Button";
 
 import { todoActions } from "../store/todoList";
@@ -127,19 +131,26 @@ const Progress = styled.div`
 
 const Home = () => {
   const [todo, setTodo] = useState("");
+  const [totalTodo, setTotalTodo] = useState();
+  const [completeTodo, setCompleteTodo] = useState();
+  const [todoProgress, setTodoProgress] = useState();
 
   const todoList = useSelector((state) => state.todo);
   const dispatch = useDispatch();
 
+  const checkedTodo = todoList.filter((item) => item.checked === true);
+
   const submitHandler = () => {
-    dispatch(
-      todoActions.todoCreate({
-        id: Math.random(),
-        checked: false,
-        todo,
-      })
-    );
-    setTodo("");
+    if (todo.length > 0) {
+      dispatch(
+        todoActions.todoCreate({
+          id: Math.random(),
+          checked: false,
+          todo,
+        })
+      );
+      setTodo("");
+    }
   };
 
   useEffect(() => {
@@ -150,6 +161,18 @@ const Home = () => {
       dispatch(todoActions.todoInit(localTodoList));
     }
   }, []);
+
+  useEffect(() => {
+    if (checkedTodo.length) {
+      setTotalTodo(todoList.length);
+      setCompleteTodo(checkedTodo.length);
+      setTodoProgress(
+        String(Math.floor((parseInt(completeTodo) / parseInt(totalTodo)) * 100))
+      );
+    } else {
+      setTodoProgress(0);
+    }
+  }, [checkedTodo]);
 
   return (
     <div>
@@ -169,58 +192,37 @@ const Home = () => {
         }
       />
       <BasicBox
-        boxTitle={"Wonderful 2022"}
+        boxTitle={"Wonderful Day"}
         boxContent={
           <Container>
-            <AnnualPlan>
-              <input
-                type="text"
-                value={todo}
-                onChange={(e) => setTodo(e.target.value)}
-              />
-              <Button name="Add a Todo" onClick={submitHandler} />
+            <TodoList>
+              <Add>
+                <input
+                  type="text"
+                  value={todo}
+                  onChange={(e) => setTodo(e.target.value)}
+                />
+                <Button name="Add a Todo" onClick={submitHandler} />
+              </Add>
               <div className="check-box">
                 {todoList.map((item) => (
                   <CheckForm key={item.id} {...item} />
                 ))}
-                <CheckForm label={"Get a job"} />
               </div>
               <ProgressBox>
                 <div className="progress-text">
                   <span>Goals</span>
-                  <span>100%</span>
+                  <span>{todoProgress}%</span>
                 </div>
-                <Progress value="70" max="100" />
+                <Progress width={`${todoProgress}%`}>
+                  <div className="progress-bar"></div>
+                </Progress>
               </ProgressBox>
             </TodoList>
-            <MonthlyPlan>
-              <select>
-                <option value="may">May</option>
-                <option value="april">April</option>
-                <option value="march">March</option>
-                <option value="february">Febraury</option>
-                <option value="january">January</option>
-              </select>
-              <Chart />
-            </MonthlyPlan>
-            <WeeklyPlan>
-              <WeeklyHeader>
-                <select>
-                  <option value="Week 1">Week 1</option>
-                  <option value="Week 2">Week 2</option>
-                  <option value="Week 3">Week 3</option>
-                  <option value="Week 4">Week 4</option>
-                  <option value="Week 5">Week 5</option>
-                </select>
-                <Button name={"Add a New Plan"} color={"#6096ba"} />
-              </WeeklyHeader>
-              <div>
-                <CheckForm label={"Read 「The Stranger」"} />
-                <CheckForm label={"Go to cinema"} />
-                <CheckForm label={"Read 「1984」"} />
-                <CheckForm label={"Finish the Project"} />
-              </div>
-            </WeeklyPlan>
+            <Widget>
+              <Weather />
+              <Clock />
+            </Widget>
           </Container>
         }
       />
