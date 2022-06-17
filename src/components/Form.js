@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Button from "./Button";
+import Button from "./style/Button";
 
 export const StyledForm = styled.form`
   padding: 5px;

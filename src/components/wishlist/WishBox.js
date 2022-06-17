@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { FaGrinHearts, FaWallet } from "react-icons/fa";
 
-import Button from "../Button";
+import Button from "../style/Button";
 import { wishActions } from "../../store/wishList";
-import Modal from "../Modal";
+import Modal from "../common/Modal";
 import { DiaryBody, StyledBox } from "../diary/DiaryBox";
 import { getStringDate } from "../../util/date";
 import WishEditor from "./WishEditor";

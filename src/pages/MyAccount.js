@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { FaGlobe, FaTwitter, FaGithub } from "react-icons/fa";
 
-import BasicBox from "../components/BasicBox";
+import BasicBox from "../components/style/BasicBox";
 import Form from "../components/Form";
 
 const Background = styled.div`

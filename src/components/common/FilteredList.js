@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import WishBox from "./wishlist/WishBox";
-import Button from "./Button";
-import DiaryBox from "./diary/DiaryBox";
+import WishBox from "../wishlist/WishBox";
+import Button from "../style/Button";
+import DiaryBox from "../diary/DiaryBox";
 import Modal from "./Modal";
-import WishEditor from "./wishlist/WishEditor";
+import WishEditor from "../wishlist/WishEditor";
 
 //Styled-components
 export const StyledHeader = styled.header`

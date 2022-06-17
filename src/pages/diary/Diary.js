@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import BasicBox from "../../components/BasicBox";
-import FilteredList from "../../components/FilteredList";
+import BasicBox from "../../components/style/BasicBox";
+import FilteredList from "../../components/common/FilteredList";
 import { diaryActions } from "../../store/diary";
 
 const Diary = () => {

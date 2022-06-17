@@ -28,7 +28,7 @@ const ModalContent = styled.div`
   border-radius: 5px;
   box-shadow: 0 10px 15px rgb(0, 0, 0, 0.15);
 
-  width: 60%;
+  width: 40%;
   min-width: 300px;
   max-height: 80%;
 
@@ -39,8 +39,8 @@ const ModalContent = styled.div`
   margin: 0 auto;
   padding: 40px;
 
-  @media screen and (max-width: 768px) {
-    width: 70%;
+  @media screen and (max-width: 992px) {
+    width: 60%;
   }
 
   @media screen and (max-width: 576px) {

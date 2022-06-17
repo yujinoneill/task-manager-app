@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 
 import styled from "styled-components";
 import { wishActions } from "../../store/wishList";
-import Button from "../Button";
+import Button from "../style/Button";
 
-const StyledDiv = styled.div`
+export const StyledDiv = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;

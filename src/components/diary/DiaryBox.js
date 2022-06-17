@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { getStringDate } from "../../util/date";
-import Modal from "../Modal";
+import Modal from "../common/Modal";
 import DiaryDetail from "./DiaryDetail";
 
 export const StyledBox = styled.div`

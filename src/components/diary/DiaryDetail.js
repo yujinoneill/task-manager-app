@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { getStringDate } from "../../util/date";
-import Button from "../Button";
+import Button from "../style/Button";
 import { diaryActions } from "../../store/diary";
 
 //Styled-component

@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import BasicBox from "../../components/BasicBox";
+import BasicBox from "../style/BasicBox";
 import { Container } from "../../pages/MyAccount";
-import Button from "../../components/Button";
+import Button from "../style/Button";
 
 import { getStringDate } from "../../util/date";
 

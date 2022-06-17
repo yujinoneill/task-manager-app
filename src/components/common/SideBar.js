@@ -10,7 +10,7 @@ import {
   FaBars,
 } from "react-icons/fa";
 
-import { List } from "./Dropdown";
+import { List } from "../style/Dropdown";
 
 // styled-components
 const StyledSideBar = styled.div`

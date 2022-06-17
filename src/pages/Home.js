@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import styled from "styled-components";
 
-import BasicBox from "../components/BasicBox";
+import BasicBox from "../components/style/BasicBox";
 import CheckForm from "../components/home/CheckForm";
 import Clock from "../components/home/Clock";
 import Weather from "../components/home/Weather";
-import Button from "../components/Button";
+import Button from "../components/style/Button";
 
 import { todoActions } from "../store/todoList";
 
@@ -130,6 +130,7 @@ const Progress = styled.div`
 `;
 
 const Home = () => {
+  //투두리스트
   const [todo, setTodo] = useState("");
   const [totalTodo, setTotalTodo] = useState();
   const [completeTodo, setCompleteTodo] = useState();
@@ -153,6 +154,7 @@ const Home = () => {
     }
   };
 
+  //투두리스트 불러오기
   useEffect(() => {
     const localData = localStorage.getItem("data");
 
@@ -162,6 +164,7 @@ const Home = () => {
     }
   }, []);
 
+  //Progress Bar 계산
   useEffect(() => {
     if (checkedTodo.length) {
       setTotalTodo(todoList.length);
@@ -175,7 +178,7 @@ const Home = () => {
   }, [checkedTodo]);
 
   return (
-    <div>
+    <Fragment>
       <BasicBox
         boxTitle={"Welcome back, Oneill!"}
         boxContent={
@@ -226,7 +229,7 @@ const Home = () => {
           </Container>
         }
       />
-    </div>
+    </Fragment>
   );
 };
 
