@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 import { FaCaretDown, FaUserCircle, FaBell, FaPowerOff } from "react-icons/fa";
 import styled, { css } from "styled-components";
+import { userActions } from "../../store/user";
+import { LogInOutContext } from "../../App";
 
 // Styled-components
 const StyledDropdown = styled.div`
@@ -85,11 +87,25 @@ export const List = styled.ul`
 `;
 
 const Dropdown = () => {
+  const { loginToggler } = useContext(LogInOutContext);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [isActive, setIsActive] = useState(false);
   const user = useSelector((state) => state.user);
   const userName = user.name;
 
   const activeHandler = () => setIsActive(!isActive);
+
+  const logoutHandler = () => {
+    if (window.confirm("Are you sure you want to Log Out?")) {
+      dispatch(userActions.userLogout());
+      loginToggler();
+      activeHandler();
+      navigate("/login", { replace: true });
+    }
+  };
 
   return (
     <StyledDropdown>
@@ -116,7 +132,7 @@ const Dropdown = () => {
           <li>
             <Link to="/">
               <FaPowerOff />
-              <span>Logout</span>
+            <span onClick={logoutHandler}>Logout</span>
             </Link>
           </li>
         </List>
