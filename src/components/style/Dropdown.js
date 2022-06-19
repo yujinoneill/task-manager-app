@@ -86,13 +86,16 @@ export const List = styled.ul`
 
 const Dropdown = () => {
   const [isActive, setIsActive] = useState(false);
+  const user = useSelector((state) => state.user);
+  const userName = user.name;
+
   const activeHandler = () => setIsActive(!isActive);
 
   return (
     <StyledDropdown>
       <button onClick={activeHandler}>
-        <img src={process.env.PUBLIC_URL + "/assets/1.png"} alt="profile-pic" />
-        <span>Oneill</span>
+        <FaUserCircle />
+        <span>{userName}</span>
         <FaCaretDown />
       </button>
       <Nav active={isActive ? "active" : "inactive"}>

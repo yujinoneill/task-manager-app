@@ -130,6 +130,10 @@ const Progress = styled.div`
 `;
 
 const Home = () => {
+  //WelcomBox에 유저 이름 불러오기
+  const user = useSelector((state) => state.user);
+  const userName = user.name;
+
   //투두리스트
   const [todo, setTodo] = useState("");
   const [totalTodo, setTotalTodo] = useState();
@@ -141,6 +145,7 @@ const Home = () => {
 
   const checkedTodo = todoList.filter((item) => item.checked === true);
 
+  //투두리스트 추가
   const submitHandler = () => {
     if (todo.length > 0) {
       dispatch(
@@ -170,7 +175,7 @@ const Home = () => {
   return (
     <Fragment>
       <BasicBox
-        boxTitle={"Welcome back, Oneill!"}
+        boxTitle={`Welcome, ${userName}!`}
         boxContent={
           <WelcomeContent>
             <p>
