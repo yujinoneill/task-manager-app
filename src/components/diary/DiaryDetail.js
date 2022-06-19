@@ -15,7 +15,14 @@ const StyledHeader = styled.header`
   }
 
   p {
+    display: flex;
+
     font-weight: 700;
+
+    svg {
+      font-size: 20px;
+      margin-left: 5px;
+    }
   }
 `;
 

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { FaTimes } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { todoActions } from "../../store/todoList";
@@ -29,10 +29,14 @@ const Check = styled.div`
     cursor: pointer;
   }
 
-  span {
-    text-decoration: ${(props) => props.checked === true && "line-through"};
-    color: ${(props) => props.checked === true && "gray"};
-  }
+  ${(props) =>
+    props.checked === true &&
+    css`
+      span {
+        text-decoration: line-through;
+        color: gray;
+      }
+    `}
 `;
 
 const CheckForm = ({ id, todo, checked }) => {

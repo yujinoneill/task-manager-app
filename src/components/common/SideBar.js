@@ -2,19 +2,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import {
-  FaHome,
-  FaBook,
-  FaShoppingCart,
-  FaUserCircle,
-  FaBars,
-} from "react-icons/fa";
+import { FaHome, FaBook, FaShoppingCart, FaBars } from "react-icons/fa";
+import { GiSnail } from "react-icons/gi";
 
 import { List } from "../style/Dropdown";
 
 // styled-components
 const StyledSideBar = styled.div`
-  width: 50px;
+  width: ${(props) => (props.active === "active" ? "190px" : "50px")};
   height: 100%;
   background-color: white;
   padding: 10px 10px 0 5px;
@@ -31,12 +26,6 @@ const StyledSideBar = styled.div`
 
   font-family: "Ubuntu", sans-serif;
   transition: 0.5s;
-
-  ${(props) =>
-    props.active === "active" &&
-    css`
-      width: 190px;
-    `}
 
   h4 {
     font-size: 20px;
@@ -111,9 +100,9 @@ const SideBar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/myaccount">
-            <FaUserCircle />
-            <span>My Account</span>
+          <Link to="/developer">
+            <GiSnail />
+            <span>Developer</span>
           </Link>
         </li>
       </StyledList>
