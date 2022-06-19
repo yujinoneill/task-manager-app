@@ -103,7 +103,7 @@ const MyAccount = () => {
   return (
     <Container>
       <div className="order-1">
-        <BasicBox boxTitle="Edit Profile" boxContent={<Form />} />
+        <BasicBox boxTitle="Developer" boxContent={<Form />} />
       </div>
       <div className="order-2">
         <BasicBox
@@ -118,7 +118,7 @@ const MyAccount = () => {
                     src={process.env.PUBLIC_URL + "/assets/1.png"}
                     alt="profile-pic"
                   />
-                  <h4 className="user-name">Yujin Oneill</h4>
+                  <h4 className="user-name">Yujin Hwang</h4>
                   <p className="user-id">@yujinoneill</p>
                   <p>
                     "It is kind of fun to do the impossible."

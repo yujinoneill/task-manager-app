@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import Button from "./style/Button";
-
 export const StyledForm = styled.form`
   padding: 5px;
 
@@ -50,10 +48,6 @@ export const StyledDiv = styled.div`
   }
 `;
 
-//맨 처음에는 value값 비워놓은 다음에 로그인하면 저장되어 있는 데이터 불러와서 채워주는 형식으로 구현
-//근데 회원가입 기능 안 만들 거면... 필요 없는 페이지 아닌가? 일단 로컬스토리지에 저장하는 거라도 구현하자. 만든 거 아깝잖어...
-//프로필 카드 이미지는 기본 이미지로 해놓고, 이름이랑 아이디는 로그인할 때 입력하라고 하고, 아래 링크들은 없애기
-
 const Form = () => {
   return (
     <StyledForm>
@@ -67,7 +61,7 @@ const Form = () => {
         <div>
           <label>
             Last Name
-            <input type="text" value="Oneill" readOnly />
+            <input type="text" value="Hwang" readOnly />
           </label>
         </div>
       </StyledDiv>
@@ -89,7 +83,7 @@ const Form = () => {
         <div>
           <label>
             City
-            <input type="text" value="Seoul" readOnly />
+            <input type="text" value="Gwangju" readOnly />
           </label>
         </div>
         <div>
@@ -110,14 +104,14 @@ const Form = () => {
           <label>
             About Me
             <textarea
-              value={"Hello, I'm Oneill! I am studying Front-end Development."}
+              value={
+                "Hello, I'm Yujin a.k.a Oneill! I am studying Front-end Development. If you want to feedback this project, Please contact me anytime!"
+              }
               readOnly
             />
           </label>
         </div>
       </StyledDiv>
-      <Button type="submit" name={"Save Change"} color={"#6096ba"} />
-      <Button type="reset" name={"Cancel"} />
     </StyledForm>
   );
 };

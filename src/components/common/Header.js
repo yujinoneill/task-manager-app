@@ -26,7 +26,7 @@ const HeadSearch = styled.div`
 
     border: none;
     font-family: "Ubuntu", sans-serif;
-    font-size: 18px;
+    font-size: 14px;
 
     margin-left: 10px;
 
@@ -41,7 +41,9 @@ const Header = () => {
     <StyledHeader>
       <HeadSearch>
         <FaSearch />
-        <input tyype="search" placeholder="Search" />
+        <form action="https://www.google.com/search" method="get">
+          <input type="search" name="q" placeholder="Search in Google" />
+        </form>
       </HeadSearch>
       <Dropdown />
     </StyledHeader>
