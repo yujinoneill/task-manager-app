@@ -1,22 +1,10 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import BasicBox from "../../components/style/BasicBox";
 import FilteredList from "../../components/common/FilteredList";
-import { wishActions } from "../../store/wishList";
 
 const WishList = () => {
   const wishList = useSelector((state) => state.wish);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const localData = localStorage.getItem("data");
-
-    if (localData) {
-      const localWishList = JSON.parse(localData).wish;
-      dispatch(wishActions.wishInit(localWishList));
-    }
-  }, []);
 
   return (
     <BasicBox

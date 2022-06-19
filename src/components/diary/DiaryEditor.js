@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import BasicBox from "../style/BasicBox";
 import { Container } from "../../pages/MyAccount";
@@ -140,13 +140,8 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
   const dataId = useRef(0);
 
   useEffect(() => {
-    const localData = localStorage.getItem("data");
-
-    if (localData) {
-      const localDiaryList = JSON.parse(localData).diary; //localData 직렬화
-      if (localDiaryList && localDiaryList.length > 0) {
-        dataId.current = parseInt(localDiaryList[0].id) + 1; //단순히 localDiaryList의 길이를 기준으로 current값을 변경하면 삭제된 다이어리가 있을 때 id가 겹칠 수 있음
-      }
+    if (diary && diary.length > 0) {
+      dataId.current = parseInt(diary[0].id) + 1;
     }
   }, []);
 

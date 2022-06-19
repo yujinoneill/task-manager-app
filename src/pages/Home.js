@@ -154,16 +154,6 @@ const Home = () => {
     }
   };
 
-  //투두리스트 불러오기
-  useEffect(() => {
-    const localData = localStorage.getItem("data");
-
-    if (localData) {
-      const localTodoList = JSON.parse(localData).todo;
-      dispatch(todoActions.todoInit(localTodoList));
-    }
-  }, []);
-
   //Progress Bar 계산
   useEffect(() => {
     if (checkedTodo.length) {

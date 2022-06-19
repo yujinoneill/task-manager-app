@@ -1,22 +1,10 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import BasicBox from "../../components/style/BasicBox";
 import FilteredList from "../../components/common/FilteredList";
-import { diaryActions } from "../../store/diary";
 
 const Diary = () => {
   const diaryList = useSelector((state) => state.diary);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const localData = localStorage.getItem("data");
-
-    if (localData) {
-      const localDiaryList = JSON.parse(localData).diary; //localData 직렬화
-      dispatch(diaryActions.diaryInit(localDiaryList));
-    }
-  }, []);
 
   return (
     <BasicBox

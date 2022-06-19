@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
 import { wishActions } from "../../store/wishList";
@@ -31,6 +31,8 @@ export const StyledDiv = styled.div`
 `;
 
 const WishEditor = ({ originData, isEdit, modalHandler }) => {
+  const wishList = useSelector((state) => state.wish);
+
   const [name, setName] = useState("");
   const [price, setPrice] = useState("₩");
   const [desc, setDesc] = useState("");
@@ -45,13 +47,8 @@ const WishEditor = ({ originData, isEdit, modalHandler }) => {
   const dataId = useRef(0);
 
   useEffect(() => {
-    const localData = localStorage.getItem("data");
-
-    if (localData) {
-      const localWishList = JSON.parse(localData).wish;
-      if (localWishList && localWishList.length > 0) {
-        dataId.current = parseInt(localWishList[0].id) + 1;
-      }
+    if (wishList && wishList.length > 0) {
+      dataId.current = parseInt(wishList[0].id) + 1;
     }
   }, []);
 
