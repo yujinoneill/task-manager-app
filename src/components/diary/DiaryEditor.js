@@ -12,6 +12,7 @@ import { getStringDate } from "../../util/date";
 import { diaryActions } from "../../store/diary";
 
 import styled from "styled-components";
+import EmotionItem from "./EmotionItem";
 
 // Styled-components
 const Form = styled.form`
@@ -53,16 +54,11 @@ const Form = styled.form`
 const DiaryContent = styled.div`
   border: 1px solid #ced4da;
   border-radius: 5px;
-
-  img {
-    max-width: 500px;
-    padding: 20px;
-  }
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   grid-column-gap: 0;
   grid-row-gap: 10px;
 
@@ -95,27 +91,46 @@ const Grid = styled.div`
   }
 `;
 
-const Toolbar = styled.div`
+const EmotionList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  width: 100%;
+
   border-bottom: 1px solid #ced4da;
-
-  input {
-    border: none;
-    margin: 0;
-
-    &:focus {
-      border-color: #86b7fe;
-      outline: 0;
-      box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
-    }
-  }
 `;
 
+//Emotion data list
+const emotionList = [
+  {
+    emotionId: 1,
+    emotionDesc: "Perfect",
+  },
+  {
+    emotionId: 2,
+    emotionDesc: "Happy",
+  },
+  {
+    emotionId: 3,
+    emotionDesc: "Soso",
+  },
+  {
+    emotionId: 4,
+    emotionDesc: "Unhappy",
+  },
+  {
+    emotionId: 5,
+    emotionDesc: "Sad",
+  },
+];
+
 const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
+  const diary = useSelector((state) => state.diary);
+
   const [date, setDate] = useState(getStringDate(new Date()));
-  const [category, setCategory] = useState("Study");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [imgPreview, setImgPreview] = useState();
+  const [emotion, setEmotion] = useState(3);
 
   const titleRef = useRef();
   const contentRef = useRef();
@@ -138,12 +153,15 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
   useEffect(() => {
     if (isEdit) {
       setDate(getStringDate(new Date(parseInt(originData.date))));
-      setCategory(originData.category);
       setTitle(originData.title);
       setContent(originData.content);
-      setImgPreview(originData.imgPreview);
+      setEmotion(originData.emotion);
     }
   }, [isEdit, originData]);
+
+  const emotionHandler = (emotion) => {
+    setEmotion(emotion);
+  };
 
   const submitHandler = () => {
     if (title.length < 1) {
@@ -170,8 +188,7 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
             date: new Date(originData.date).getTime(),
             title,
             content,
-            category,
-            imgPreview,
+            emotion,
           })
         );
       } else {
@@ -181,8 +198,7 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
             date: new Date().getTime(),
             title,
             content,
-            category,
-            imgPreview,
+            emotion,
           })
         );
       }
@@ -196,16 +212,6 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
       navigate(-1);
     }
     return;
-  };
-
-  const readFile = (e) => {
-    if (e.target.files.length) {
-      const reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload = (e) => {
-        setImgPreview(e.target.result);
-      };
-    }
   };
 
   return (
@@ -227,14 +233,16 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
                 />
               </div>
               <DiaryContent>
-                <Toolbar>
-                  <input
-                    type="file"
-                    accept={[".jpg", ".png"]}
-                    onChange={readFile}
-                  />
-                </Toolbar>
-                {imgPreview ? <img src={imgPreview} alt="preview" /> : null}
+                <EmotionList>
+                  {emotionList.map((item) => (
+                    <EmotionItem
+                      key={item.emotionId}
+                      {...item}
+                      emotionHandler={emotionHandler}
+                      isSelected={item.emotionId === emotion}
+                    />
+                  ))}
+                </EmotionList>
                 <textarea
                   ref={contentRef}
                   placeholder="Write your day!"
@@ -261,15 +269,6 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
               </div>
               <div>
                 <BlueButton
-                <select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                >
-                  <option>Study</option>
-                  <option>Daily</option>
-                </select>
-              </div>
-              <div>
                   name={isEdit ? "Edit" : "Publish"}
                   onClick={submitHandler}
                 />

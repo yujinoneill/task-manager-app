@@ -6,6 +6,7 @@ import { getStringDate } from "../../util/date";
 import BlueButton from "../style/BlueButton";
 import BasicButton from "../style/BasicButton";
 import { diaryActions } from "../../store/diary";
+import { EmotionIcon } from "./EmotionIcon";
 
 //Styled-component
 const StyledHeader = styled.header`
@@ -43,7 +44,7 @@ export const StyledButton = styled.div`
   }
 `;
 
-const DiaryDetail = ({ category, content, date, title, id }) => {
+const DiaryDetail = ({ emotion, content, date, title, id }) => {
   const dispatch = useDispatch();
 
   const removeHandler = () => {
@@ -57,7 +58,7 @@ const DiaryDetail = ({ category, content, date, title, id }) => {
       <StyledHeader>
         <h2>{title}</h2>
         <p>
-          {getStringDate(new Date(date))} / {category}
+          {getStringDate(new Date(date))} / {<EmotionIcon emotion={emotion} />}
         </p>
       </StyledHeader>
       <hr />

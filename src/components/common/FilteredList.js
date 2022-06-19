@@ -65,9 +65,12 @@ const sortOptionList = [
   { value: "Oldest", name: "Oldest" },
 ];
 
-const categoryOptionList = [
-  { value: "Study", name: "Study" },
-  { value: "Daily", name: "Daily" },
+const emotionOptionList = [
+  { value: "Perfect", name: "Perfect" },
+  { value: "Happy", name: "Happy" },
+  { value: "Soso", name: "Soso" },
+  { value: "Unhappy", name: "Unhappy" },
+  { value: "Sad", name: "Sad" },
   { value: "All", name: "All" },
 ];
 
@@ -92,7 +95,7 @@ const ControlFilter = ({ value, onChange, optionList }) => {
 
 const FilteredList = ({ type, list }) => {
   const [sortType, setSortType] = useState("Latest");
-  const [categoryType, setCategoryType] = useState("All");
+  const [emotionType, setEmotionType] = useState("All");
   const [wishType, setWishType] = useState("All");
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -113,10 +116,16 @@ const FilteredList = ({ type, list }) => {
 
     const typeFilter = (item) => {
       if (type === "diary") {
-        if (categoryType === "Study") {
-          return item.category === "Study";
+        if (emotionType === "Perfect") {
+          return item.emotion === 1;
+        } else if (emotionType === "Happy") {
+          return item.emotion === 2;
+        } else if (emotionType === "Soso") {
+          return item.emotion === 3;
+        } else if (emotionType === "Unhappy") {
+          return item.emotion === 4;
         } else {
-          return item.category === "Daily";
+          return item.emotion === 5;
         }
       } else {
         if (wishType === "Wish") {
@@ -129,8 +138,8 @@ const FilteredList = ({ type, list }) => {
 
     const copyList = JSON.parse(JSON.stringify(list));
 
-    const categoryFilteredList =
-      categoryType === "All"
+    const emotionFilteredList =
+      emotionType === "All"
         ? copyList
         : copyList.filter((item) => typeFilter(item));
 
@@ -141,7 +150,7 @@ const FilteredList = ({ type, list }) => {
 
     const sortedList =
       type === "diary"
-        ? categoryFilteredList.sort(datefilter)
+        ? emotionFilteredList.sort(datefilter)
         : wishFilteredList.sort(datefilter);
 
     return sortedList;
@@ -157,9 +166,9 @@ const FilteredList = ({ type, list }) => {
         />
         {type === "diary" ? (
           <ControlFilter
-            value={categoryType}
-            onChange={setCategoryType}
-            optionList={categoryOptionList}
+            value={emotionType}
+            onChange={setEmotionType}
+            optionList={emotionOptionList}
           />
         ) : (
           <ControlFilter

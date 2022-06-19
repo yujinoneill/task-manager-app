@@ -2,9 +2,12 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
+import { EmotionIcon } from "./EmotionIcon";
+
 import { getStringDate } from "../../util/date";
 import Modal from "../common/Modal";
 import DiaryDetail from "./DiaryDetail";
+import { Fragment } from "react";
 
 export const StyledBox = styled.div`
   position: relative;
@@ -27,12 +30,42 @@ export const StyledBox = styled.div`
 
   cursor: pointer;
 
-  img {
+  .thumbnail {
     width: 100%;
-    box-sizing: border-box;
+    height: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+
+    color: white;
+
+    svg {
+      font-size: 80px;
+    }
+  }
+
+  .thumbnail_1 {
+    background-color: #8ecae6;
+  }
+
+  .thumbnail_2 {
+    background-color: #219ebc;
+  }
+
+  .thumbnail_3 {
+    background-color: #023047;
+  }
+
+  .thumbnail_4 {
+    background-color: #ffb703;
+  }
+
+  .thumbnail_5 {
+    background-color: #fb8500;
   }
 `;
 
@@ -59,19 +92,7 @@ export const DiaryBody = styled.div`
   }
 `;
 
-const CategoryBadge = styled.span`
-  display: inline-block;
-  padding: 5px 10px;
-  margin-bottom: 10px;
-
-  border-radius: 20px;
-  background-color: ${(props) =>
-    props.category === "Study" ? "#007bff" : "#ffb400"};
-
-  color: white;
-`;
-
-const DiaryBox = ({ id, title, content, date, category, imgPreview }) => {
+const DiaryBox = ({ id, title, content, date, emotion }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const diaryList = useSelector((state) => state.diary);
@@ -92,11 +113,12 @@ const DiaryBox = ({ id, title, content, date, category, imgPreview }) => {
   };
 
   return (
-    <div>
+    <Fragment>
       <StyledBox onClick={modalHandler}>
-        <img src={imgPreview} alt="diary-thumbnail" />
+        <div className={["thumbnail", `thumbnail_${emotion}`].join(" ")}>
+          <EmotionIcon emotion={emotion} />
+        </div>
         <DiaryBody>
-          <CategoryBadge category={category}>{category}</CategoryBadge>
           <h5>{title}</h5>
           <p className="content">{contentSlicer(content)}</p>
           <hr />
@@ -109,7 +131,7 @@ const DiaryBox = ({ id, title, content, date, category, imgPreview }) => {
           children={<DiaryDetail {...targetDiary} />}
         /> //props로 함수 내려줘서 자식 컴포넌트에서도 같은 함수 사용하기
       )}
-    </div>
+    </Fragment>
   );
 };
 
