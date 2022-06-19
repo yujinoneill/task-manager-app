@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 
 import styled from "styled-components";
 import { wishActions } from "../../store/wishList";
-import Button from "../style/Button";
+import BasicButton from "../style/BasicButton";
+import BlueButton from "../style/BlueButton";
 
 export const StyledDiv = styled.div`
   display: grid;
@@ -180,13 +181,12 @@ const WishEditor = ({ originData, isEdit, modalHandler }) => {
           </label>
         </div>
       )}
-      <Button
+      <BlueButton
         type="submit"
         name={isEdit ? "Edit" : "Add"}
-        color={"#6096ba"}
         onClick={submitHandler}
       />
-      {isEdit && <Button name="Delete" onClick={removeHandler} />}
+      {isEdit && <BasicButton name="Delete" onClick={removeHandler} />}
     </StyledDiv>
   );
 };

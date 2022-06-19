@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import WishBox from "../wishlist/WishBox";
-import Button from "../style/Button";
+import BlueButton from "../style/BlueButton";
 import DiaryBox from "../diary/DiaryBox";
 import Modal from "./Modal";
 import WishEditor from "../wishlist/WishEditor";
@@ -169,9 +169,8 @@ const FilteredList = ({ type, list }) => {
           />
         )}
         <Link to={type === "diary" && "/new-diary"}>
-          <Button
+          <BlueButton
             name={type === "diary" ? "Post a New Diary" : "Add a New Wish"}
-            color={"#6096ba"}
             onClick={type === "wish" ? modalHandler : null}
           />
         </Link>

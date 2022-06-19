@@ -7,7 +7,7 @@ import BasicBox from "../components/style/BasicBox";
 import CheckForm from "../components/home/CheckForm";
 import Clock from "../components/home/Clock";
 import Weather from "../components/home/Weather";
-import Button from "../components/style/Button";
+import BasicButton from "../components/style/BasicButton";
 
 import { todoActions } from "../store/todoList";
 
@@ -205,7 +205,7 @@ const Home = () => {
                   value={todo}
                   onChange={(e) => setTodo(e.target.value)}
                 />
-                <Button name="Add a Todo" onClick={submitHandler} />
+                <BasicButton name="Add a Todo" onClick={submitHandler} />
               </Add>
               <div className="check-box">
                 {todoList.map((item) => (

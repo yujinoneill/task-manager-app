@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 
 import BasicBox from "../style/BasicBox";
 import { Container } from "../../pages/MyAccount";
-import Button from "../style/Button";
+import BasicButton from "../style/BasicButton";
+import BlueButton from "../style/BlueButton";
 
 import { getStringDate } from "../../util/date";
 
@@ -259,7 +260,7 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
                 />
               </div>
               <div>
-                <h4>Category</h4>
+                <BlueButton
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
@@ -269,12 +270,10 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
                 </select>
               </div>
               <div>
-                <Button
                   name={isEdit ? "Edit" : "Publish"}
-                  color="#6096ba"
                   onClick={submitHandler}
                 />
-                <Button name="Cancel" onClick={cancelHandler} />
+                <BasicButton name="Cancel" onClick={cancelHandler} />
               </div>
             </Grid>
           }

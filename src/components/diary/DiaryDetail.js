@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { getStringDate } from "../../util/date";
-import Button from "../style/Button";
+import BlueButton from "../style/BlueButton";
+import BasicButton from "../style/BasicButton";
 import { diaryActions } from "../../store/diary";
 
 //Styled-component
@@ -63,9 +64,9 @@ const DiaryDetail = ({ category, content, date, title, id }) => {
       <Content>{content}</Content>
       <StyledButton>
         <Link to={`/edit-diary/${id}`}>
-          <Button name="Edit" color="#6096ba" />
+          <BlueButton name="Edit" />
         </Link>
-        <Button name="Delete" onClick={removeHandler} />
+        <BasicButton name="Delete" onClick={removeHandler} />
       </StyledButton>
     </div>
   );
