@@ -4,9 +4,6 @@ export const wishReducer = createSlice({
   name: "wishList",
   initialState: [],
   reducers: {
-    wishInit: (state, action) => {
-      return action.payload;
-    },
     wishCreate: (state, action) => {
       state.unshift(action.payload);
     },

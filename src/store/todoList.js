@@ -4,9 +4,6 @@ export const todoReducer = createSlice({
   name: "todoList",
   initialState: [],
   reducers: {
-    todoInit: (state, action) => {
-      return action.payload;
-    },
     todoCreate: (state, action) => {
       state.unshift(action.payload);
     },

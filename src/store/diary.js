@@ -4,9 +4,6 @@ export const diaryReducer = createSlice({
   name: "diary",
   initialState: [],
   reducers: {
-    diaryInit: (state, action) => {
-      return action.payload;
-    },
     diaryCreate: (state, action) => {
       state.unshift(action.payload);
     },

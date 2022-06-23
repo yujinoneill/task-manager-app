@@ -1,15 +1,12 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
 
 import styled from "styled-components";
 
 import BasicBox from "../components/style/BasicBox";
-import CheckForm from "../components/home/CheckForm";
 import Clock from "../components/home/Clock";
 import Weather from "../components/home/Weather";
-import BasicButton from "../components/style/BasicButton";
-
-import { todoActions } from "../store/todoList";
+import TodoList from "../components/home/Todolist";
 
 //Styled-components
 const WelcomeContent = styled.div`
@@ -49,43 +46,6 @@ const Container = styled.div`
   }
 `;
 
-const TodoList = styled.div`
-  padding-right: 5%;
-  border-right: 1px solid #e7ecef;
-
-  .check-box {
-    width: 100%;
-  }
-
-  @media screen and (max-width: 992px) {
-    border-right: none;
-    border-bottom: 1px solid #e7ecef;
-
-    padding-right: 0;
-  }
-`;
-
-const Add = styled.div`
-  display: flex;
-  align-items: center;
-
-  input {
-    border: none;
-    border-bottom: 1px solid #6c757d;
-
-    padding: 10px 5px;
-
-    margin-right: 10px;
-
-    &:focus,
-    &:active {
-      border: none;
-      outline: none;
-      border-bottom: 1px solid #6c757d;
-    }
-  }
-`;
-
 const Widget = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -97,80 +57,10 @@ const Widget = styled.div`
   }
 `;
 
-const ProgressBox = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  padding: 20px 10px;
-
-  .progress-text {
-    display: flex;
-    justify-content: space-between;
-  }
-`;
-
-const Progress = styled.div`
-  width: 100%;
-  height: 20px;
-
-  margin: 10px 0;
-  border-radius: 10px;
-
-  background-color: #e9ecef;
-
-  .progress-bar {
-    width: ${(props) => props.width};
-    height: 100%;
-
-    background-color: #6096ba;
-    border-radius: 10px;
-
-    transition: width 1s;
-  }
-`;
-
 const Home = () => {
   //WelcomBox에 유저 이름 불러오기
   const user = useSelector((state) => state.user);
   const userName = user.name;
-
-  //투두리스트
-  const [todo, setTodo] = useState("");
-  const [totalTodo, setTotalTodo] = useState();
-  const [completeTodo, setCompleteTodo] = useState();
-  const [todoProgress, setTodoProgress] = useState();
-
-  const todoList = useSelector((state) => state.todo);
-  const dispatch = useDispatch();
-
-  const checkedTodo = todoList.filter((item) => item.checked === true);
-
-  //투두리스트 추가
-  const submitHandler = () => {
-    if (todo.length > 0) {
-      dispatch(
-        todoActions.todoCreate({
-          id: Math.random(),
-          checked: false,
-          todo,
-        })
-      );
-      setTodo("");
-    }
-  };
-
-  //Progress Bar 계산
-  useEffect(() => {
-    if (checkedTodo.length) {
-      setTotalTodo(todoList.length);
-      setCompleteTodo(checkedTodo.length);
-      setTodoProgress(
-        String(Math.floor((parseInt(completeTodo) / parseInt(totalTodo)) * 100))
-      );
-    } else {
-      setTodoProgress(0);
-    }
-  }, [checkedTodo]);
 
   return (
     <Fragment>
@@ -193,30 +83,7 @@ const Home = () => {
         boxTitle={"Wonderful Day"}
         boxContent={
           <Container>
-            <TodoList>
-              <Add>
-                <input
-                  type="text"
-                  value={todo}
-                  onChange={(e) => setTodo(e.target.value)}
-                />
-                <BasicButton name="Add a Todo" onClick={submitHandler} />
-              </Add>
-              <div className="check-box">
-                {todoList.map((item) => (
-                  <CheckForm key={item.id} {...item} />
-                ))}
-              </div>
-              <ProgressBox>
-                <div className="progress-text">
-                  <span>Goals</span>
-                  <span>{todoProgress}%</span>
-                </div>
-                <Progress width={`${todoProgress}%`}>
-                  <div className="progress-bar"></div>
-                </Progress>
-              </ProgressBox>
-            </TodoList>
+            <TodoList />
             <Widget>
               <Weather />
               <Clock />

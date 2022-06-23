@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import { FaHome, FaBook, FaShoppingCart, FaBars } from "react-icons/fa";
 import { GiSnail } from "react-icons/gi";
