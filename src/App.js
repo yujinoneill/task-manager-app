@@ -18,6 +18,7 @@ import EditDiary from "./pages/diary/EditDiary";
 import Developer from "./pages/Developer";
 import WishList from "./pages/wishlist/WishList";
 import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
 
 // styled-components
 const StyledApp = styled.div`
@@ -60,12 +61,12 @@ function App() {
               <Route path="/edit-diary/:id" element={<EditDiary />} />
               <Route path="/wishlist" element={<WishList />} />
               <Route path="/developer" element={<Developer />} />
-              <Route path="*" element={<Navigate to="/" />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           ) : (
             <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="*" element={<Navigate to="/login" />} />
+              <Route path="/" element={<Login />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           )}
         </StyledApp>
