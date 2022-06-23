@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
+import { RootState } from "../../store/store";
 
 import { todoActions } from "../../store/todoList";
 import BasicButton from "../style/BasicButton";
@@ -53,7 +54,7 @@ const ProgressBox = styled.div`
   }
 `;
 
-const Progress = styled.div`
+const Progress = styled.div<{ width: string }>`
   width: 100%;
   height: 20px;
 
@@ -72,6 +73,9 @@ const Progress = styled.div`
     transition: width 1s;
   }
 `;
+
+//Types
+type TodoProgress = { todoProgress: string };
 
 //Components
 const AddForm = React.memo(() => {
@@ -104,7 +108,7 @@ const AddForm = React.memo(() => {
   );
 });
 
-const ProgressBar = React.memo(({ todoProgress }) => {
+const ProgressBar: React.FC<TodoProgress> = React.memo(({ todoProgress }) => {
   return (
     <ProgressBox>
       <div className="progress-text">
@@ -120,23 +124,23 @@ const ProgressBar = React.memo(({ todoProgress }) => {
 
 const TodoList = () => {
   //Progress Bar 계산
-  const [totalTodo, setTotalTodo] = useState();
-  const [completeTodo, setCompleteTodo] = useState();
-  const [todoProgress, setTodoProgress] = useState();
+  const [totalTodo, setTotalTodo] = useState<number>();
+  const [completeTodo, setCompleteTodo] = useState<number>();
+  const [todoProgress, setTodoProgress] = useState<string>();
 
-  const todoList = useSelector((state) => state.todo);
+  const todoList = useSelector((state: RootState) => state.todo);
 
-  const checkedTodo = todoList.filter((item) => item.checked === true);
+  const checkedTodo: (string | number)[] = todoList.filter(
+    (item) => item.checked === true
+  );
 
   useEffect(() => {
     if (checkedTodo.length) {
       setTotalTodo(todoList.length);
       setCompleteTodo(checkedTodo.length);
-      setTodoProgress(
-        String(Math.floor((parseInt(completeTodo) / parseInt(totalTodo)) * 100))
-      );
+      setTodoProgress(String(Math.floor((completeTodo / totalTodo) * 100)));
     } else {
-      setTodoProgress(0);
+      setTodoProgress("0");
     }
   }, [checkedTodo]);
 

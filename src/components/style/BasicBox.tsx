@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-const StyledSection = styled.section`
+//Styled-components
+const StyledSection = styled.section<{ padding: string }>`
   background-color: white;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
@@ -24,19 +25,16 @@ const StyledSection = styled.section`
   }
 `;
 
-const BasicBox = ({
-  boxTitle,
-  boxContent,
-  padding,
-  marginTop,
-  marginBottom,
-}) => {
+//Types
+interface BasicBoxProps {
+  boxTitle?: string;
+  boxContent: JSX.Element;
+  padding?: string;
+}
+
+const BasicBox = ({ boxTitle, boxContent, padding }: BasicBoxProps) => {
   return (
-    <StyledSection
-      padding={padding}
-      marginTop={marginTop}
-      marginBottom={marginBottom}
-    >
+    <StyledSection padding={padding}>
       <header>
         <h3>{boxTitle}</h3>
       </header>

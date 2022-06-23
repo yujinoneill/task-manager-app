@@ -108,7 +108,6 @@ const MyAccount = () => {
       <div className="order-2">
         <BasicBox
           padding="0"
-          marginTop="0"
           boxContent={
             <div>
               <Background />

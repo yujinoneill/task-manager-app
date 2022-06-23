@@ -26,7 +26,12 @@ export const StyledButton = styled.button`
   }
 `;
 
-const BasicButton = ({ name, onClick }) => {
+interface BasicButtonProps {
+  name: string;
+  onClick?: () => void;
+}
+
+const BasicButton = ({ name, onClick }: BasicButtonProps) => {
   return <StyledButton onClick={onClick}>{name}</StyledButton>;
 };
 

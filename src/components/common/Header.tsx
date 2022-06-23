@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
 
-import Dropdown from "../style/Dropdown";
+import Dropdown from "../style/Dropdown.js";
 
 const StyledHeader = styled.header`
   display: flex;

@@ -14,7 +14,12 @@ const Button = styled(StyledButton)`
   }
 `;
 
-const BlueButton = ({ name, onClick }) => {
+interface BlueButtonProps {
+  name: string;
+  onClick?: () => void;
+}
+
+const BlueButton = ({ name, onClick }: BlueButtonProps) => {
   return <Button onClick={onClick}>{name}</Button>;
 };
 

@@ -213,8 +213,6 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
     <Container>
       <div>
         <BasicBox
-          marginTop="0"
-          marginBottom="0"
           boxTitle={boxTitle}
           boxContent={
             <Form>

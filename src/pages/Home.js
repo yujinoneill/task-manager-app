@@ -7,6 +7,7 @@ import BasicBox from "../components/style/BasicBox";
 import Clock from "../components/home/Clock";
 import Weather from "../components/home/Weather";
 import TodoList from "../components/home/Todolist";
+import { RootState } from "../store/store";
 
 //Styled-components
 const WelcomeContent = styled.div`

@@ -19,6 +19,7 @@ import Developer from "./pages/Developer";
 import WishList from "./pages/wishlist/WishList";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import { RootState } from "./store/store";
 
 // styled-components
 const StyledApp = styled.div`
@@ -28,10 +29,10 @@ const StyledApp = styled.div`
 `;
 
 //함수 전달 위해 context 생성
-export const LogInOutContext = React.createContext();
+export const LogInOutContext = React.createContext(null);
 
 function App() {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state: RootState) => state.user);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 

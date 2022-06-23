@@ -94,7 +94,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const loginHandler = (e) => {
+  const loginHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       dispatch(
         userActions.userLogin({

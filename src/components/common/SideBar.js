@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { FaHome, FaBook, FaShoppingCart, FaBars } from "react-icons/fa";
 import { GiSnail } from "react-icons/gi";
 
-import { List } from "../style/Dropdown";
+import { List } from "../style/Dropdown.js";
 
 // styled-components
 const StyledSideBar = styled.div`

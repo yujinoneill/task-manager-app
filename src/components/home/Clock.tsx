@@ -105,9 +105,9 @@ const Mark = styled.div`
 `;
 
 const Clock = () => {
-  const [secondDeg, setSecondDeg] = useState();
-  const [minDeg, setMinDeg] = useState();
-  const [hourDeg, setHourDeg] = useState();
+  const [secondDeg, setSecondDeg] = useState<number>();
+  const [minDeg, setMinDeg] = useState<number>();
+  const [hourDeg, setHourDeg] = useState<number>();
 
   const setDate = () => {
     const now = new Date(); //현재 날짜 및 시간 받아오기

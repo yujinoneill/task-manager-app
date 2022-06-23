@@ -8,7 +8,7 @@ export const StyledForm = styled.form`
   }
 `;
 
-export const StyledDiv = styled.div`
+export const StyledDiv = styled.div<{ number: number }>`
   display: grid;
   grid-template-columns: repeat(${(props) => props.number}, 1fr);
   grid-template-rows: 1fr;
