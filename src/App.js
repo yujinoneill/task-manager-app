@@ -15,7 +15,7 @@ import Home from "./pages/Home";
 import Diary from "./pages/diary/Diary";
 import NewDiary from "./pages/diary/NewDiary";
 import EditDiary from "./pages/diary/EditDiary";
-import MyAccount from "./pages/MyAccount";
+import Developer from "./pages/Developer";
 import WishList from "./pages/wishlist/WishList";
 import Login from "./pages/Login";
 
@@ -59,7 +59,7 @@ function App() {
               <Route path="/new-diary" element={<NewDiary />} />
               <Route path="/edit-diary/:id" element={<EditDiary />} />
               <Route path="/wishlist" element={<WishList />} />
-              <Route path="/developer" element={<MyAccount />} />
+              <Route path="/developer" element={<Developer />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           ) : (
