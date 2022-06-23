@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { LogInOutContext } from "../App";
 import { userActions } from "../store/user";
 
-const Background = styled.div`
+export const Background = styled.div`
   box-sizing: border-box;
 
   position: fixed;
@@ -23,7 +23,7 @@ const Background = styled.div`
   outline: 0;
 `;
 
-const LoginBox = styled.div`
+export const LoginBox = styled.div`
   box-sizing: border-box;
 
   background-color: white;
