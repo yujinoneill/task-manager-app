@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import BasicBox from "../style/BasicBox";
-import { Container } from "../../pages/MyAccount";
+import { Container } from "../../pages/Developer";
 import BasicButton from "../style/BasicButton";
 import BlueButton from "../style/BlueButton";
 
