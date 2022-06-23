@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
@@ -119,11 +119,11 @@ const WishEditor = ({ originData, isEdit, modalHandler }) => {
     modalHandler();
   };
 
-  const removeHandler = () => {
+  const removeHandler = useCallback(() => {
     if (window.confirm("Are you sure you want to delete it?")) {
       dispatch(wishActions.wishRemove(originData.id));
     }
-  };
+  }, [dispatch]);
 
   return (
     <StyledDiv>
@@ -188,4 +188,4 @@ const WishEditor = ({ originData, isEdit, modalHandler }) => {
   );
 };
 
-export default WishEditor;
+export default React.memo(WishEditor);

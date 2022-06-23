@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
@@ -29,4 +30,4 @@ const BasicButton = ({ name, onClick }) => {
   return <StyledButton onClick={onClick}>{name}</StyledButton>;
 };
 
-export default BasicButton;
+export default React.memo(BasicButton);

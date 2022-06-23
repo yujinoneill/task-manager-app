@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -81,7 +81,7 @@ const wishOptionList = [
 ];
 
 //Components
-const ControlFilter = ({ value, onChange, optionList }) => {
+const ControlFilter = React.memo(({ value, onChange, optionList }) => {
   return (
     <select value={value} onChange={(e) => onChange(e.target.value)}>
       {optionList.map((item, index) => (
@@ -91,7 +91,7 @@ const ControlFilter = ({ value, onChange, optionList }) => {
       ))}
     </select>
   );
-};
+});
 
 const FilteredList = ({ type, list }) => {
   const [sortType, setSortType] = useState("Latest");
@@ -100,9 +100,9 @@ const FilteredList = ({ type, list }) => {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const modalHandler = () => {
+  const modalHandler = useCallback(() => {
     setIsModalVisible(!isModalVisible);
-  };
+  }, [isModalVisible]);
 
   //data sorting function
   const processedList = () => {
@@ -201,4 +201,4 @@ const FilteredList = ({ type, list }) => {
   );
 };
 
-export default FilteredList;
+export default React.memo(FilteredList);

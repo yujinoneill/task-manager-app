@@ -1,8 +1,10 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
 import styled, { css } from "styled-components";
 import { FaTimes } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+
 import { todoActions } from "../../store/todoList";
-import { useEffect, useState } from "react";
 
 const Check = styled.div`
   margin: 10px 0;
@@ -74,4 +76,4 @@ const CheckForm = ({ id, todo, checked }) => {
   );
 };
 
-export default CheckForm;
+export default React.memo(CheckForm);

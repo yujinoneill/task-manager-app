@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 //Styled-components
@@ -69,4 +69,4 @@ const Modal = ({ children, modalHandler }) => {
   );
 };
 
-export default Modal;
+export default React.memo(Modal);

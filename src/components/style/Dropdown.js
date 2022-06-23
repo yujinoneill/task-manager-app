@@ -35,7 +35,6 @@ const StyledDropdown = styled.div`
 
 const Nav = styled.nav`
   background-color: white;
-  display: ${(props) => (props.active === "active" ? "block" : "none")};
 
   position: absolute;
   top: 40px;
@@ -97,7 +96,7 @@ const Dropdown = () => {
       dispatch(userActions.userLogout());
       loginToggler();
       activeHandler();
-      navigate("/login", { replace: true });
+      navigate("/", { replace: true });
     }
   };
 
@@ -108,14 +107,16 @@ const Dropdown = () => {
         <span>{userName}</span>
         <FaCaretDown />
       </button>
-      <Nav active={isActive ? "active" : "inactive"}>
-        <List>
-          <li>
-            <FaPowerOff />
-            <span onClick={logoutHandler}>Logout</span>
-          </li>
-        </List>
-      </Nav>
+      {isActive ? (
+        <Nav>
+          <List>
+            <li>
+              <FaPowerOff />
+              <span onClick={logoutHandler}>Logout</span>
+            </li>
+          </List>
+        </Nav>
+      ) : null}
     </StyledDropdown>
   );
 };

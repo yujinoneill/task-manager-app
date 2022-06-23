@@ -1,3 +1,5 @@
+import React from "react";
+
 import styled from "styled-components";
 import { StyledButton } from "./BasicButton";
 
@@ -16,4 +18,4 @@ const BlueButton = ({ name, onClick }) => {
   return <Button onClick={onClick}>{name}</Button>;
 };
 
-export default BlueButton;
+export default React.memo(BlueButton);

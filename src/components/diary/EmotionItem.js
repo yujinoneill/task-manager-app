@@ -1,3 +1,5 @@
+import React from "react";
+
 import styled from "styled-components";
 
 import EmotionIcon from "./EmotionIcon";
@@ -42,4 +44,4 @@ const EmotionItem = ({
   );
 };
 
-export default EmotionItem;
+export default React.memo(EmotionItem);

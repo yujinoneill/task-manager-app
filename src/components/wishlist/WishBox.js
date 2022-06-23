@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
 import { FaGrinHearts, FaWallet } from "react-icons/fa";
 
-import Button from "../style/BasicButton";
+import BasicButton from "../style/BasicButton";
 import { wishActions } from "../../store/wishList";
 import Modal from "../common/Modal";
 import { DiaryBody, StyledBox } from "../diary/DiaryBox";
@@ -62,7 +62,7 @@ const WishBox = ({ id, date, icon, name, price, desc }) => {
     }
   }, [id, wishList]);
 
-  const getHandler = (e) => {
+  const getHandler = useCallback((e) => {
     if (window.confirm("Did you get this item?")) {
       dispatch(
         wishActions.wishEdit({
@@ -76,18 +76,20 @@ const WishBox = ({ id, date, icon, name, price, desc }) => {
       );
     }
     e.stopPropagation(); //onClick이 전파돼서 StyledBox의 modalHandler를 실행시키지 않도록
-  };
+  }, []);
 
-  const modalHandler = () => {
+  const modalHandler = useCallback(() => {
     setIsModalVisible(!isModalVisible);
-  };
+  }, [isModalVisible]);
 
-  const contentSlicer = (content) => {
-    if (content.length > 8) {
-      return content.slice(0, 8) + "...";
+  const contentSlicer = useMemo(() => {
+    if (desc.length > 8) {
+      return desc.slice(0, 8) + "...";
     }
-    return content;
-  };
+    return desc;
+  }, [desc]);
+
+  console.log("box");
 
   return (
     <StyledBox onClick={modalHandler}>
@@ -97,12 +99,12 @@ const WishBox = ({ id, date, icon, name, price, desc }) => {
       <StyledBody icon={icon}>
         <h5>{name}</h5>
         <p>{price}</p>
-        <p className="content">{contentSlicer(desc)}</p>
+        <p className="content">{contentSlicer}</p>
         <hr />
         <WishBottom>
           <p className="post-date">{getStringDate(new Date(date))}</p>
           {icon === "Wish" ? (
-            <Button name={"GET"} onClick={getHandler} />
+            <BasicButton name="GET" onClick={getHandler} />
           ) : null}
         </WishBottom>
       </StyledBody>
@@ -122,4 +124,4 @@ const WishBox = ({ id, date, icon, name, price, desc }) => {
   );
 };
 
-export default WishBox;
+export default React.memo(WishBox);

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -154,9 +154,9 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
     }
   }, [isEdit, originData]);
 
-  const emotionHandler = (emotion) => {
+  const emotionHandler = useCallback((emotion) => {
     setEmotion(emotion);
-  };
+  }, []);
 
   const submitHandler = () => {
     if (title.length < 1) {
@@ -202,12 +202,12 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
     navigate("/diary", { replace: true });
   };
 
-  const cancelHandler = () => {
+  const cancelHandler = useCallback(() => {
     if (window.confirm("Are you sure you want to cancel it?")) {
       navigate(-1);
     }
     return;
-  };
+  }, []);
 
   return (
     <Container>
@@ -260,6 +260,7 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
                   type="date"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
+                  readOnly
                 />
               </div>
               <div>
@@ -277,4 +278,4 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
   );
 };
 
-export default DiaryEditor;
+export default React.memo(DiaryEditor);

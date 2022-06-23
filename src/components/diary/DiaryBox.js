@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -135,4 +135,4 @@ const DiaryBox = ({ id, title, content, date, emotion }) => {
   );
 };
 
-export default DiaryBox;
+export default React.memo(DiaryBox);

@@ -1,3 +1,4 @@
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -80,4 +81,4 @@ const DiaryDetail = ({ emotion, content, date, title, id }) => {
   );
 };
 
-export default DiaryDetail;
+export default React.memo(DiaryDetail);

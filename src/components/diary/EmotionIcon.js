@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   RiEmotionLaughFill,
   RiEmotionHappyFill,
@@ -24,4 +26,4 @@ export const EmotionIcon = ({ emotion }) => {
   return emotionIcon;
 };
 
-export default EmotionIcon;
+export default React.memo(EmotionIcon);

@@ -67,19 +67,26 @@ const StyledList = styled(List)`
   }
 `;
 
+//Components
+const SideHeader = ({ sidebarHandler }) => {
+  return (
+    <StyledHeader>
+      <Button onClick={sidebarHandler}>
+        <FaBars />
+      </Button>
+      <h4>Task Manager</h4>
+    </StyledHeader>
+  );
+};
+
 const SideBar = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const sidebarToggler = () => setIsVisible(!isVisible);
+  const sidebarHandler = () => setIsVisible(!isVisible);
 
   return (
     <StyledSideBar active={`${isVisible ? "active" : "inactive"}`}>
-      <StyledHeader>
-        <Button onClick={sidebarToggler}>
-          <FaBars />
-        </Button>
-        <h4>Task Manager</h4>
-      </StyledHeader>
+      <SideHeader sidebarHandler={sidebarHandler} />
       <StyledList>
         <li>
           <Link to="/">
