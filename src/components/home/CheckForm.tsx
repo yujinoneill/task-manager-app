@@ -6,7 +6,14 @@ import { FaTimes } from "react-icons/fa";
 
 import { todoActions } from "../../store/todoList";
 
-const Check = styled.div<{ checked: boolean }>`
+//Types
+interface CheckFormProps {
+  id?: number;
+  todo?: string;
+  checked?: boolean;
+}
+
+const Check = styled.div<CheckFormProps>`
   margin: 10px 0;
 
   display: flex;
@@ -41,8 +48,8 @@ const Check = styled.div<{ checked: boolean }>`
     `}
 `;
 
-const CheckForm = ({ id, todo, checked }) => {
-  const [isChecked, setIsChecked] = useState<boolean>(checked);
+const CheckForm = ({ id, todo, checked }: CheckFormProps) => {
+  const [isChecked, setIsChecked] = useState(checked);
   const dispatch = useDispatch();
 
   useEffect(() => {

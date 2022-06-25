@@ -1,10 +1,11 @@
 import React from "react";
 
 import styled from "styled-components";
+import { EmotionItemProps } from "../../util/interface";
 
-import EmotionIcon from "./EmotionIcon";
+import { EmotionIcon } from "./EmotionIcon";
 
-const EmotionBox = styled.div`
+const EmotionBox = styled.div<{ isSelected: EmotionItemProps["isSelected"] }>`
   cursor: pointer;
 
   box-sizing: border-box;
@@ -32,7 +33,7 @@ const EmotionItem = ({
   emotionDesc,
   emotionHandler,
   isSelected,
-}) => {
+}: EmotionItemProps) => {
   return (
     <EmotionBox
       isSelected={isSelected}

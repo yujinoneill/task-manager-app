@@ -1,11 +1,9 @@
-import { useSelector } from "react-redux";
-
 import BasicBox from "../../components/style/BasicBox";
 import FilteredList from "../../components/common/FilteredList";
-import { RootState } from "../../store/store";
+import { useAppSelector } from "../../store/hook";
 
 const Diary = () => {
-  const diaryList = useSelector((state: RootState) => state.diary);
+  const diaryList = useAppSelector((state) => state.diary);
 
   return (
     <BasicBox

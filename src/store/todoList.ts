@@ -1,18 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+//Types
+interface TodoList {
+  id: number;
+  checked: boolean;
+  todo: string;
+}
 
 export const todoReducer = createSlice({
   name: "todoList",
   initialState: [],
   reducers: {
-    todoCreate: (state, action) => {
+    todoCreate: (state, action: PayloadAction<TodoList>) => {
       state.unshift(action.payload);
     },
-    todoEdit: (state, action) => {
+    todoEdit: (state, action: PayloadAction<TodoList>) => {
       return state.map((item) =>
         item.id === action.payload.id ? action.payload : item
       );
     },
-    todoRemove: (state, action) => {
+    todoRemove: (state, action: PayloadAction<number>) => {
       return state.filter((item) => item.id !== action.payload);
     },
   },

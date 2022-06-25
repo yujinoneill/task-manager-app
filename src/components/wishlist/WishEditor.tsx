@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import styled from "styled-components";
+import { useAppSelector } from "../../store/hook";
 import { wishActions } from "../../store/wishList";
+import { WishListProps } from "../../util/interface";
 import BasicButton from "../style/BasicButton";
 import BlueButton from "../style/BlueButton";
 
@@ -30,8 +32,15 @@ export const StyledDiv = styled.div`
   }
 `;
 
-const WishEditor = ({ originData, isEdit, modalHandler }) => {
-  const wishList = useSelector((state) => state.wish);
+//Types
+interface WishProps {
+  originData?: WishListProps;
+  isEdit?: boolean;
+  modalHandler: () => void;
+}
+
+const WishEditor = ({ originData, isEdit, modalHandler }: WishProps) => {
+  const wishList = useAppSelector((state) => state.wish);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("₩");
@@ -39,9 +48,9 @@ const WishEditor = ({ originData, isEdit, modalHandler }) => {
   const [icon, setIcon] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const nameRef = useRef();
-  const priceRef = useRef();
-  const descRef = useRef();
+  const nameRef = useRef<HTMLInputElement>();
+  const priceRef = useRef<HTMLInputElement>();
+  const descRef = useRef<HTMLInputElement>();
   const dispatch = useDispatch();
 
   const dataId = useRef(0);
@@ -178,11 +187,7 @@ const WishEditor = ({ originData, isEdit, modalHandler }) => {
           </label>
         </div>
       )}
-      <BlueButton
-        type="submit"
-        name={isEdit ? "Edit" : "Add"}
-        onClick={submitHandler}
-      />
+      <BlueButton name={isEdit ? "Edit" : "Add"} onClick={submitHandler} />
       {isEdit && <BasicButton name="Delete" onClick={removeHandler} />}
     </StyledDiv>
   );

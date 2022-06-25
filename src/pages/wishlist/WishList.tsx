@@ -1,11 +1,9 @@
-import { useSelector } from "react-redux";
-
 import BasicBox from "../../components/style/BasicBox";
 import FilteredList from "../../components/common/FilteredList";
-import { RootState } from "../../store/store";
+import { useAppSelector } from "../../store/hook";
 
 const WishList = () => {
-  const wishList = useSelector((state: RootState) => state.wish);
+  const wishList = useAppSelector((state) => state.wish);
 
   return (
     <BasicBox

@@ -8,6 +8,7 @@ import BlueButton from "../style/BlueButton";
 import BasicButton from "../style/BasicButton";
 import { diaryActions } from "../../store/diary";
 import { EmotionIcon } from "./EmotionIcon";
+import { DiaryProps } from "../../util/interface";
 
 //Styled-component
 const StyledHeader = styled.header`
@@ -52,7 +53,7 @@ export const StyledButton = styled.div`
   }
 `;
 
-const DiaryDetail = ({ emotion, content, date, title, id }) => {
+const DiaryDetail = ({ emotion, content, date, title, id }: DiaryProps) => {
   const dispatch = useDispatch();
 
   const removeHandler = () => {

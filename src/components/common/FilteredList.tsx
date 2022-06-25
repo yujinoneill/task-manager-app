@@ -7,6 +7,12 @@ import BlueButton from "../style/BlueButton";
 import DiaryBox from "../diary/DiaryBox";
 import Modal from "./Modal";
 import WishEditor from "../wishlist/WishEditor";
+import {
+  ControlProps,
+  DiaryProps,
+  FilterProps,
+  WishListProps,
+} from "../../util/interface";
 
 //Styled-components
 export const StyledHeader = styled.header`
@@ -32,7 +38,7 @@ export const StyledHeader = styled.header`
   }
 `;
 
-const Grid = styled.div`
+const Grid = styled.div<{ type: FilterProps["type"] }>`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
@@ -81,19 +87,21 @@ const wishOptionList = [
 ];
 
 //Components
-const ControlFilter = React.memo(({ value, onChange, optionList }) => {
-  return (
-    <select value={value} onChange={(e) => onChange(e.target.value)}>
-      {optionList.map((item, index) => (
-        <option key={index} value={item.value}>
-          {item.name}
-        </option>
-      ))}
-    </select>
-  );
-});
+const ControlFilter = React.memo(
+  ({ value, onChange, optionList }: ControlProps) => {
+    return (
+      <select value={value} onChange={(e) => onChange(e.target.value)}>
+        {optionList.map((item, index) => (
+          <option key={index} value={item.value}>
+            {item.name}
+          </option>
+        ))}
+      </select>
+    );
+  }
+);
 
-const FilteredList = ({ type, list }) => {
+const FilteredList = ({ type, list }: FilterProps) => {
   const [sortType, setSortType] = useState("Latest");
   const [emotionType, setEmotionType] = useState("All");
   const [wishType, setWishType] = useState("All");
@@ -106,33 +114,36 @@ const FilteredList = ({ type, list }) => {
 
   //data sorting function
   const processedList = () => {
-    const datefilter = (a, b) => {
+    const dateFilter = (
+      a: DiaryProps | WishListProps,
+      b: DiaryProps | WishListProps
+    ) => {
       if (sortType === "Latest") {
-        return parseInt(b.date) - parseInt(a.date);
+        return b.date - a.date;
       } else {
-        return parseInt(a.date) - parseInt(b.date);
+        return a.date - b.date;
       }
     };
 
-    const typeFilter = (item) => {
-      if (type === "diary") {
-        if (emotionType === "Perfect") {
-          return item.emotion === 1;
-        } else if (emotionType === "Happy") {
-          return item.emotion === 2;
-        } else if (emotionType === "Soso") {
-          return item.emotion === 3;
-        } else if (emotionType === "Unhappy") {
-          return item.emotion === 4;
-        } else {
-          return item.emotion === 5;
-        }
+    const emotionFilter = (item: DiaryProps) => {
+      if (emotionType === "Perfect") {
+        return item.emotion === 1;
+      } else if (emotionType === "Happy") {
+        return item.emotion === 2;
+      } else if (emotionType === "Soso") {
+        return item.emotion === 3;
+      } else if (emotionType === "Unhappy") {
+        return item.emotion === 4;
       } else {
-        if (wishType === "Wish") {
-          return item.icon === "Wish";
-        } else {
-          return item.icon === "Purchased";
-        }
+        return item.emotion === 5;
+      }
+    };
+
+    const wishFilter = (item: WishListProps) => {
+      if (wishType === "Wish") {
+        return item.icon === "Wish";
+      } else {
+        return item.icon === "Purchased";
       }
     };
 
@@ -141,17 +152,17 @@ const FilteredList = ({ type, list }) => {
     const emotionFilteredList =
       emotionType === "All"
         ? copyList
-        : copyList.filter((item) => typeFilter(item));
+        : copyList.filter((item: DiaryProps) => emotionFilter(item));
 
     const wishFilteredList =
       wishType === "All"
         ? copyList
-        : copyList.filter((item) => typeFilter(item));
+        : copyList.filter((item: WishListProps) => wishFilter(item));
 
     const sortedList =
       type === "diary"
-        ? emotionFilteredList.sort(datefilter)
-        : wishFilteredList.sort(datefilter);
+        ? emotionFilteredList.sort(dateFilter)
+        : wishFilteredList.sort(dateFilter);
 
     return sortedList;
   };
@@ -177,18 +188,21 @@ const FilteredList = ({ type, list }) => {
             optionList={wishOptionList}
           />
         )}
-        <Link to={type === "diary" && "/new-diary"}>
-          <BlueButton
-            name={type === "diary" ? "Post a New Diary" : "Add a New Wish"}
-            onClick={type === "wish" ? modalHandler : null}
-          />
-        </Link>
+        {type === "diary" ? (
+          <Link to="/new-diary">
+            <BlueButton name="Post a New Diary" />
+          </Link>
+        ) : (
+          <BlueButton name="Add a New Wish" onClick={modalHandler} />
+        )}
       </StyledHeader>
       <Grid type={type}>
         {type === "diary"
-          ? processedList().map((item) => <DiaryBox key={item.id} {...item} />)
-          : processedList().map((item) => (
-              <WishBox key={item.id} {...item} modalHandler={modalHandler} />
+          ? processedList().map((item: DiaryProps) => (
+              <DiaryBox key={item.id} {...item} />
+            ))
+          : processedList().map((item: WishListProps) => (
+              <WishBox key={item.id} {...item} />
             ))}
       </Grid>
       {isModalVisible && (

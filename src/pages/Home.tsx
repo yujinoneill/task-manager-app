@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { useSelector } from "react-redux";
 
 import styled from "styled-components";
 
@@ -7,7 +6,7 @@ import BasicBox from "../components/style/BasicBox";
 import Clock from "../components/home/Clock";
 import Weather from "../components/home/Weather";
 import TodoList from "../components/home/Todolist";
-import { RootState } from "../store/store";
+import { useAppSelector } from "../store/hook";
 
 //Styled-components
 const WelcomeContent = styled.div`
@@ -60,7 +59,7 @@ const Widget = styled.div`
 
 const Home = () => {
   //WelcomBox에 유저 이름 불러오기
-  const user = useSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user);
   const userName = user.name;
 
   return (

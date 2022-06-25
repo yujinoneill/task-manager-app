@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
 import DiaryEditor from "../../components/diary/DiaryEditor";
+import { useAppSelector } from "../../store/hook";
 
 const EditDiary = () => {
-  const [originData, setOriginData] = useState();
+  const [originData, setOriginData] = useState<object>();
   const { id } = useParams();
-  const diaryList = useSelector((state) => state.diary);
+  const diaryList = useAppSelector((state) => state.diary);
 
   const navigate = useNavigate();
 
@@ -26,15 +26,9 @@ const EditDiary = () => {
     }
   }, [id, diaryList, navigate]);
 
-  return (
-    originData && (
-      <DiaryEditor
-        boxTitle="Edit Diary"
-        isEdit="true"
-        originData={originData}
-      />
-    )
-  );
+  return originData ? (
+    <DiaryEditor boxTitle="Edit Diary" isEdit={true} originData={originData} />
+  ) : null;
 };
 
 export default EditDiary;

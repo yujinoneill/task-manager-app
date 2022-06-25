@@ -1,5 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { EmotionIcon } from "./EmotionIcon";
@@ -8,6 +7,8 @@ import { getStringDate } from "../../util/date";
 import Modal from "../common/Modal";
 import DiaryDetail from "./DiaryDetail";
 import { Fragment } from "react";
+import { DiaryProps } from "../../util/interface";
+import { useAppSelector } from "../../store/hook";
 
 export const StyledBox = styled.div`
   position: relative;
@@ -92,20 +93,18 @@ export const DiaryBody = styled.div`
   }
 `;
 
-const DiaryBox = ({ id, title, content, date, emotion }) => {
+const DiaryBox = ({ id, title, content, date, emotion }: DiaryProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const diaryList = useSelector((state) => state.diary);
+  const diaryList = useAppSelector((state) => state.diary);
 
-  const targetDiary = diaryList.find(
-    (item) => parseInt(item.id) === parseInt(id)
-  );
+  const targetDiary = diaryList.find((item) => parseInt(item.id) === id);
 
   const modalHandler = () => {
     setIsModalVisible(!isModalVisible);
   };
 
-  const contentSlicer = (content) => {
+  const contentSlicer = (content: DiaryProps["content"]) => {
     if (content.length > 12) {
       return content.slice(0, 12) + "...";
     }

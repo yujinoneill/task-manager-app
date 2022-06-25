@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import styled from "styled-components";
-import { RootState } from "../../store/store";
+import { useAppSelector } from "../../store/hook";
 
 import { todoActions } from "../../store/todoList";
 import BasicButton from "../style/BasicButton";
@@ -128,7 +128,7 @@ const TodoList = () => {
   const [completeTodo, setCompleteTodo] = useState<number>();
   const [todoProgress, setTodoProgress] = useState<string>();
 
-  const todoList = useSelector((state: RootState) => state.todo);
+  const todoList = useAppSelector((state) => state.todo);
 
   const checkedTodo: (string | number)[] = todoList.filter(
     (item) => item.checked === true

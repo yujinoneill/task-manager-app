@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import BasicBox from "../style/BasicBox";
 import { Container } from "../../pages/Developer";
@@ -13,6 +13,7 @@ import { diaryActions } from "../../store/diary";
 
 import styled from "styled-components";
 import EmotionItem from "./EmotionItem";
+import { useAppSelector } from "../../store/hook";
 
 // Styled-components
 const Form = styled.form`
@@ -124,16 +125,22 @@ const emotionList = [
   },
 ];
 
-const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
-  const diary = useSelector((state) => state.diary);
+interface DiaryEditorProps {
+  boxTitle: string;
+  isEdit?: boolean;
+  originData?: any;
+}
+
+const DiaryEditor = ({ boxTitle, isEdit, originData }: DiaryEditorProps) => {
+  const diary = useAppSelector((state) => state.diary);
 
   const [date, setDate] = useState(getStringDate(new Date()));
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [emotion, setEmotion] = useState(3);
 
-  const titleRef = useRef();
-  const contentRef = useRef();
+  const titleRef = useRef<HTMLInputElement>();
+  const contentRef = useRef<HTMLTextAreaElement>();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -154,7 +161,7 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }) => {
     }
   }, [isEdit, originData]);
 
-  const emotionHandler = useCallback((emotion) => {
+  const emotionHandler = useCallback((emotion: number) => {
     setEmotion(emotion);
   }, []);
 

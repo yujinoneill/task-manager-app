@@ -48,10 +48,10 @@ const WeatherWidget = styled.div`
 `;
 
 const Weather = () => {
-  const [city, setCity] = useState();
-  const [country, setCountry] = useState();
-  const [iconUrl, setIconUrl] = useState();
-  const [degree, setDegree] = useState();
+  const [city, setCity] = useState<string>();
+  const [country, setCountry] = useState<string>();
+  const [iconUrl, setIconUrl] = useState<string>();
+  const [degree, setDegree] = useState<number>();
 
   const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
     new Date()
@@ -62,7 +62,7 @@ const Weather = () => {
   );
 
   //Functions
-  const success = (position) => {
+  const success = (position: GeolocationPosition) => {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
     const apiKey = process.env.REACT_APP_WEATHER_API_KEY;

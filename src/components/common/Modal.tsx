@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { BaseSyntheticEvent, useEffect } from "react";
 import styled from "styled-components";
+import { ModalProps } from "../../util/interface";
 
 //Styled-components
 const ModalWrapper = styled.div`
@@ -48,8 +49,8 @@ const ModalContent = styled.div`
   }
 `;
 
-const Modal = ({ children, modalHandler }) => {
-  const preventPropagation = (e) => {
+const Modal = ({ children, modalHandler }: ModalProps) => {
+  const preventPropagation = (e: BaseSyntheticEvent) => {
     e.stopPropagation();
   };
 
@@ -61,8 +62,8 @@ const Modal = ({ children, modalHandler }) => {
   }, []);
 
   return (
-    <ModalWrapper tabIndex="-1" onClick={modalHandler}>
-      <ModalContent tabIndex="0" onClick={preventPropagation}>
+    <ModalWrapper tabIndex={-1} onClick={modalHandler}>
+      <ModalContent tabIndex={0} onClick={preventPropagation}>
         {children}
       </ModalContent>
     </ModalWrapper>

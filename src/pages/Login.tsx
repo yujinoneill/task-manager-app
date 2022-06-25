@@ -88,7 +88,7 @@ export const LoginBox = styled.div`
 `;
 
 const Login = () => {
-  const { loginToggler } = useContext(LogInOutContext);
+  const loginToggler = useContext(LogInOutContext);
   const [userName, setUserName] = useState("");
 
   const dispatch = useDispatch();

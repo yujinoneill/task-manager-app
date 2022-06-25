@@ -5,10 +5,16 @@ import styled from "styled-components";
 import { FaHome, FaBook, FaShoppingCart, FaBars } from "react-icons/fa";
 import { GiSnail } from "react-icons/gi";
 
-import { List } from "../style/Dropdown.js";
+import { List } from "../style/Dropdown";
+
+//Types
+interface SideBarProps {
+  active?: string;
+  sidebarHandler?: () => void;
+}
 
 // styled-components
-const StyledSideBar = styled.div`
+const StyledSideBar = styled.div<SideBarProps>`
   width: ${(props) => (props.active === "active" ? "190px" : "50px")};
   height: 100%;
   background-color: white;
@@ -68,7 +74,7 @@ const StyledList = styled(List)`
 `;
 
 //Components
-const SideHeader = ({ sidebarHandler }) => {
+const SideHeader = ({ sidebarHandler }: SideBarProps) => {
   return (
     <StyledHeader>
       <Button onClick={sidebarHandler}>

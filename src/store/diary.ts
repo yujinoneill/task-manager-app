@@ -1,18 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+import { DiaryProps } from "../util/interface";
 
 export const diaryReducer = createSlice({
   name: "diary",
   initialState: [],
   reducers: {
-    diaryCreate: (state, action) => {
+    diaryCreate: (state, action: PayloadAction<DiaryProps>) => {
       state.unshift(action.payload);
     },
-    diaryEdit: (state, action) => {
+    diaryEdit: (state, action: PayloadAction<DiaryProps>) => {
       return state.map((item) =>
         item.id === action.payload.id ? action.payload : item
       );
     },
-    diaryRemove: (state, action) => {
+    diaryRemove: (state, action: PayloadAction<number>) => {
       return state.filter((item) => item.id !== action.payload);
     },
   },

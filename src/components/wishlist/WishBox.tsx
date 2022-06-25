@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import styled from "styled-components";
 import { FaGrinHearts, FaWallet } from "react-icons/fa";
@@ -10,9 +10,11 @@ import Modal from "../common/Modal";
 import { DiaryBody, StyledBox } from "../diary/DiaryBox";
 import { getStringDate } from "../../util/date";
 import WishEditor from "./WishEditor";
+import { useAppSelector } from "../../store/hook";
+import { WishListProps } from "../../util/interface";
 
 //Styled-components
-const Icon = styled.div`
+const Icon = styled.div<{ icon: WishListProps["icon"] }>`
   color: white;
   height: 80px;
 
@@ -31,7 +33,7 @@ const Icon = styled.div`
   }
 `;
 
-const StyledBody = styled(DiaryBody)`
+const StyledBody = styled(DiaryBody)<{ icon: WishListProps["icon"] }>`
   background-color: ${(props) => props.icon === "Purchased" && "#e9ecef"};
   line-height: 1.5;
 `;
@@ -44,25 +46,23 @@ const WishBottom = styled.div`
   height: 40px;
 `;
 
-const WishBox = ({ id, date, icon, name, price, desc }) => {
+const WishBox = ({ id, date, icon, name, price, desc }: WishListProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [originData, setOriginData] = useState();
+  const [originData, setOriginData] = useState<WishListProps>();
 
-  const wishList = useSelector((state) => state.wish);
+  const wishList = useAppSelector((state) => state.wish);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const targetWish = wishList.find(
-      (item) => parseInt(item.id) === parseInt(id)
-    );
+    const targetWish = wishList.find((item) => parseInt(item.id) === id);
 
     if (targetWish) {
       setOriginData(targetWish);
     }
   }, [id, wishList]);
 
-  const getHandler = useCallback((e) => {
+  const getHandler = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     if (window.confirm("Did you get this item?")) {
       dispatch(
         wishActions.wishEdit({
@@ -88,8 +88,6 @@ const WishBox = ({ id, date, icon, name, price, desc }) => {
     }
     return desc;
   }, [desc]);
-
-  console.log("box");
 
   return (
     <StyledBox onClick={modalHandler}>

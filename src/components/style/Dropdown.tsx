@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { FaCaretDown, FaUserCircle, FaPowerOff } from "react-icons/fa";
 
 import styled from "styled-components";
 import { userActions } from "../../store/user";
 import { LogInOutContext } from "../../App";
+import { useAppSelector } from "../../store/hook";
 
 // Styled-components
 const StyledDropdown = styled.div`
@@ -80,20 +81,20 @@ export const List = styled.ul`
 `;
 
 const Dropdown = () => {
-  const { loginToggler } = useContext(LogInOutContext);
+  const loginToggler = useContext(LogInOutContext);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [isActive, setIsActive] = useState(false);
-  const user = useSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user);
   const userName = user.name;
 
   const activeHandler = () => setIsActive(!isActive);
 
   const logoutHandler = () => {
     if (window.confirm("Are you sure you want to Log Out?")) {
-      dispatch(userActions.userLogout());
+      dispatch(userActions.userLogout({}));
       loginToggler();
       activeHandler();
       navigate("/", { replace: true });

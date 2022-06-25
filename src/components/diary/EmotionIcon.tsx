@@ -8,8 +8,8 @@ import {
   RiEmotionSadFill,
 } from "react-icons/ri";
 
-export const EmotionIcon = ({ emotion }) => {
-  let emotionIcon = [];
+export const EmotionIcon = ({ emotion }: { emotion: number }) => {
+  let emotionIcon = <p></p>;
 
   if (emotion === 1) {
     emotionIcon = <RiEmotionLaughFill />;
