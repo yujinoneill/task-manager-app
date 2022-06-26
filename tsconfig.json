@@ -1,25 +1,16 @@
 {
   "compilerOptions": {
+    "strict": true,
     "allowJs": true,
     "checkJs": false,
     "target": "ES5",
     "esModuleInterop": true,
     "module": "commonjs",
     "jsx": "react-jsx",
-    "outDir": "./dist",
     "rootDir": "./src",
-    "strict": false,
     "moduleResolution": "Node",
-    "lib": ["ES2015", "DOM", "DOM.Iterable"],
-
-    "noImplicitAny": true,
-    // "strictNullChecks": true
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true
-    // "strictPropertyInitialization": true,
-    // "noImplicitThis": true,
-    // "alwaysStrict": true
+    "lib": ["ES2015", "DOM", "DOM.Iterable"]
   },
   "include": ["./src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules"]
 }
