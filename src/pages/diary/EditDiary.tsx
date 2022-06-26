@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import DiaryEditor from "../../components/diary/DiaryEditor";
 import { useAppSelector } from "../../store/hook";
+import { DiaryProps } from "../../util/interface";
 
 const EditDiary = () => {
   const [originData, setOriginData] = useState<object>();

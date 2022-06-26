@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { UserProps } from "../util/interface";
+
 const initialState: UserProps = {};
 
 export const userReducer = createSlice({

@@ -14,6 +14,7 @@ import { diaryActions } from "../../store/diary";
 import styled from "styled-components";
 import EmotionItem from "./EmotionItem";
 import { useAppSelector } from "../../store/hook";
+import { DiaryEditorProps } from "../../util/interface";
 
 // Styled-components
 const Form = styled.form`
@@ -124,12 +125,6 @@ const emotionList = [
     emotionDesc: "Sad",
   },
 ];
-
-interface DiaryEditorProps {
-  boxTitle: string;
-  isEdit?: boolean;
-  originData?: any;
-}
 
 const DiaryEditor = ({ boxTitle, isEdit, originData }: DiaryEditorProps) => {
   const diary = useAppSelector((state) => state.diary);

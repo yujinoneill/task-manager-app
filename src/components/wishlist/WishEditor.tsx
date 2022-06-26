@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useAppSelector } from "../../store/hook";
 import { wishActions } from "../../store/wishList";
-import { WishListProps } from "../../util/interface";
+import { WishProps } from "../../util/interface";
 import BasicButton from "../style/BasicButton";
 import BlueButton from "../style/BlueButton";
 
@@ -31,13 +31,6 @@ export const StyledDiv = styled.div`
     }
   }
 `;
-
-//Types
-interface WishProps {
-  originData?: WishListProps;
-  isEdit?: boolean;
-  modalHandler: () => void;
-}
 
 const WishEditor = ({ originData, isEdit, modalHandler }: WishProps) => {
   const wishList = useAppSelector((state) => state.wish);

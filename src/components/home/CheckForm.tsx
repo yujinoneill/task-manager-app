@@ -5,14 +5,9 @@ import styled, { css } from "styled-components";
 import { FaTimes } from "react-icons/fa";
 
 import { todoActions } from "../../store/todoList";
+import { CheckFormProps } from "../../util/interface";
 
-//Types
-interface CheckFormProps {
-  id?: number;
-  todo?: string;
-  checked?: boolean;
-}
-
+const Check = styled.div<{ checked: CheckFormProps["checked"] }>`
 const Check = styled.div<CheckFormProps>`
   margin: 10px 0;
 

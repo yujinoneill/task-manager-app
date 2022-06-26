@@ -1,3 +1,26 @@
+//App
+export interface LoginTogglerType {
+  loginToggler: () => void;
+}
+
+//User
+export interface UserProps {
+  name?: string | number;
+}
+
+//TodoList
+export interface TodoList {
+  id: number;
+  checked: boolean;
+  todo: string;
+}
+
+export interface CheckFormProps {
+  id: number;
+  todo: string;
+  checked: boolean;
+}
+
 //Diary
 export interface DiaryProps {
   id: number;
@@ -5,6 +28,12 @@ export interface DiaryProps {
   title: string;
   content: string;
   emotion: number;
+}
+
+export interface DiaryEditorProps {
+  boxTitle: string;
+  isEdit?: boolean;
+  originData?: DiaryProps;
 }
 
 export interface EmotionItemProps {
@@ -22,6 +51,12 @@ export interface WishListProps {
   name: string;
   price: string;
   desc: string;
+}
+
+export interface WishProps {
+  originData?: WishListProps;
+  isEdit?: boolean;
+  modalHandler: () => void;
 }
 
 //Common

@@ -1,11 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-//Types
-interface TodoList {
-  id: number;
-  checked: boolean;
-  todo: string;
-}
+import { TodoList } from "../util/interface";
 
 export const todoReducer = createSlice({
   name: "todoList",
