@@ -134,8 +134,8 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }: DiaryEditorProps) => {
   const [content, setContent] = useState("");
   const [emotion, setEmotion] = useState(3);
 
-  const titleRef = useRef<HTMLInputElement>();
-  const contentRef = useRef<HTMLTextAreaElement>();
+  const titleRef = useRef<HTMLInputElement>(null);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
