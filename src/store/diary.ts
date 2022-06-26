@@ -4,7 +4,7 @@ import { DiaryProps } from "../util/interface";
 
 export const diaryReducer = createSlice({
   name: "diary",
-  initialState: [],
+  initialState: Array<DiaryProps>,
   reducers: {
     diaryCreate: (state, action: PayloadAction<DiaryProps>) => {
       state.unshift(action.payload);

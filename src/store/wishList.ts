@@ -3,7 +3,7 @@ import { WishListProps } from "../util/interface";
 
 export const wishReducer = createSlice({
   name: "wishList",
-  initialState: [],
+  initialState: Array<WishListProps>,
   reducers: {
     wishCreate: (state, action: PayloadAction<WishListProps>) => {
       state.unshift(action.payload);

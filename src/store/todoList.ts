@@ -9,7 +9,7 @@ interface TodoList {
 
 export const todoReducer = createSlice({
   name: "todoList",
-  initialState: [],
+  initialState: Array<TodoList>,
   reducers: {
     todoCreate: (state, action: PayloadAction<TodoList>) => {
       state.unshift(action.payload);
