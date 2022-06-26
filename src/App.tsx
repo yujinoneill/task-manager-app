@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import styled from "styled-components";
 
@@ -19,7 +18,7 @@ import Developer from "./pages/Developer";
 import WishList from "./pages/wishlist/WishList";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
-import { RootState } from "./store/store";
+import { useAppSelector } from "./store/hook";
 
 // styled-components
 const StyledApp = styled.div`
@@ -32,7 +31,7 @@ const StyledApp = styled.div`
 export const LogInOutContext = React.createContext(null);
 
 function App() {
-  const user = useSelector((state: RootState) => state.user);
+  const user = useAppSelector((state) => state.user);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
