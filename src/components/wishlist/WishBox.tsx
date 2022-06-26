@@ -55,7 +55,7 @@ const WishBox = ({ id, date, icon, name, price, desc }: WishListProps) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const targetWish = wishList.find((item) => parseInt(item.id) === id);
+    const targetWish = wishList.find((item) => item.id === id);
 
     if (targetWish) {
       setOriginData(targetWish);

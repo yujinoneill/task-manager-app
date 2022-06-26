@@ -16,9 +16,7 @@ const EditDiary = () => {
 
   useEffect(() => {
     if (diaryList.length > 0) {
-      const targetDiary = diaryList.find(
-        (item) => parseInt(item.id) === parseInt(id)
-      );
+      const targetDiary = diaryList.find((item) => item.id === parseInt(id));
 
       //targetDiary가 있을 때만
       if (targetDiary) {
