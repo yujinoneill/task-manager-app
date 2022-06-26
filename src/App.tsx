@@ -19,6 +19,7 @@ import WishList from "./pages/wishlist/WishList";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import { useAppSelector } from "./store/hook";
+import { LoginTogglerType } from "./util/interface";
 
 // styled-components
 const StyledApp = styled.div`
@@ -28,7 +29,9 @@ const StyledApp = styled.div`
 `;
 
 //함수 전달 위해 context 생성
-export const LogInOutContext = React.createContext(null);
+export const LogInOutContext = React.createContext<
+  LoginTogglerType | undefined
+>(undefined);
 
 function App() {
   const user = useAppSelector((state) => state.user);

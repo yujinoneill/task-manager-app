@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { LogInOutContext } from "../App";
 import { userActions } from "../store/user";
+import { LoginTogglerType } from "../util/interface";
 
 export const Background = styled.div`
   box-sizing: border-box;
@@ -88,7 +89,7 @@ export const LoginBox = styled.div`
 `;
 
 const Login = () => {
-  const loginToggler = useContext(LogInOutContext);
+  const { loginToggler } = useContext(LogInOutContext) as LoginTogglerType;
   const [userName, setUserName] = useState("");
 
   const dispatch = useDispatch();

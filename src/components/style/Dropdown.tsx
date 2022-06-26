@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { userActions } from "../../store/user";
 import { LogInOutContext } from "../../App";
 import { useAppSelector } from "../../store/hook";
+import { LoginTogglerType } from "../../util/interface";
 
 // Styled-components
 const StyledDropdown = styled.div`
@@ -81,7 +82,7 @@ export const List = styled.ul`
 `;
 
 const Dropdown = () => {
-  const loginToggler = useContext(LogInOutContext);
+  const { loginToggler } = useContext(LogInOutContext) as LoginTogglerType;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
