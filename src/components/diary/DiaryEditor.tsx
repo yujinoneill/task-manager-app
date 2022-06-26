@@ -143,13 +143,13 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }: DiaryEditorProps) => {
 
   useEffect(() => {
     if (diary && diary.length > 0) {
-      dataId.current = parseInt(diary[0].id) + 1;
+      dataId.current = diary[0].id + 1;
     }
   }, []);
 
   useEffect(() => {
-    if (isEdit) {
-      setDate(getStringDate(new Date(parseInt(originData.date))));
+    if (isEdit && originData) {
+      setDate(getStringDate(new Date(originData.date)));
       setTitle(originData.title);
       setContent(originData.content);
       setEmotion(originData.emotion);
@@ -162,12 +162,12 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }: DiaryEditorProps) => {
 
   const submitHandler = () => {
     if (title.length < 1) {
-      titleRef.current.focus();
+      titleRef.current?.focus();
       return;
     }
 
     if (content.length < 1) {
-      contentRef.current.focus();
+      contentRef.current?.focus();
       return;
     }
 
@@ -178,7 +178,7 @@ const DiaryEditor = ({ boxTitle, isEdit, originData }: DiaryEditorProps) => {
           : "Do you want to publish new diary?"
       )
     ) {
-      if (isEdit) {
+      if (isEdit && originData) {
         dispatch(
           diaryActions.diaryEdit({
             id: originData.id,

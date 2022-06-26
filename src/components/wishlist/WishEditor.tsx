@@ -41,21 +41,21 @@ const WishEditor = ({ originData, isEdit, modalHandler }: WishProps) => {
   const [icon, setIcon] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const nameRef = useRef<HTMLInputElement>();
-  const priceRef = useRef<HTMLInputElement>();
-  const descRef = useRef<HTMLInputElement>();
+  const nameRef = useRef<HTMLInputElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
+  const descRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
   const dataId = useRef(0);
 
   useEffect(() => {
     if (wishList && wishList.length > 0) {
-      dataId.current = parseInt(wishList[0].id) + 1;
+      dataId.current = wishList[0].id + 1;
     }
   }, []);
 
   useEffect(() => {
-    if (isEdit) {
+    if (isEdit && originData) {
       setName(originData.name);
       setPrice(originData.price);
       setDesc(originData.desc);
@@ -66,17 +66,17 @@ const WishEditor = ({ originData, isEdit, modalHandler }: WishProps) => {
 
   const submitHandler = () => {
     if (name.length < 1) {
-      nameRef.current.focus();
+      nameRef.current?.focus();
       return;
     }
 
     if (price.length < 1) {
-      priceRef.current.focus();
+      priceRef.current?.focus();
       return;
     }
 
     if (desc.length < 1) {
-      descRef.current.focus();
+      descRef.current?.focus();
       return;
     }
 
@@ -94,7 +94,7 @@ const WishEditor = ({ originData, isEdit, modalHandler }: WishProps) => {
           : "Do you want to add a new wish?"
       )
     ) {
-      if (isEdit) {
+      if (isEdit && originData) {
         dispatch(
           wishActions.wishEdit({
             id: originData.id,
@@ -122,7 +122,7 @@ const WishEditor = ({ originData, isEdit, modalHandler }: WishProps) => {
   };
 
   const removeHandler = useCallback(() => {
-    if (window.confirm("Are you sure you want to delete it?")) {
+    if (originData && window.confirm("Are you sure you want to delete it?")) {
       dispatch(wishActions.wishRemove(originData.id));
     }
   }, [dispatch]);

@@ -130,9 +130,7 @@ const TodoList = () => {
 
   const todoList = useAppSelector((state) => state.todo);
 
-  const checkedTodo: (string | number)[] = todoList.filter(
-    (item) => item.checked === true
-  );
+  const checkedTodo = todoList.filter((item) => item.checked === true);
 
   useEffect(() => {
     if (checkedTodo.length) {

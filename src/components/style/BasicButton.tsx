@@ -28,7 +28,7 @@ export const StyledButton = styled.button`
 
 interface BasicButtonProps {
   name: string;
-  onClick?: (e: null | React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | (() => void);
 }
 
 const BasicButton = ({ name, onClick }: BasicButtonProps) => {
