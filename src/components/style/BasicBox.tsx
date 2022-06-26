@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 //Styled-components
-const StyledSection = styled.section<{ padding: string }>`
+const StyledSection = styled.section<{ padding: BasicBoxProps["padding"] }>`
   background-color: white;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;

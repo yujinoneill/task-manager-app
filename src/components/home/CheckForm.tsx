@@ -8,7 +8,6 @@ import { todoActions } from "../../store/todoList";
 import { CheckFormProps } from "../../util/interface";
 
 const Check = styled.div<{ checked: CheckFormProps["checked"] }>`
-const Check = styled.div<CheckFormProps>`
   margin: 10px 0;
 
   display: flex;

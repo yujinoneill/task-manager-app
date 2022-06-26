@@ -98,7 +98,7 @@ const DiaryBox = ({ id, title, content, date, emotion }: DiaryProps) => {
 
   const diaryList = useAppSelector((state) => state.diary);
 
-  const targetDiary = diaryList.find((item) => parseInt(item.id) === id);
+  const targetDiary = diaryList.find((item) => item.id === id) as DiaryProps;
 
   const modalHandler = () => {
     setIsModalVisible(!isModalVisible);

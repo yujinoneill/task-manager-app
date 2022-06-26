@@ -5,9 +5,11 @@ import DiaryEditor from "../../components/diary/DiaryEditor";
 import { useAppSelector } from "../../store/hook";
 import { DiaryProps } from "../../util/interface";
 
+type ParamsType = { id: string };
+
 const EditDiary = () => {
-  const [originData, setOriginData] = useState<object>();
-  const { id } = useParams();
+  const [originData, setOriginData] = useState<DiaryProps>();
+  const { id } = useParams<ParamsType>() as ParamsType;
   const diaryList = useAppSelector((state) => state.diary);
 
   const navigate = useNavigate();

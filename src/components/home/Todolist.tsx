@@ -124,9 +124,9 @@ const ProgressBar: React.FC<TodoProgress> = React.memo(({ todoProgress }) => {
 
 const TodoList = () => {
   //Progress Bar 계산
-  const [totalTodo, setTotalTodo] = useState<number>();
-  const [completeTodo, setCompleteTodo] = useState<number>();
-  const [todoProgress, setTodoProgress] = useState<string>();
+  const [totalTodo, setTotalTodo] = useState<number>(0);
+  const [completeTodo, setCompleteTodo] = useState<number>(0);
+  const [todoProgress, setTodoProgress] = useState<string>("");
 
   const todoList = useAppSelector((state) => state.todo);
 
