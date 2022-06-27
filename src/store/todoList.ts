@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TodoList } from "../util/interface";
+import { TodoListProps } from "../util/interface";
 
 export const todoReducer = createSlice({
   name: "todoList",
-  initialState: Array<TodoList>,
+  initialState: Array<TodoListProps>,
   reducers: {
-    todoCreate: (state, action: PayloadAction<TodoList>) => {
+    todoCreate: (state, action: PayloadAction<TodoListProps>) => {
       state.unshift(action.payload);
     },
-    todoEdit: (state, action: PayloadAction<TodoList>) => {
+    todoEdit: (state, action: PayloadAction<TodoListProps>) => {
       return state.map((item) =>
         item.id === action.payload.id ? action.payload : item
       );

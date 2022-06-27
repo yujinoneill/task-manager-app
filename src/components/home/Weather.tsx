@@ -49,10 +49,10 @@ const WeatherWidget = styled.div`
 
 //Component
 const Weather = () => {
-  const [city, setCity] = useState<string>();
-  const [country, setCountry] = useState<string>();
-  const [iconUrl, setIconUrl] = useState<string>();
-  const [degree, setDegree] = useState<number>();
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [iconUrl, setIconUrl] = useState("");
+  const [degree, setDegree] = useState(0);
 
   const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
     new Date()
