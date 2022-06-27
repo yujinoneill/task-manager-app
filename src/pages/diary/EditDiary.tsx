@@ -3,14 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import DiaryEditor from "../../components/diary/DiaryEditor";
 import { useAppSelector } from "../../store/hook";
-import { DiaryProps } from "../../util/interface";
-
-type ParamsType = { id: string };
+import { DiaryProps, ParamsType } from "../../util/interface";
 
 const EditDiary = () => {
-  const [originData, setOriginData] = useState<DiaryProps>();
-  const { id } = useParams<ParamsType>() as ParamsType;
   const diaryList = useAppSelector((state) => state.diary);
+
+  const [originData, setOriginData] = useState<DiaryProps>();
+  const { id } = useParams() as ParamsType;
 
   const navigate = useNavigate();
 

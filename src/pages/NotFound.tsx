@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-
 import styled from "styled-components";
-import BasicButton from "../components/style/BasicButton";
 
+import BasicButton from "../components/style/BasicButton";
 import { Background, LoginBox } from "./Login";
 
 //Styled-components

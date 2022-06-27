@@ -1,8 +1,7 @@
 import React from "react";
-
 import styled from "styled-components";
-import { EmotionItemProps } from "../../util/interface";
 
+import { EmotionItemProps } from "../../util/interface";
 import { EmotionIcon } from "./EmotionIcon";
 
 //Styled-components

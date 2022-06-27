@@ -7,6 +7,7 @@ import BlueButton from "../style/BlueButton";
 import DiaryBox from "../diary/DiaryBox";
 import Modal from "./Modal";
 import WishEditor from "../wishlist/WishEditor";
+
 import {
   ControlProps,
   DiaryProps,
@@ -25,8 +26,9 @@ export const StyledHeader = styled.header`
   select {
     outline: none;
     border: none;
-    background-color: #e9ecef;
     border-radius: 5px;
+
+    background-color: #e9ecef;
 
     padding-left: 5px;
 

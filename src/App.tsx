@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import styled from "styled-components";
 
 import "./App.css";
+import { useAppSelector } from "./store/hook";
+import { LoginTogglerType } from "./util/interface";
 
 //Components
 import Header from "./components/common/Header";
@@ -18,8 +19,6 @@ import Developer from "./pages/Developer";
 import WishList from "./pages/wishlist/WishList";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
-import { useAppSelector } from "./store/hook";
-import { LoginTogglerType } from "./util/interface";
 
 //Styled-components
 const StyledApp = styled.div`

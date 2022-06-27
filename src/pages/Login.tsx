@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import styled from "styled-components";
+
 import { LogInOutContext } from "../App";
 import { userActions } from "../store/user";
 import { LoginTogglerType } from "../util/interface";
