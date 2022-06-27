@@ -8,6 +8,7 @@ import { WishProps } from "../../util/interface";
 import BasicButton from "../style/BasicButton";
 import BlueButton from "../style/BlueButton";
 
+//Styled-components
 export const StyledDiv = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -32,6 +33,7 @@ export const StyledDiv = styled.div`
   }
 `;
 
+//Component
 const WishEditor = ({ originData, isEdit, modalHandler }: WishProps) => {
   const wishList = useAppSelector((state) => state.wish);
 

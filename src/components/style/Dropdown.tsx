@@ -81,6 +81,7 @@ export const List = styled.ul`
   }
 `;
 
+//Component
 const Dropdown = () => {
   const { loginToggler } = useContext(LogInOutContext) as LoginTogglerType;
 
@@ -95,9 +96,9 @@ const Dropdown = () => {
 
   const logoutHandler = () => {
     if (window.confirm("Are you sure you want to Log Out?")) {
-      dispatch(userActions.userLogout({}));
-      loginToggler();
-      activeHandler();
+      dispatch(userActions.userLogout({})); //로그아웃시켜서 user 데이터 제거
+      loginToggler(); //App.js의 isLoggedIn 변경해서 Login 페이지로 이동
+      activeHandler(); //isActive false로 변경시켜서 드롭다운 닫기
       navigate("/", { replace: true });
     }
   };

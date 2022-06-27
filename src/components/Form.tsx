@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+//Styled-components
 export const StyledForm = styled.form`
   padding: 5px;
 
@@ -48,6 +49,7 @@ export const StyledDiv = styled.div<{ number: number }>`
   }
 `;
 
+//Component
 const Form = () => {
   return (
     <StyledForm>

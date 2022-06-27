@@ -1,5 +1,6 @@
 import React, { BaseSyntheticEvent, useEffect } from "react";
 import styled from "styled-components";
+
 import { ModalProps } from "../../util/interface";
 
 //Styled-components
@@ -49,6 +50,7 @@ const ModalContent = styled.div`
   }
 `;
 
+//Component
 const Modal = ({ children, modalHandler }: ModalProps) => {
   const preventPropagation = (e: BaseSyntheticEvent) => {
     e.stopPropagation();

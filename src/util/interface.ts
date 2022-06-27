@@ -1,4 +1,4 @@
-//App
+//Common
 export interface LoginTogglerType {
   loginToggler: () => void;
 }

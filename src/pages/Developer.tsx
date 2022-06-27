@@ -5,6 +5,7 @@ import { FaGlobe, FaTwitter, FaGithub } from "react-icons/fa";
 import BasicBox from "../components/style/BasicBox";
 import Form from "../components/Form";
 
+//Styled-components
 const Background = styled.div`
   height: 100px;
   background-color: #6096ba;
@@ -99,7 +100,7 @@ const LinkButton = styled.button`
   }
 `;
 
-const MyAccount = () => {
+//Component
   return (
     <Container>
       <div className="order-1">

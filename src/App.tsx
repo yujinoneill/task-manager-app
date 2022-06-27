@@ -5,11 +5,11 @@ import styled from "styled-components";
 
 import "./App.css";
 
-// components
+//Components
 import Header from "./components/common/Header";
 import SideBar from "./components/common/SideBar";
 
-// pages
+//Pages
 import Home from "./pages/Home";
 import Diary from "./pages/diary/Diary";
 import NewDiary from "./pages/diary/NewDiary";
@@ -21,14 +21,14 @@ import NotFound from "./pages/NotFound";
 import { useAppSelector } from "./store/hook";
 import { LoginTogglerType } from "./util/interface";
 
-// styled-components
+//Styled-components
 const StyledApp = styled.div`
   padding: 20px;
   font-family: "Ubuntu", sans-serif;
   margin-left: 50px;
 `;
 
-//함수 전달 위해 context 생성
+//함수 전달 위해 Context 생성
 export const LogInOutContext = React.createContext<
   LoginTogglerType | undefined
 >(undefined);

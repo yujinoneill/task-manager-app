@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-
 import styled from "styled-components";
 
 import BasicBox from "../components/style/BasicBox";
@@ -57,6 +56,7 @@ const Widget = styled.div`
   }
 `;
 
+//Component
 const Home = () => {
   //WelcomBox에 유저 이름 불러오기
   const user = useAppSelector((state) => state.user);

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+//Styled-components
 export const StyledButton = styled.button`
   cursor: pointer;
   display: inline-block;
@@ -26,7 +27,7 @@ export const StyledButton = styled.button`
   }
 `;
 
-interface BasicButtonProps {
+//Component
   name: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | (() => void);
 }

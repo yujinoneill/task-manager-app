@@ -112,7 +112,7 @@ const FilteredList = ({ type, list }: FilterProps) => {
     setIsModalVisible(!isModalVisible);
   }, [isModalVisible]);
 
-  //data sorting function
+  //Data sorting function
   const processedList = () => {
     const dateFilter = (
       a: DiaryProps | WishListProps,

@@ -16,7 +16,7 @@ import EmotionItem from "./EmotionItem";
 import { useAppSelector } from "../../store/hook";
 import { DiaryEditorProps } from "../../util/interface";
 
-// Styled-components
+//Styled-components
 const Form = styled.form`
   margin-top: 10px;
 
@@ -126,6 +126,7 @@ const emotionList = [
   },
 ];
 
+//Component
 const DiaryEditor = ({ boxTitle, isEdit, originData }: DiaryEditorProps) => {
   const diary = useAppSelector((state) => state.diary);
 

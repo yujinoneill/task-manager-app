@@ -5,6 +5,7 @@ import BasicButton from "../components/style/BasicButton";
 
 import { Background, LoginBox } from "./Login";
 
+//Styled-components
 const Content = styled(LoginBox)`
   background-color: transparent;
   border-radius: 0;
@@ -15,6 +16,7 @@ const Content = styled(LoginBox)`
   }
 `;
 
+//Component
 const NotFound = () => {
   return (
     <Background>

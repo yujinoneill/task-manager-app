@@ -7,6 +7,7 @@ import { LogInOutContext } from "../App";
 import { userActions } from "../store/user";
 import { LoginTogglerType } from "../util/interface";
 
+//Styled-components
 export const Background = styled.div`
   box-sizing: border-box;
 
@@ -88,6 +89,7 @@ export const LoginBox = styled.div`
   }
 `;
 
+//Component
 const Login = () => {
   const { loginToggler } = useContext(LogInOutContext) as LoginTogglerType;
   const [userName, setUserName] = useState("");

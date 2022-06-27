@@ -10,6 +10,7 @@ import { Fragment } from "react";
 import { DiaryProps } from "../../util/interface";
 import { useAppSelector } from "../../store/hook";
 
+//Styled-components
 export const StyledBox = styled.div`
   position: relative;
   display: flex;
@@ -93,6 +94,7 @@ export const DiaryBody = styled.div`
   }
 `;
 
+//Component
 const DiaryBox = ({ id, title, content, date, emotion }: DiaryProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 

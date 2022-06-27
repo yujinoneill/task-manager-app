@@ -5,6 +5,7 @@ import { EmotionItemProps } from "../../util/interface";
 
 import { EmotionIcon } from "./EmotionIcon";
 
+//Styled-components
 const EmotionBox = styled.div<{ isSelected: EmotionItemProps["isSelected"] }>`
   cursor: pointer;
 
@@ -28,6 +29,7 @@ const EmotionBox = styled.div<{ isSelected: EmotionItemProps["isSelected"] }>`
   }
 `;
 
+//Component
 const EmotionItem = ({
   emotionId,
   emotionDesc,

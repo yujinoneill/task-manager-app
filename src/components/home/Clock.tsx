@@ -104,6 +104,7 @@ const Mark = styled.div`
   }
 `;
 
+//Component
 const Clock = () => {
   const [secondDeg, setSecondDeg] = useState<number>();
   const [minDeg, setMinDeg] = useState<number>();
@@ -116,7 +117,7 @@ const Clock = () => {
     const secondsDegree = seconds * (360 / 60); //60초간 360도를 도니까 1초당 6도씩
 
     const mins = now.getMinutes();
-    const minDegree = mins * (360 / 60) + seconds * (6 / 60); //초침이 움직임에 따라 분침도 매초마다 조금씩 움직이기 때문에 이를 반영
+    const minDegree = mins * (360 / 60) + seconds * (6 / 60); //초침이 움직일 때 분침도 매초마다 조금씩 움직이기 때문에 이를 반영
 
     const hours = now.getHours();
     const hourDegree = hours * (360 / 12) + mins * (30 / 60); //분침과 마참가지로 시침도 매초마다 조금씩 움직이기 때문에 이를 반영

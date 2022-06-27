@@ -53,6 +53,7 @@ export const StyledButton = styled.div`
   }
 `;
 
+//Component
 const DiaryDetail = ({ emotion, content, date, title, id }: DiaryProps) => {
   const dispatch = useDispatch();
 

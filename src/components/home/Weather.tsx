@@ -47,6 +47,7 @@ const WeatherWidget = styled.div`
   }
 `;
 
+//Component
 const Weather = () => {
   const [city, setCity] = useState<string>();
   const [country, setCountry] = useState<string>();
@@ -61,7 +62,7 @@ const Weather = () => {
     new Date()
   );
 
-  //Functions
+  //Functions for Fetch API
   const success = (position: GeolocationPosition) => {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;

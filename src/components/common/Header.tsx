@@ -3,6 +3,7 @@ import { FaSearch } from "react-icons/fa";
 
 import Dropdown from "../style/Dropdown";
 
+//Styled-components
 const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
@@ -36,6 +37,7 @@ const HeadSearch = styled.div`
   }
 `;
 
+//Component
 const Header = () => {
   return (
     <StyledHeader>

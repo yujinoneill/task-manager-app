@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import { StyledButton } from "./BasicButton";
 
+//Styled-components
 const Button = styled(StyledButton)`
   background-color: #6096ba;
   border: 1px solid #6096ba;
@@ -14,7 +15,7 @@ const Button = styled(StyledButton)`
   }
 `;
 
-interface BlueButtonProps {
+//Component
   name: string;
   onClick?: () => void;
 }

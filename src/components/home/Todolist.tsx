@@ -74,15 +74,13 @@ const Progress = styled.div<{ width: string }>`
   }
 `;
 
-//Types
+//Component
 type TodoProgress = { todoProgress: string };
 
-//Components
 const AddForm = React.memo(() => {
   const [todo, setTodo] = useState("");
   const dispatch = useDispatch();
 
-  //투두리스트 추가
   const submitHandler = () => {
     if (todo.length > 0) {
       dispatch(
