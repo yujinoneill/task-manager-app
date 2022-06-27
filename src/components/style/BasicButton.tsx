@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { BasicButtonProps } from "../../util/interface";
+
 //Styled-components
 export const StyledButton = styled.button`
   cursor: pointer;
@@ -28,10 +30,6 @@ export const StyledButton = styled.button`
 `;
 
 //Component
-  name: string;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | (() => void);
-}
-
 const BasicButton = ({ name, onClick }: BasicButtonProps) => {
   return <StyledButton onClick={onClick}>{name}</StyledButton>;
 };

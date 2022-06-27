@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-
 import styled, { css } from "styled-components";
 import { FaTimes } from "react-icons/fa";
 
 import { todoActions } from "../../store/todoList";
-import { CheckFormProps } from "../../util/interface";
+import { TodoListProps } from "../../util/interface";
 
-const Check = styled.div<{ checked: CheckFormProps["checked"] }>`
+//Styled-components
+const Check = styled.div<{ checked: TodoListProps["checked"] }>`
   margin: 10px 0;
 
   display: flex;
@@ -42,7 +42,8 @@ const Check = styled.div<{ checked: CheckFormProps["checked"] }>`
     `}
 `;
 
-const CheckForm = ({ id, todo, checked }: CheckFormProps) => {
+//Component
+const CheckForm = ({ id, todo, checked }: TodoListProps) => {
   const [isChecked, setIsChecked] = useState(checked);
   const dispatch = useDispatch();
 

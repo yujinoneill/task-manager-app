@@ -1,20 +1,32 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
 import { FaHome, FaBook, FaShoppingCart, FaBars } from "react-icons/fa";
 import { GiSnail } from "react-icons/gi";
 
 import { List } from "../style/Dropdown";
+import { SideBarProps } from "../../util/interface";
 
-//Types
-interface SideBarProps {
-  active?: string;
-  sidebarHandler?: () => void;
-}
+//Styled-components
+const StyledHeader = styled.header`
+  margin-top: 20px;
+  margin-bottom: 20px;
 
-// styled-components
-const StyledSideBar = styled.div<SideBarProps>`
+  overflow-x: hidden;
+`;
+
+const Button = styled.button`
+  background-color: transparent;
+  border: none;
+
+  padding-left: 10px;
+
+  font-size: 18px;
+
+  cursor: pointer;
+`;
+
+const StyledSideBar = styled.div<{ active: SideBarProps["active"] }>`
   width: ${(props) => (props.active === "active" ? "190px" : "50px")};
   height: 100%;
   background-color: white;
@@ -41,24 +53,6 @@ const StyledSideBar = styled.div<SideBarProps>`
 
     display: inline-block;
   }
-`;
-
-const Button = styled.button`
-  background-color: transparent;
-  border: none;
-
-  padding-left: 10px;
-
-  font-size: 18px;
-
-  cursor: pointer;
-`;
-
-const StyledHeader = styled.header`
-  margin-top: 20px;
-  margin-bottom: 20px;
-
-  overflow-x: hidden;
 `;
 
 const StyledList = styled(List)`

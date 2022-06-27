@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-
 import styled from "styled-components";
-import { useAppSelector } from "../../store/hook";
 
+import { useAppSelector } from "../../store/hook";
 import { todoActions } from "../../store/todoList";
+import { TodoProgress } from "../../util/interface";
 import BasicButton from "../style/BasicButton";
 import CheckForm from "./CheckForm";
 
@@ -75,8 +75,6 @@ const Progress = styled.div<{ width: string }>`
 `;
 
 //Component
-type TodoProgress = { todoProgress: string };
-
 const AddForm = React.memo(() => {
   const [todo, setTodo] = useState("");
   const dispatch = useDispatch();
@@ -106,7 +104,7 @@ const AddForm = React.memo(() => {
   );
 });
 
-const ProgressBar: React.FC<TodoProgress> = React.memo(({ todoProgress }) => {
+const ProgressBar = React.memo(({ todoProgress }: TodoProgress) => {
   return (
     <ProgressBox>
       <div className="progress-text">

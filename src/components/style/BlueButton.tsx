@@ -1,6 +1,7 @@
 import React from "react";
-
 import styled from "styled-components";
+
+import { BasicButtonProps } from "../../util/interface";
 import { StyledButton } from "./BasicButton";
 
 //Styled-components
@@ -16,11 +17,7 @@ const Button = styled(StyledButton)`
 `;
 
 //Component
-  name: string;
-  onClick?: () => void;
-}
-
-const BlueButton = ({ name, onClick }: BlueButtonProps) => {
+const BlueButton = ({ name, onClick }: BasicButtonProps) => {
   return <Button onClick={onClick}>{name}</Button>;
 };
 

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BasicBoxProps } from "../../util/interface";
 
 //Styled-components
 const StyledSection = styled.section<{ padding: BasicBoxProps["padding"] }>`
@@ -24,13 +25,6 @@ const StyledSection = styled.section<{ padding: BasicBoxProps["padding"] }>`
     box-sizing: border-box;
   }
 `;
-
-//Types
-interface BasicBoxProps {
-  boxTitle?: string;
-  boxContent: JSX.Element;
-  padding?: string;
-}
 
 const BasicBox = ({ boxTitle, boxContent, padding }: BasicBoxProps) => {
   return (

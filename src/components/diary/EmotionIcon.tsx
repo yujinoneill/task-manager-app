@@ -7,9 +7,10 @@ import {
   RiEmotionUnhappyFill,
   RiEmotionSadFill,
 } from "react-icons/ri";
+import { EmotionType } from "../../util/interface";
 
-export const EmotionIcon = ({ emotion }: { emotion: number }) => {
-  let emotionIcon = <p></p>;
+export const EmotionIcon = ({ emotion }: EmotionType) => {
+  let emotionIcon = <p />;
 
   if (emotion === 1) {
     emotionIcon = <RiEmotionLaughFill />;
