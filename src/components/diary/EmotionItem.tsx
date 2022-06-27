@@ -40,7 +40,7 @@ const EmotionItem = ({
       isSelected={isSelected}
       onClick={() => emotionHandler(emotionId)}
     >
-      <div className="icon">{<EmotionIcon emotion={emotionId} />}</div>
+      <div>{<EmotionIcon emotion={emotionId} />}</div>
       <span>{emotionDesc}</span>
     </EmotionBox>
   );

@@ -64,7 +64,7 @@ const DiaryDetail = ({ emotion, content, date, title, id }: DiaryProps) => {
   };
 
   return (
-    <div>
+    <Fragment>
       <StyledHeader>
         <h2>{title}</h2>
         <p>
@@ -79,7 +79,7 @@ const DiaryDetail = ({ emotion, content, date, title, id }: DiaryProps) => {
         </Link>
         <BasicButton name="Delete" onClick={removeHandler} />
       </StyledButton>
-    </div>
+    </Fragment>
   );
 };
 
