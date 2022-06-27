@@ -118,7 +118,7 @@ const Login = () => {
     <Background>
       <LoginBox>
         <h2>My Little Task Manager</h2>
-        <p>Manage your day with To-do lists, Diarys, and Wish lists!</p>
+        <p>Manage your day with To-do lists, Diaries, and Wish lists!</p>
         <img
           src={
             process.env.PUBLIC_URL +

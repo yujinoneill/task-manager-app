@@ -90,7 +90,7 @@ const Form = () => {
         </div>
         <div>
           <label>
-            Contry
+            Country
             <input type="text" value="South Korea" readOnly />
           </label>
         </div>

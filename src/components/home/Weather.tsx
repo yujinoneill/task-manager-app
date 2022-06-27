@@ -75,7 +75,7 @@ const Weather = () => {
         setCity(data.name);
         setCountry(data.sys.country);
         setIconUrl(
-          `http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`
+          `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`
         );
         setDegree(Math.floor(data.main.temp));
       });
