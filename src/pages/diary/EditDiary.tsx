@@ -14,6 +14,11 @@ const EditDiary = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `My Little Task Manager - Edit ${id}th Diary`;
+  }, []);
+
+  useEffect(() => {
     if (diaryList.length > 0) {
       const targetDiary = diaryList.find((item) => item.id === parseInt(id));
 

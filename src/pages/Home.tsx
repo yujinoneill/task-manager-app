@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import styled from "styled-components";
 
 import BasicBox from "../components/style/BasicBox";
@@ -58,6 +58,12 @@ const Widget = styled.div`
 
 //Component
 const Home = () => {
+  //앱 타이틀 변경
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = "My Little Task Manager - Home";
+  }, []);
+
   //WelcomBox에 유저 이름 불러오기
   const user = useAppSelector((state) => state.user);
   const userName = user.name;

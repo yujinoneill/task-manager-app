@@ -1,9 +1,9 @@
+import { Fragment, useEffect } from "react";
 import styled from "styled-components";
 import { FaGlobe, FaTwitter, FaGithub } from "react-icons/fa";
 
 import BasicBox from "../components/style/BasicBox";
 import Form from "../components/Form";
-import { Fragment } from "react";
 
 //Styled-components
 const Background = styled.div`
@@ -102,6 +102,11 @@ const LinkButton = styled.button`
 
 //Component
 const Developer = () => {
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = "My Little Task Manager - Developer";
+  }, []);
+
   return (
     <Container>
       <div className="order-1">

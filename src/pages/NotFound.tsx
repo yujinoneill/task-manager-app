@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -17,6 +18,11 @@ const Content = styled(LoginBox)`
 
 //Component
 const NotFound = () => {
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = "My Little Task Manager - Not Found";
+  }, []);
+
   return (
     <Background>
       <Content>

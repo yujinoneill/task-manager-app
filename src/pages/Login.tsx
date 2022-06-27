@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -109,11 +109,16 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = "My Little Task Manager - Login";
+  }, []);
+
   return (
     <Background>
       <LoginBox>
         <h2>My Little Task Manager</h2>
-        <p>Manage your day with To-do lists, Diarys, and Wish lists! </p>
+        <p>Manage your day with To-do lists, Diarys, and Wish lists!</p>
         <img
           src={
             process.env.PUBLIC_URL +
