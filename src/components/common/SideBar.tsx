@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FaHome, FaBook, FaShoppingCart, FaBars } from "react-icons/fa";
@@ -6,6 +6,7 @@ import { GiSnail } from "react-icons/gi";
 
 import { List } from "../style/Dropdown";
 import { SideBarProps } from "../../util/interface";
+import { Background } from "../../pages/Login";
 
 //Styled-components
 const StyledHeader = styled.header`
@@ -67,6 +68,14 @@ const StyledList = styled(List)`
   }
 `;
 
+const SideBarOverlay = styled(Background)<{ active: SideBarProps["active"] }>`
+  display: ${(props) => (props.active === "active" ? "block" : "none")};
+
+  z-index: 0;
+
+  background-color: transparent;
+`;
+
 //Components
 const SideHeader = ({ sidebarHandler }: SideBarProps) => {
   return (
@@ -85,35 +94,41 @@ const SideBar = () => {
   const sidebarHandler = () => setIsVisible(!isVisible);
 
   return (
-    <StyledSideBar active={`${isVisible ? "active" : "inactive"}`}>
-      <SideHeader sidebarHandler={sidebarHandler} />
-      <StyledList>
-        <li>
-          <Link to="/">
-            <FaHome />
-            <span>Home</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/diary">
-            <FaBook />
-            <span>Diary</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/wishlist">
-            <FaShoppingCart />
-            <span>Wish List</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/developer">
-            <GiSnail />
-            <span>Developer</span>
-          </Link>
-        </li>
-      </StyledList>
-    </StyledSideBar>
+    <Fragment>
+      <StyledSideBar active={`${isVisible && "active"}`}>
+        <SideHeader sidebarHandler={sidebarHandler} />
+        <StyledList>
+          <li>
+            <Link to="/">
+              <FaHome />
+              <span>Home</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/diary">
+              <FaBook />
+              <span>Diary</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/wishlist">
+              <FaShoppingCart />
+              <span>Wish List</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/developer">
+              <GiSnail />
+              <span>Developer</span>
+            </Link>
+          </li>
+        </StyledList>
+      </StyledSideBar>
+      <SideBarOverlay
+        active={`${isVisible && "active"}`}
+        onClick={sidebarHandler}
+      />
+    </Fragment>
   );
 };
 
